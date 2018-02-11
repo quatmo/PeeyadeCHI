@@ -5,6 +5,7 @@
  */
 
 import React, { Component } from 'react';
+import { Icon } from 'react-native-elements'
 import {
   Platform,
   StyleSheet,
@@ -45,6 +46,47 @@ export default class App extends Component<Props> {
 
       render() {
         return (
+          <View style={{}}>
+            <Text style={styles.title}>
+             this Season
+            </Text>
+            <Text style={styles.subtitle}>
+             the OS that is not os 
+             is not os: may be this is not syntanx but is syncronize
+             ma baker the most wanted woman in Uk
+            </Text>
+
+            <Text style={styles.rtl}>
+               this Season
+            </Text>
+            <Text style={styles.log}>
+                ۱ فیلم بردار
+            </Text>
+            <Text style={styles.log}>
+               ۱ عکاس
+            </Text>
+
+
+
+            <Text style={styles.rtl}>
+              روز و ساعت تهیه گزارش
+            </Text>
+            <Text style={styles.log}>
+               سه شنبه ساعت ۱۲ و ۴۵ دقیقه
+            </Text>
+
+          <Text style={styles.rtl}>
+          آدرس 
+          </Text>
+          <Text style={styles.log}>
+          میدان انقلاب خیابان کارگر جنوبی کوچه‌ی ۶ پلاک ۸
+          </Text>
+
+          <Text style={styles.rtl}>
+          اعضای ویژه 
+          </Text>
+
+
           <ListView
             style={styles.listview}
             dataSource={this.state.dataSource}
@@ -61,30 +103,40 @@ export default class App extends Component<Props> {
                 borderBottomWidth:2,
                 padding:20
               }}>
+               
+               <View style={{flexDirection:'row',alignItems:'center'}}> 
+                  <Text>{'در انتظار تایید'}</Text>
+                  <Icon  name='rowing' />
+                </View>
+
+
+                <View>
+                  <Text>{'نویسنده'}</Text>
+                </View>
+              <View style={{flexDirection:'row',alignItems:'center'}}>
+                <View>
+                  <Text>{'پیاده چی کتاب'}</Text>
+                </View>
+
               <Image
                 style={styles.photo}
                 resizeMode={'stretch'}
                 source={require('./image/testlogo.png')}
               />
-               
-                <View>
-                  <Text style={{fontSize:20}}>{data.score}</Text>
-                  <Text>{'امتیاز'}</Text>
-                </View>
+              </View>
 
-                <View>
-                  <Text style={{fontSize:20}}>{data.name}</Text>
-                  <Text>{'پیاده چی کتاب'}</Text>
-                </View>
-
-
-                <View>
-                  <Text style={{fontSize:20,backgroundColor:'white',borderRadius:1}}>{data.ff}</Text>
-                </View>
-            </View>
-            
-          }
+                
+            </View>}
           />
+
+          
+
+
+
+
+
+          </View>
+          
         );
       }
 
@@ -97,12 +149,23 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#F5F1FF',
+  },
+  rtl:{
+    //flex: 1,
+    justifyContent: 'flex-end',
+   // alignItems: 'flex-end',
     backgroundColor: '#F5FCFF',
   },
+  log:{
+    backgroundColor:'red'
+  }
+  ,
   listview: {
-    flex: 1,
+    backgroundColor:'#f2f2f2',
+    //flex: 1,
     backgroundColor: '#F5FCFF',
-    marginTop: 20,
+    marginTop: 0,
 
   },
   photo: {
@@ -110,8 +173,13 @@ const styles = StyleSheet.create({
     width: 40,
     borderRadius: 20,
   },
-  welcome: {
+  title: {
     fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+  subtitle: {
+    fontSize: 10,
     textAlign: 'center',
     margin: 10,
   },
