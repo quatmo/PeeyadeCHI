@@ -5,11 +5,13 @@
  */
 
 import React, { Component } from 'react';
+import MapView from 'react-native-maps';
 import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  TextInput
 } from 'react-native';
 
 const instructions = Platform.select({
@@ -25,14 +27,48 @@ export default class App extends Component<Props> {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!
+         نام مکان
         </Text>
+        <TextInput
+        style={{
+          alignSelf: 'stretch',
+          flexDirection:'row',
+          height: 30,
+          borderColor: 'gray',
+          borderWidth: 1,
+          margin:10
+        }}
+        />
+       
+
         <Text style={styles.instructions}>
-          To get started, edit App.js
+         آدرس مکان
         </Text>
+        <TextInput
+          style={{
+            alignSelf: 'stretch',
+            flexDirection:'row',
+            height: 30,
+            borderColor: 'gray',
+            borderWidth: 1,
+            margin:10
+          }}
+        />
+       
+
         <Text style={styles.instructions}>
-          {instructions}
-        </Text>
+         راهنمای تهیه گزارش
+        </Text> 
+        <TextInput
+        style={{
+          alignSelf: 'stretch',
+          flexDirection:'row',
+          height: 150,
+          borderColor: 'gray',
+          borderWidth: 1,
+          margin:10
+        }}
+        />
       </View>
     );
   }

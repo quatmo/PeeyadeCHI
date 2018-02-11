@@ -9,9 +9,11 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  Image
 } from 'react-native';
-
+import TokenBox from './TokenBox'
+import { Button } from 'react-native-elements';
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
     'Cmd+D or shake for dev menu',
@@ -23,16 +25,59 @@ type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
+      <View style={{marginTop: 30,backgroundColor:'#DDDDDD'}}>
+        
+        <View style={{backgroundColor:'#ff0000'}}>
+            <Text style={{}}>
+              اضافه کردن نویسنده
+            </Text>
+            <View style={{flexDirection:'row',alignItems:'center',flexWrap:'wrap'}}>
+                <TokenBox name="آرش آقاجانی"/>
+            </View>
+
+            <Button
+                buttonStyle={styles.buttonStyle}
+                title="+"
+                onPress={() => {}}
+            />
+      </View>
+        
+      <View>
+            <Text style={{}}>
+              اضافه کردن فیلم بردار
+            </Text>
+            <View style={{flexDirection:'row',alignItems:'center',flexWrap:'wrap'}}>
+                <TokenBox name="آرش آقاجانی"/>
+                <TokenBox name="آرش آقاجانی"/>
+                <TokenBox name="آرش آقاجانی"/>
+            </View>
+
+            <Button
+                buttonStyle={styles.buttonStyle}
+                title="+"
+                onPress={() => {}}
+            />
+      </View>
+      <View>
+            <Text style={{}}>
+              اضافه کردن عکاس
+            </Text>
+            <View style={{flexDirection:'row',alignItems:'center',flexWrap:'wrap'}}>
+                <TokenBox name="آرش آقاجانی"/>
+                <TokenBox name="آرش آقاجانی"/>
+                <TokenBox name="آرش آقاجانی"/>
+                <TokenBox name="آرش آقاجانی"/>
+                <TokenBox name="آرش آقاجانی"/>
+            </View>
+
+            <Button
+                buttonStyle={styles.buttonStyle}
+                title="+"
+                onPress={() => {}}
+            />
+      </View>
+
+        
       </View>
     );
   }
@@ -45,8 +90,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
+  photo: {
+    height: 40,
+    width: 40,
+    borderRadius: 20,
+  },
+  buttonStyle:{
+    backgroundColor: '#333333',
+    alignSelf: 'stretch',
+    flexDirection:'row',
+    height:2,
+    margin: 0,
+    padding:8 ,
+  },
   welcome: {
-    fontSize: 20,
+    fontSize: 10,
     textAlign: 'center',
     margin: 10,
   },
