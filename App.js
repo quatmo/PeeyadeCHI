@@ -10,7 +10,8 @@ import {
   StyleSheet,
   Text,
   View,
-  ListView
+  TextInput,
+  Icon
 } from 'react-native';
 
 const instructions = Platform.select({
@@ -22,21 +23,18 @@ const instructions = Platform.select({
 
 type Props = {};
 export default class App extends Component<Props> {
-  constructor(props) {
-    super(props);
-
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    this.state = {
-      dataSource: ds.cloneWithRows(['row 1', 'row 2']),
-    };
-  }
   render() {
     return (
-      <ListView
-        style={styles.container}
-        dataSource={this.state.dataSource}
-        renderRow={(data) => <View><Text>{data}</Text></View>}
-      />
+      <View style={styles.passwordContainer}>
+        <TextInput
+          style={styles.inputStyle}
+           // autoCorrect={false}
+            //secureTextEntry
+            placeholder="search"
+            //value={'hfhfh'}
+          />
+       
+      </View>
     );
   }
 }
@@ -47,6 +45,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+  },
+  searchIcon: {
+    padding: 10,
+}
+  ,
+  passwordContainer: {
+    marginTop: 20,
+    flexDirection: 'row',
+    borderBottomWidth: 1,
+    borderColor: '#000',
+    paddingBottom: 10,
+  },
+  inputStyle: {
+    flex: 1,
   },
   welcome: {
     fontSize: 20,

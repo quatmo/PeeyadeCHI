@@ -9,7 +9,8 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  TextInput
 } from 'react-native';
 
 const instructions = Platform.select({
@@ -23,16 +24,27 @@ type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
-      <View style={styles.container}>
+      <View>
         <Text style={styles.welcome}>
-          Welcome to React Native!
+          تیتر
         </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
+        <TextInput
+        style={styles.inputstyle}
+        />
+
+        
+        <TextInput
+        style={{
+          alignSelf: 'stretch',
+          flexDirection:'row',
+          height: 150,
+          borderColor: 'gray',
+          borderWidth: 1,
+          margin:10
+        }}
+        />
+
+
       </View>
     );
   }
@@ -47,8 +59,14 @@ const styles = StyleSheet.create({
   },
   welcome: {
     fontSize: 20,
-    textAlign: 'center',
+    textAlign: 'right',
     margin: 10,
+  },
+  inputstyle:{
+    alignSelf: 'stretch',
+    flexDirection:'row',
+    margin:10,
+    height: 40, borderColor: 'gray', borderWidth: 1
   },
   instructions: {
     textAlign: 'center',
