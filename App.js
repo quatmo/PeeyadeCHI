@@ -1,141 +1,72 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+//  include react-native-swipeout
+import Swipeout from 'react-native-swipeout';
+//  example row data (see for json structure)
+import rows from './data';
+//  example styles
+import styles from './styles';
 
-import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-  ListView,
-  Image
-} from 'react-native';
+import React, {Component} from 'react';
+import {AppRegistry, StyleSheet, ListView, Text, View, TouchableWithoutFeedback} from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+//  example swipout app
+class SwipeoutExample extends Component {
 
-type Props = {};
-export default class App extends Component<Props> {
+  constructor() {
+    super();
 
-  constructor(props) {
-        super(props);
+    //  datasource rerendered when change is made (used to set swipeout to active)
+    var ds = new ListView.DataSource({rowHasChanged: (row1, row2) => true});
 
-        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-        this.state = {
-          dataSource: ds.cloneWithRows([
-            {ff:'این پارک',name:'آرش آقاجانی',score:'120'},
-            {ff:'این پارک',name:'آرشام ',score:'100'},
-            {ff:'این پارک',name:'آرشیدا',score:'80'},
-            {ff:'این پارک',name:'رشا',score:'60'},
-            {ff:'این پارک',name:' میدوس آرش',score:'40'},
-            {ff:'این پارک',name:'اوادا کاداورا',score:'20'}
+    this.state = {
+      dataSource: ds.cloneWithRows(rows),
+      sectionID: null,
+      rowID: null,
+    };
+  }
 
-          ]),
-        };
-      }
+  _renderRow(rowData: string, sectionID: number, rowID: number) {
+    return (
+      <Swipeout
+        close={!(this.state.sectionID === sectionID && this.state.rowID === rowID)}
+        left={rowData.left}
+        right={rowData.right}
+        rowID={rowID}
+        sectionID={sectionID}
+        autoClose={rowData.autoClose}
+        backgroundColor={rowData.backgroundColor}
+        onOpen={(sectionID, rowID) => {
+          this.setState({
+            sectionID,
+            rowID,
+          })
+        }}
+        onClose={() => console.log('===close') }
+        scroll={event => console.log('scroll event') }
+      >
+        <TouchableWithoutFeedback onPress={() => console.log('press children')}>
+          <View style={styles.li} >
+            <Text style={styles.liText}>{rowData.text}</Text>
+          </View>
+        </TouchableWithoutFeedback>
+      </Swipeout>
+    );
+  }
 
-
-
-      render() {
-        return (
-          <ListView
-            style={styles.listview}
-            dataSource={this.state.dataSource}
-            renderRow={(data) => 
-              <View style={{
-                flex: 1,
-                flexDirection: 'row',
-                justifyContent: 'center',
-                backgroundColor: '#F5FCFF',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                borderColor:'black',
-                borderRadius:1,
-                borderBottomWidth:2,
-                padding:20
-              }}>
-              <Text style={{fontSize:10}}>بیشتر</Text>
-             
-               
-                <View>
-                  <Text style={{fontSize:20}}>{data.score}</Text>
-                  <Text>{'امتیاز'}</Text>
-                </View>
-
-                <View>
-                  <Text style={{fontSize:20}}>{data.name}</Text>
-                  <View style={{flexDirection:'row'}}>
-                  <Image
-                style={styles.photo}
-                resizeMode={'stretch'}
-                source={require('./image/testlogo.png')}
-              />
-                <Image
-                style={styles.photo}
-                resizeMode={'stretch'}
-                source={require('./image/testlogo.png')}
-              />
-                <Image
-                style={styles.photo}
-                resizeMode={'stretch'}
-                source={require('./image/testlogo.png')}
-              />
-                <Image
-                style={styles.photo}
-                resizeMode={'stretch'}
-                source={require('./image/testlogo.png')}
-              />
-                  </View>
-                </View>
-
-              <Text style={{fontSize:20}}>{data.ff}</Text>
-
-               
-            </View>
-            
-          }
-          />
-        );
-      }
-
-
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style={styles.statusbar}/>
+        <View style={styles.navbar}><Text style={styles.navbarTitle}>Swipeout</Text></View>
+        <ListView
+          scrollEnabled
+          dataSource={this.state.dataSource}
+          renderRow={this._renderRow.bind(this)}
+          style={styles.listview}
+        />
+      </View>
+    );
+  }
 
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  listview: {
-    flex: 1,
-    backgroundColor: '#F5FCFF',
-    marginTop: 20,
-
-  },
-  photo: {
-    height: 20,
-    width: 20,
-    borderRadius: 20,
-    alignSelf: 'stretch',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+export default SwipeoutExample;
