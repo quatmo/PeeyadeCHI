@@ -9,9 +9,7 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View,
-  TextInput,
-  Icon
+  View
 } from 'react-native';
 
 const instructions = Platform.select({
@@ -25,15 +23,16 @@ type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
-      <View style={styles.passwordContainer}>
-        <TextInput
-          style={styles.inputStyle}
-           // autoCorrect={false}
-            //secureTextEntry
-            placeholder="search"
-            //value={'hfhfh'}
-          />
-       
+      <View style={styles.container}>
+        <Text style={styles.welcome}>
+          Welcome to React Native!
+        </Text>
+        <Text style={styles.instructions}>
+          To get started, edit App.js
+        </Text>
+        <Text style={styles.instructions}>
+          {instructions}
+        </Text>
       </View>
     );
   }
@@ -45,20 +44,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
-  },
-  searchIcon: {
-    padding: 10,
-}
-  ,
-  passwordContainer: {
-    marginTop: 20,
-    flexDirection: 'row',
-    borderBottomWidth: 1,
-    borderColor: '#000',
-    paddingBottom: 10,
-  },
-  inputStyle: {
-    flex: 1,
   },
   welcome: {
     fontSize: 20,
