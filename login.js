@@ -23,7 +23,7 @@ const instructions = Platform.select({
 });
 
 type Props = {};
-export default class App extends Component<Props> {
+export default class Login extends Component<Props> {
   render() {
     return (
       <View style={{
@@ -83,3 +83,4 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 });
+module.exports=Login

@@ -21,7 +21,7 @@ const instructions = Platform.select({
 });
 
 type Props = {};
-export default class App extends Component<Props> {
+export default class sugge extends Component<Props> {
   render() {
     return (
       <View>
@@ -85,3 +85,4 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 });
+module.exports= sugge
