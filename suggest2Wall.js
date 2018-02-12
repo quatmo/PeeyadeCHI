@@ -85,4 +85,3 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 });
-module.exports= sugge

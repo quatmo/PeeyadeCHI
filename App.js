@@ -5,15 +5,13 @@
  */
 
 import React, { Component } from 'react';
-
 import {
   Platform,
   StyleSheet,
   Text,
   View,
   ListView,
-  Image,
-  TouchableHighlight
+  Image
 } from 'react-native';
 
 const instructions = Platform.select({
@@ -28,10 +26,9 @@ export default class App extends Component<Props> {
 
   constructor(props) {
         super(props);
-        
+
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
-          
           dataSource: ds.cloneWithRows([
             {ff:'این پارک',name:'آرش آقاجانی',score:'120'},
             {ff:'این پارک',name:'آرشام ',score:'100'},
@@ -40,17 +37,71 @@ export default class App extends Component<Props> {
             {ff:'این پارک',name:' میدوس آرش',score:'40'},
             {ff:'این پارک',name:'اوادا کاداورا',score:'20'}
 
-          ])
-          
+          ]),
         };
       }
 
-  
 
 
       render() {
         return (
-          <Text style={{backgroundColor:'#f0f0f0',height:60,alignItems:'center'}}>My swipeable content</Text>
+          <ListView
+            style={styles.listview}
+            dataSource={this.state.dataSource}
+            renderRow={(data) => 
+              <View style={{
+                flex: 1,
+                flexDirection: 'row',
+                justifyContent: 'center',
+                backgroundColor: '#F5FCFF',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                borderColor:'black',
+                borderRadius:1,
+                borderBottomWidth:2,
+                padding:20
+              }}>
+              <Text style={{fontSize:10}}>بیشتر</Text>
+             
+               
+                <View>
+                  <Text style={{fontSize:20}}>{data.score}</Text>
+                  <Text>{'امتیاز'}</Text>
+                </View>
+
+                <View>
+                  <Text style={{fontSize:20}}>{data.name}</Text>
+                  <View style={{flexDirection:'row'}}>
+                  <Image
+                style={styles.photo}
+                resizeMode={'stretch'}
+                source={require('./image/testlogo.png')}
+              />
+                <Image
+                style={styles.photo}
+                resizeMode={'stretch'}
+                source={require('./image/testlogo.png')}
+              />
+                <Image
+                style={styles.photo}
+                resizeMode={'stretch'}
+                source={require('./image/testlogo.png')}
+              />
+                <Image
+                style={styles.photo}
+                resizeMode={'stretch'}
+                source={require('./image/testlogo.png')}
+              />
+                  </View>
+                </View>
+
+              <Text style={{fontSize:20}}>{data.ff}</Text>
+
+               
+            </View>
+            
+          }
+          />
         );
       }
 
