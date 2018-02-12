@@ -20,7 +20,7 @@ class ScreenTwo extends Component {
         <Text style={styles.titleText}>{state.params.screen}</Text>
 
         <View style={{flexDirection:'column'}}>
-        <MapView style={{height:365,width:365}}
+        <MapView style={{height:365,width:365,}}
               initialRegion={{
               latitude: 35.704981,
               longitude: 51.416007,
