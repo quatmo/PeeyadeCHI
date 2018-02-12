@@ -15,9 +15,15 @@ class ScreenOne extends Component {
     console.log(this.props, "props is here");
     return (
       <View style={styles.container}>
+       <TouchableHighlight
+            onPress={() => this.props.navigation.goBack()}
+            style={[styles.button, {backgroundColor: '#C56EE0'}]}>
+            <Text style={styles.buttonText}>Go Back</Text>
+          </TouchableHighlight>
+
         <TouchableHighlight
           onPress={() => navigate("ScreenTwo", {screen: "Screen Two"})}
-          style={styles.button}>
+          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>Screen One </Text>
         </TouchableHighlight>
