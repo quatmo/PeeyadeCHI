@@ -13,14 +13,18 @@ export class TokenBox extends Component {
     return (
         <View style={{flexDirection:'row',
             backgroundColor:'#999999',
-            maxWidth:150,
-            marginRight:30}}>
+            width:123,
+            marginRight:30,
+            marginLeft:25
+            
+            }}>
+            <Text style={styles.welcome}>{this.props.name}</Text>
                 <Image
                     style={styles.photo}
                     resizeMode={'stretch'}
                     source={require('./image/testlogo.png')}
                   />
-                <Text style={styles.welcome}>{this.props.name}</Text>
+                
                 <Button
                 buttonStyle={{backgroundColor:'#999999'}}
                 title="x"

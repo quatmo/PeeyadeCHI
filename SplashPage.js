@@ -19,7 +19,7 @@ class SplashPage extends Component {
   componentWillMount() {
     
     setTimeout(() => {
-      navigate("ScreenOne", {screen: "ScreenOne"})
+      navigate("ScreenOne", {screen: "ScreenOne"});
     }, 1000);
   }
   render() {

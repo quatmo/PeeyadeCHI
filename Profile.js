@@ -76,7 +76,7 @@ export default class App extends Component<Props> {
       render() {
         return (
 <View style={styles.container}>  
-              <View style={{alignItems:'center'}}>
+              <View style={{alignItems:'center',marginTop:10}}>
                 <Image
                   style={styles.photo}
                   resizeMode={'stretch'}
@@ -149,8 +149,8 @@ const styles = StyleSheet.create({
   },
   photo: {
     alignItems: 'center',
-    height: 40,
-    width: 40,
+    height: 60,
+    width: 60,
     borderRadius: 20,
    // alignSelf: 'stretch',
   },

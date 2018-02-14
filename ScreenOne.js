@@ -71,12 +71,6 @@ class ScreenOne extends Component {
             style={styles.buttonText}>ReqNews </Text>
         </TouchableHighlight>
         <TouchableHighlight
-          onPress={() => navigate("PersonPage", {screen: "PersonPage  "})}
-          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
-          <Text
-            style={styles.buttonText}>PersonPage </Text>
-        </TouchableHighlight>
-        <TouchableHighlight
           onPress={() => navigate("Req_AddPCH", {screen: "Req_AddPCH  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
@@ -101,22 +95,22 @@ class ScreenOne extends Component {
             style={styles.buttonText}>message2Wall </Text>
         </TouchableHighlight>
         <TouchableHighlight
-          onPress={() => navigate("LoginPage", {screen: "LoginPage  "})}
-          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
-          <Text
-            style={styles.buttonText}>LoginPage </Text>
-        </TouchableHighlight>
-        <TouchableHighlight
           onPress={() => navigate("Profile", {screen: "Profile  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
-            style={styles.buttonText}>Screen </Text>
+            style={styles.buttonText}>Profile(Instagram) </Text>
         </TouchableHighlight>
         <TouchableHighlight
           onPress={() => navigate("ScreenThree", {screen: "ScreenThree  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>ScreenThree </Text>
+        </TouchableHighlight>
+        <TouchableHighlight
+          onPress={() => navigate("ScreenTwo", {screen: "ScreenTwo  "})}
+          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
+          <Text
+            style={styles.buttonText}>Map </Text>
         </TouchableHighlight>
         <TouchableHighlight
           onPress={() => navigate("MainPage", {screen: "MainPage  "})}

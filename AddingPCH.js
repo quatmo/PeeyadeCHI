@@ -7,18 +7,21 @@
 import React, { Component } from 'react';
 import { ButtonGroup } from 'react-native-elements'
 import { Dropdown } from 'react-native-material-dropdown';
-import { Button } from 'react-native-elements';
+import { Button,SearchBar } from 'react-native-elements';
 //import Icons from 'react-native-vector-icons/FontAwesome';
+import { Container, Header, Item, Input } from 'native-base';
 import SelectMultiple from 'react-native-select-multiple'
 import {
   Platform,
   StyleSheet,
   Text,
   View,
-  TextInput,
   Icon,
+  TextInput,
+  
 //  Button
 } from 'react-native';
+
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -59,6 +62,9 @@ export default class App extends Component<Props> {
 
     return (
       <View style={styles.persianLayout}>
+        
+     
+
         <Dropdown
           label='نقش اصلی'
           data={data}
@@ -78,7 +84,7 @@ export default class App extends Component<Props> {
         />
        
         
-      <Text style={{ writingDirection:"rtl"}}>
+      <Text style={{padding:10, alignSelf:"flex-start"}}>
         پیاده چی
       </Text>
       <SelectMultiple
@@ -103,9 +109,10 @@ const styles = StyleSheet.create({
 },
 buttonStyle:{
   backgroundColor: '#333333',
+  height:30
   //borderColor: 'red',
-  borderWidth: 5,
-  borderRadius: 15
+ // borderWidth: 5,
+  //borderRadius: 15
 }
   ,
   passwordContainer: {

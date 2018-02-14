@@ -13,16 +13,16 @@ import AddingPCH from './AddingPCH'
 import Notes from './Notes'             
 import ReqNews from './ReqNews'             
 import data from './data'             
-import PersonPage from './PersonPage'             
+//persoimport PersonPage from './PersonPage'             
 import Req_AddPCH from './Req_AddPCH'             
 import login from './login'             
 import Pic_template from './Pic_template'             
 import ScreenOne from './ScreenOne'             
 import message2Wall from './message2Wall'             
-import LoginPage from './LoginPage'             
+//import LoginPage from './LoginPage'             
 import Profile from './Profile'             
 import ScreenThree from './ScreenThree'             
-import MainPage from './MainPage'             
+//import MainPage from './MainPage'             
 import score from './score'             
 import Quote from './Quote'             
 import ScreenTwo from './ScreenTwo'             
@@ -47,15 +47,14 @@ const App = StackNavigator({
     AddingPCH: {screen: AddingPCH},
     Notes: {screen: Notes},
     ReqNews: {screen: ReqNews},
-    PersonPage: {screen: PersonPage},
     Req_AddPCH: {screen: Req_AddPCH},
     login: {screen: login},
     Pic_template: {screen: Pic_template},
     message2Wall: {screen: message2Wall},
-    LoginPage: {screen: LoginPage},
+    // LoginPage: {screen: LoginPage},
     Profile: {screen: Profile},
     ScreenThree: {screen: ScreenThree},
-    MainPage: {screen: MainPage},
+    //MainPage: {screen: MainPage},
     score: {screen: score},
     Quote: {screen: Quote},
     Details: {screen: Details},

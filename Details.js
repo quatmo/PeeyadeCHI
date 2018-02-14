@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { Icon } from 'react-native-elements'
+//import { Icon } from 'react-native-elements'
 import {
   Platform,
   StyleSheet,
@@ -101,7 +101,6 @@ export default class App extends Component<Props> {
                
                <View style={{flexDirection:'row',alignItems:'center'}}> 
                   <Text>{'در انتظار تایید'}</Text>
-                  <Icon  name='rowing' />
                 </View>
 
 
@@ -148,12 +147,14 @@ const styles = StyleSheet.create({
   },
   rtl:{
     //flex: 1,
-    justifyContent: 'flex-end',
+    //justifyContent: 'flex-end',
    // alignItems: 'flex-end',
-    backgroundColor: '#F5FCFF',
+   alignSelf: 'flex-end',
+   /// backgroundColor: '#F5FCFF',
   },
   log:{
-    backgroundColor:'red'
+    alignSelf:'flex-end',
+    backgroundColor:'#ddd'
   }
   ,
   listview: {
@@ -170,11 +171,13 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
+    //alignSelf:'flex-start',
     textAlign: 'center',
     margin: 10,
   },
   subtitle: {
     fontSize: 10,
+   // alignSelf:'flex-end',
     textAlign: 'center',
     margin: 10,
   },

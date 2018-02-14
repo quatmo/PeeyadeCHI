@@ -27,8 +27,8 @@ export default class App extends Component<Props> {
     return (
       <View style={{marginTop: 30,backgroundColor:'#DDDDDD'}}>
         
-        <View style={{backgroundColor:'#ff0000'}}>
-            <Text style={{}}>
+        <View style={{}}>
+            <Text style={{alignSelf:'flex-end'}}>
               اضافه کردن نویسنده
             </Text>
             <View style={{flexDirection:'row',alignItems:'center',flexWrap:'wrap'}}>
@@ -43,7 +43,7 @@ export default class App extends Component<Props> {
       </View>
         
       <View>
-            <Text style={{}}>
+           <Text style={{alignSelf:'flex-end'}}>
               اضافه کردن فیلم بردار
             </Text>
             <View style={{flexDirection:'row',alignItems:'center',flexWrap:'wrap'}}>
@@ -59,7 +59,7 @@ export default class App extends Component<Props> {
             />
       </View>
       <View>
-            <Text style={{}}>
+           <Text style={{alignSelf:'flex-end'}}>
               اضافه کردن عکاس
             </Text>
             <View style={{flexDirection:'row',alignItems:'center',flexWrap:'wrap'}}>

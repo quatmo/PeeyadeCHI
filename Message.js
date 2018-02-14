@@ -16,7 +16,38 @@ export default class App extends React.Component {
           user: {
             _id: 2,
             name: 'React Native',
-            avatar: require('./image/favicon.png'),
+            avatar:  'https://facebook.github.io/react/img/logo_og.png',
+          },
+          
+        },
+        {
+          _id: 3,
+          text: 'Hello developer',
+          createdAt: new Date(),
+          user: {
+            _id: 4,
+            name: 'React Native',
+            avatar:  'https://facebook.github.io/react/img/logo_og.png',
+          },
+        },
+        {
+          _id: 5,
+          text: 'Hello developer',
+          createdAt: new Date(),
+          user: {
+            _id: 6,
+            name: 'React Native',
+            avatar:  'https://facebook.github.io/react/img/logo_og.png',
+          },
+        },
+        {
+          _id: 7,
+          text: 'Hello developer',
+          createdAt: new Date(),
+          user: {
+            _id: 8,
+            name: 'React Native',
+            avatar:  'https://facebook.github.io/react/img/logo_og.png',
           },
         },
       ],
