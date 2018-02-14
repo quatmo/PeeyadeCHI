@@ -12,19 +12,26 @@ import {
   View,
   Image,
   TextInput,
-  Button
+  Button,
+  TouchableHighlight
 } from 'react-native';
 
 const instructions = Platform.select({
   ios: 'کدی را که از طرف پیاده برای شما ارسال شده \n' +
     'را میتوانید اینجا وارد کنید',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
+  android: 'کدی را که از طرف پیاده برای شما ارسال شده \n' +
+  'را میتوانید اینجا وارد کنید',
 });
 
 type Props = {};
 export default class Login extends Component<Props> {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: `Welcome ${navigation.state.params.screen}`,
+    }
+  };
   render() {
+    const { state, navigate } = this.props.navigation;
     return (
       <View style={{
         flex: 1,
@@ -37,22 +44,20 @@ export default class Login extends Component<Props> {
       }}>
 
         <Image
-          style={{width: 150, height: 100}}
+          style={{width: 200, height: 100,marginTop:20}}
           resizeMode={'stretch'}
           source={require('./image/favicon.png')}
         />
         
       <View > 
         <TextInput
-            style={{height: 40,width:150, borderColor: 'gray', borderWidth: 1}}
+            style={{height: 30,width:200, borderColor: 'gray', borderWidth: 1}}
         />
-        <Button
-         title="ورود"
-         raised={true}
-         theme='dark'
-         overrides={true}
-         backgroundColor='#3fffff'
-        />
+       <TouchableHighlight
+            onPress={() => navigate("ScreenOne", {screen: "ScreenOne"})}
+            style={{height:40,marginTop:20,marginLeft:40,marginRight:40,backgroundColor: 'blue',alignItems:'center',justifyContent:'center'}}>
+            <Text style={{}}>ورود</Text>
+        </TouchableHighlight>
       </View>
 
         

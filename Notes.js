@@ -1,12 +1,16 @@
-import React from 'react-native';
 
-let {
-  View,
-  Text,
-  ListView,
+import React, { Component } from 'react';
+
+import {
+  AppRegistry,
   StyleSheet,
-  TouchableHighlight
-} = React;
+  Text,
+  View,
+  Image,
+  TextInput,
+  Button,
+  TouchableHighlight,
+} from 'react-native';
 
 let styles = StyleSheet.create({
  

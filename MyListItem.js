@@ -1,3 +1,4 @@
+//import React from 'react';
 import Swipeable from 'react-native-swipeable';
 
 const leftContent = <Text>Pull to activate</Text>;

@@ -1,17 +1,19 @@
-'use strict';
+import React, { Component } from 'react';
 
-var React = require('react-native');
-var {
+import {
+  AppRegistry,
   StyleSheet,
-  Component,
-  View,
   Text,
-  TouchableOpacity,
-} = React;
-
+  View,
+  Image,
+  TextInput,
+  Button,
+  TouchableHighlight,
+  TouchableOpacity
+} from 'react-native';
 class NoNavigatorPage extends Component {
   render() {
-    var navigator = this.props.navigator;
+   // var navigator = this.props.navigator;
     return (
       <View style={{backgroundColor: 'rgba(0,0,0,0.5)', flex: 1, alignItems: 'center', justifyContent: 'center'}}>
         <TouchableOpacity

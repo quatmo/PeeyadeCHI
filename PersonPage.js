@@ -1,14 +1,15 @@
-'use strict';
+import React, { Component } from 'react';
 
-var React = require('react-native');
-var {
+import {
+  AppRegistry,
   StyleSheet,
-  Component,
-  View,
   Text,
-  Navigator,
-  TouchableOpacity,
-} = React;
+  View,
+  Image,
+  TextInput,
+  Button,
+  TouchableHighlight,
+} from 'react-native';
 
 class PersonPage extends Component {
   render() {

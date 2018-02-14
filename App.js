@@ -1,128 +1,70 @@
-import React from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-  PixelRatio,
-  TouchableOpacity,
-  Image,
-} from 'react-native';
+//import React from 'react';
 
-import ImagePicker from 'react-native-image-picker';
+import { StackNavigator } from 'react-navigation';
 
-export default class App extends React.Component {
+//ßimport MyListItem from './MyListItem'           
+import ActionButton from './ActionButton';         
+import SwipeoutExample from './SwipeoutExample'             
+import ActionButtonItem from './ActionButtonItem'             
+import NoNavigatorPage from './NoNavigatorPage'             
+import ReqAddPlace from './ReqAddPlace'             
+import TokenBox from './TokenBox'             
+import AddingPCH from './AddingPCH'             
+import Notes from './Notes'             
+import ReqNews from './ReqNews'             
+import data from './data'             
+import PersonPage from './PersonPage'             
+import Req_AddPCH from './Req_AddPCH'             
+import login from './login'             
+import Pic_template from './Pic_template'             
+import ScreenOne from './ScreenOne'             
+import message2Wall from './message2Wall'             
+import LoginPage from './LoginPage'             
+import Profile from './Profile'             
+import ScreenThree from './ScreenThree'             
+import MainPage from './MainPage'             
+import score from './score'             
+import Quote from './Quote'             
+import ScreenTwo from './ScreenTwo'             
+import Details from './Details'             
+import styles from './styles'             
+import Message from './Message'             
+import RadiusButton from './RadiusButton'             
+import SplashPage from './SplashPage'             
+import suggest2Wall from './suggest2Wall'             
 
-  state = {
-    avatarSource: null,
-    videoSource: null
-  };
+const App = StackNavigator({
+   // ScreenZero: { screen: ScreenZero},
+    ScreenOne: { screen: ScreenOne},
+    ScreenTwo: { screen: ScreenTwo},
+    ScreenThree: {screen: ScreenThree},
+    ActionButton: {screen: ActionButton},
+    SwipeoutExample: {screen: SwipeoutExample},
+    ActionButtonItem: {screen: ActionButtonItem},
+    NoNavigatorPage: {screen: NoNavigatorPage},
+    ReqAddPlace: {screen: ReqAddPlace},
+    TokenBox: {screen: TokenBox},
+    AddingPCH: {screen: AddingPCH},
+    Notes: {screen: Notes},
+    ReqNews: {screen: ReqNews},
+    PersonPage: {screen: PersonPage},
+    Req_AddPCH: {screen: Req_AddPCH},
+    login: {screen: login},
+    Pic_template: {screen: Pic_template},
+    message2Wall: {screen: message2Wall},
+    LoginPage: {screen: LoginPage},
+    Profile: {screen: Profile},
+    ScreenThree: {screen: ScreenThree},
+    MainPage: {screen: MainPage},
+    score: {screen: score},
+    Quote: {screen: Quote},
+    Details: {screen: Details},
+    Message: {screen: Message},
+    RadiusButton: {screen: RadiusButton},
+    SplashPage: {screen: SplashPage},
+    suggest2Wall: {screen: suggest2Wall}
+   
+})
 
-  selectPhotoTapped() {
-    const options = {
-      quality: 1.0,
-      maxWidth: 500,
-      maxHeight: 500,
-      storageOptions: {
-        skipBackup: true
-      }
-    };
-
-    ImagePicker.showImagePicker(options, (response) => {
-      console.log('Response = ', response);
-
-      if (response.didCancel) {
-        console.log('User cancelled photo picker');
-      }
-      else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      }
-      else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
-      }
-      else {
-        let source = { uri: response.uri };
-
-        // You can also display the image using data:
-        // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-
-        this.setState({
-          avatarSource: source
-        });
-      }
-    });
-  }
-
-  selectVideoTapped() {
-    const options = {
-      title: 'Video Picker',
-      takePhotoButtonTitle: 'Take Video...',
-      mediaType: 'video',
-      videoQuality: 'medium'
-    };
-
-    ImagePicker.showImagePicker(options, (response) => {
-      console.log('Response = ', response);
-
-      if (response.didCancel) {
-        console.log('User cancelled video picker');
-      }
-      else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      }
-      else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
-      }
-      else {
-        this.setState({
-          videoSource: response.uri
-        });
-      }
-    });
-  }
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
-          <View style={[styles.avatar, styles.avatarContainer, {marginBottom: 20}]}>
-          { this.state.avatarSource === null ? <Text>Select a Photo</Text> :
-            <Image style={styles.avatar} source={this.state.avatarSource} />
-          }
-          </View>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={this.selectVideoTapped.bind(this)}>
-          <View style={[styles.avatar, styles.avatarContainer]}>
-            <Text>Select a Video</Text>
-          </View>
-        </TouchableOpacity>
-
-        { this.state.videoSource &&
-          <Text style={{margin: 8, textAlign: 'center'}}>{this.state.videoSource}</Text>
-        }
-      </View>
-    );
-  }
-
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF'
-  },
-  avatarContainer: {
-    borderColor: '#9B9B9B',
-    borderWidth: 1 / PixelRatio.get(),
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  avatar: {
-    borderRadius: 75,
-    width: 150,
-    height: 150
-  }
-});
+export default App;
+//export default App;

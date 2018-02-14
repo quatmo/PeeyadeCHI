@@ -1,16 +1,15 @@
-'use strict';
+import React, { Component } from 'react';
 
-var React = require('react-native');
-var {
+import {
+  AppRegistry,
   StyleSheet,
-  Component,
-  View,
   Text,
-  Navigator,
+  View,
+  Image,
+  TextInput,
+  Button,
   TouchableHighlight,
-  TouchableOpacity,
-} = React;
-
+} from 'react-native';
 class LoginPage extends Component {
   render() {
     return (
