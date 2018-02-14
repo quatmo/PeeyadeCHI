@@ -7,8 +7,11 @@ import {
   Text,
   View,
   ListView,
-  Image
+  Image,
+  TextInput
 } from 'react-native';
+import { Container, Header, Title, Content, Button, Right, Body, Left, Picker, Form, H3, Item as FormItem } from "native-base";
+const Item = Picker.Item;
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -20,11 +23,13 @@ const instructions = Platform.select({
 type Props = {};
 export default class App extends Component<Props> {
 
-  constructor(props) {
+  constructor(props) 
+  {
         super(props);
 
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
+          selected1: "key1",
           dataSource: ds.cloneWithRows([
             {ff:'1',name:'آرش آقاجانی',score:'120'},
             {ff:'2',name:'آنا لاوا',score:'100'},
@@ -34,53 +39,51 @@ export default class App extends Component<Props> {
             {ff:'6',name:'اوادا کاداورا',score:'20'}
 
           ]),
-        };
-      }
+  };
 
+  }
 
+  onValueChange(value: string) {
+    this.setState({
+      selected1: value
+    });
+  }
 
       render() {
         return (
-          <View style={{}}>
-              <Text style={styles.title}>
-              this Season
+          <View style={{backgroundColor:'red',padding:10}}>
+              <Text style={{alignSelf:'flex-end'}}>
+                نوشته اصلی
               </Text>
-              <Text style={styles.subtitle}>
-              the OS that is not os 
-              is not os: may be this is not syntanx but is syncronize
-              ma baker the most wanted woman in Uk
-              </Text>
+              <View style={{flexDirection:'column',justifyContent:'center'}}> 
 
-              <Text style={styles.rtl}>
-                this Season
-              </Text>
-              <Text style={styles.log}>
-                  ۱ فیلم بردار
-              </Text>
-              <Text style={styles.log}>
-                ۱ عکاس
-              </Text>
+                <View style={{flexDirection:'row-reverse'}}>
+                  <Image
+                      style={styles.photo}
+                      resizeMode={'stretch'}
+                      source={require('./image/testlogo.png')}/>
 
+                  <View style={{flex:1,flexDirection:'column'}}>
+                    <Text style={styles.title}>
+                      عکاس
+                    </Text>
+           
+                  </View >  
 
+                </View>  
+                <View style={{flexDirection:'column'}}>
+                    <Text style={{alignSelf:'flex-end'}}>
+                      نوشته
+                    </Text>
 
-              <Text style={styles.rtl}>
-                روز و ساعت تهیه گزارش
-              </Text>
-              <Text style={styles.log}>
-                سه شنبه ساعت ۱۲ و ۴۵ دقیقه
-              </Text>
+                  <View style={{flexDirection:'column',backgroundColor:'gray'}}>
+                    <TextInput style={{height:80,backgroundColor:'green'}}/>
 
-            <Text style={styles.rtl}>
-            آدرس 
-            </Text>
-            <Text style={styles.log}>
-            میدان انقلاب خیابان کارگر جنوبی کوچه‌ی ۶ پلاک ۸
-            </Text>
+                    
+                  </View >  
 
-            <Text style={styles.rtl}>
-            اعضای ویژه 
-            </Text>
-
+                </View> 
+              </View>
           </View>
           
         );
@@ -99,7 +102,7 @@ const styles = StyleSheet.create({
   },
   rtl:{
     //flex: 1,
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
    // alignItems: 'flex-end',
     backgroundColor: '#F5FCFF',
   },
@@ -115,8 +118,8 @@ const styles = StyleSheet.create({
 
   },
   photo: {
-    height: 40,
-    width: 40,
+    height: 100,
+    width: 100,
     borderRadius: 20,
   },
   title: {

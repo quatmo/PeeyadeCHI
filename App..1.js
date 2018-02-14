@@ -18,7 +18,7 @@ const instructions = Platform.select({
 });
 
 type Props = {};
-export default class App extends Component<Props> {
+export default class App_1 extends Component<Props> {
 
   constructor(props) {
         super(props);
