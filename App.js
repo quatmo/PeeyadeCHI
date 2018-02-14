@@ -1,92 +1,109 @@
-
-import React, { Component } from 'react';
-import { Icon } from 'react-native-elements'
+import React from 'react';
 import {
-  Platform,
+  AppRegistry,
   StyleSheet,
   Text,
   View,
-  ListView,
-  Image
+  PixelRatio,
+  TouchableOpacity,
+  Image,
 } from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+import ImagePicker from 'react-native-image-picker';
 
-type Props = {};
-export default class App_1 extends Component<Props> {
+export default class App extends React.Component {
 
-  constructor(props) {
-        super(props);
+  state = {
+    avatarSource: null,
+    videoSource: null
+  };
 
-        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-        this.state = {
-          dataSource: ds.cloneWithRows([
-            {ff:'1',name:'آرش آقاجانی',score:'120'},
-            {ff:'2',name:'آنا لاوا',score:'100'},
-            {ff:'3',name:'کسرا وفایی',score:'80'},
-            {ff:'4',name:'لنا وفایی',score:'60'},
-            {ff:'5',name:' میدوس آرش',score:'40'},
-            {ff:'6',name:'اوادا کاداورا',score:'20'}
-
-          ]),
-        };
+  selectPhotoTapped() {
+    const options = {
+      quality: 1.0,
+      maxWidth: 500,
+      maxHeight: 500,
+      storageOptions: {
+        skipBackup: true
       }
+    };
 
+    ImagePicker.showImagePicker(options, (response) => {
+      console.log('Response = ', response);
 
+      if (response.didCancel) {
+        console.log('User cancelled photo picker');
+      }
+      else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      }
+      else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      }
+      else {
+        let source = { uri: response.uri };
 
-      render() {
-        return (
-          <View style={{}}>
-              <Text style={styles.title}>
-              this Season
-              </Text>
-              <Text style={styles.subtitle}>
-              the OS that is not os 
-              is not os: may be this is not syntanx but is syncronize
-              ma baker the most wanted woman in Uk
-              </Text>
+        // You can also display the image using data:
+        // let source = { uri: 'data:image/jpeg;base64,' + response.data };
 
-              <Text style={styles.rtl}>
-                this Season
-              </Text>
-              <Text style={styles.log}>
-                  ۱ فیلم بردار
-              </Text>
-              <Text style={styles.log}>
-                ۱ عکاس
-              </Text>
+        this.setState({
+          avatarSource: source
+        });
+      }
+    });
+  }
 
+  selectVideoTapped() {
+    const options = {
+      title: 'Video Picker',
+      takePhotoButtonTitle: 'Take Video...',
+      mediaType: 'video',
+      videoQuality: 'medium'
+    };
 
+    ImagePicker.showImagePicker(options, (response) => {
+      console.log('Response = ', response);
 
-              <Text style={styles.rtl}>
-                روز و ساعت تهیه گزارش
-              </Text>
-              <Text style={styles.log}>
-                سه شنبه ساعت ۱۲ و ۴۵ دقیقه
-              </Text>
+      if (response.didCancel) {
+        console.log('User cancelled video picker');
+      }
+      else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      }
+      else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      }
+      else {
+        this.setState({
+          videoSource: response.uri
+        });
+      }
+    });
+  }
 
-            <Text style={styles.rtl}>
-            آدرس 
-            </Text>
-            <Text style={styles.log}>
-            میدان انقلاب خیابان کارگر جنوبی کوچه‌ی ۶ پلاک ۸
-            </Text>
-
-            <Text style={styles.rtl}>
-            اعضای ویژه 
-            </Text>
-
+  render() {
+    return (
+      <View style={styles.container}>
+        <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
+          <View style={[styles.avatar, styles.avatarContainer, {marginBottom: 20}]}>
+          { this.state.avatarSource === null ? <Text>Select a Photo</Text> :
+            <Image style={styles.avatar} source={this.state.avatarSource} />
+          }
           </View>
-          
-        );
-      }
+        </TouchableOpacity>
 
+        <TouchableOpacity onPress={this.selectVideoTapped.bind(this)}>
+          <View style={[styles.avatar, styles.avatarContainer]}>
+            <Text>Select a Video</Text>
+          </View>
+        </TouchableOpacity>
 
+        { this.state.videoSource &&
+          <Text style={{margin: 8, textAlign: 'center'}}>{this.state.videoSource}</Text>
+        }
+      </View>
+    );
+  }
 
 }
 
@@ -95,44 +112,17 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5F1FF',
+    backgroundColor: '#F5FCFF'
   },
-  rtl:{
-    //flex: 1,
-    justifyContent: 'flex-end',
-    alignSelf: 'flex-end',
-   // alignItems: 'flex-end',
-    backgroundColor: '#F5FCFF',
+  avatarContainer: {
+    borderColor: '#9B9B9B',
+    borderWidth: 1 / PixelRatio.get(),
+    justifyContent: 'center',
+    alignItems: 'center'
   },
-  log:{
-    backgroundColor:'red'
+  avatar: {
+    borderRadius: 75,
+    width: 150,
+    height: 150
   }
-  ,
-  listview: {
-    backgroundColor:'#f2f2f2',
-    //flex: 1,
-    backgroundColor: '#F5FCFF',
-    marginTop: 0,
-
-  },
-  photo: {
-    height: 40,
-    width: 40,
-    borderRadius: 20,
-  },
-  title: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  subtitle: {
-    fontSize: 10,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
 });
