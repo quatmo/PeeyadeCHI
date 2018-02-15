@@ -5,7 +5,7 @@
  */
 
 import React, { Component } from 'react';
-import { ButtonGroup,Header } from 'react-native-elements'
+//import { ButtonGroup,Header } from 'react-native-elements'
 //import PersianDatePicker from 'react-native-persian-date-picker';
 import TimePicker from 'react-native-simple-time-picker';
 import {
@@ -46,11 +46,7 @@ export default class App extends Component<Props> {
     return (
       
       <View style={styles.container}>
-      <Header
-        leftComponent={{ icon: 'menu', color: '#fff' }}
-        centerComponent={{ text: 'MY TITLE', style: { color: '#fff' } }}
-        rightComponent={{ icon: 'home', color: '#fff' }}
-      />
+     
         <Text style={styles.persianLayout}>
           بیشترین امتیاز
         </Text>
@@ -80,12 +76,7 @@ export default class App extends Component<Props> {
         <Text style={styles.persianLayout}>
          روز و ساعت تهیه گزارش
         </Text>
-        <ButtonGroup
-          onPress={this.updateIndex}
-          selectedIndex={selectedIndex}
-          buttons={buttons}
-          containerStyle={{height: 30}}
-        />
+      
         <Text style={styles.persianLayout}>
         ساعت
        </Text>

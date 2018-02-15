@@ -19,7 +19,7 @@ import login from './login'
 import Pic_template from './Pic_template'             
 import ScreenOne from './ScreenOne'             
 import message2Wall from './message2Wall'             
-//import LoginPage from './LoginPage'             
+import ReqActive from './ReqActive'             
 import Profile from './Profile'             
 import ScreenThree from './ScreenThree'             
 //import MainPage from './MainPage'             
@@ -51,7 +51,7 @@ const App = StackNavigator({
     login: {screen: login},
     Pic_template: {screen: Pic_template},
     message2Wall: {screen: message2Wall},
-    // LoginPage: {screen: LoginPage},
+    ReqActive: {screen: ReqActive},
     Profile: {screen: Profile},
     ScreenThree: {screen: ScreenThree},
     //MainPage: {screen: MainPage},

@@ -24,7 +24,7 @@ const instructions = Platform.select({
   android: 'Double tap R on your keyboard to reload,\n' +
     'Shake or press menu button for dev menu',
 });
-const FirstRoute = () => <View style={[ styles.container, { backgroundColor: '#ff4081' ,height:30} ]} />;
+const FirstRoute = () => <View style={[ styles.container, { backgroundColor: '#b43a55' ,height:30} ]} />;
 const SecondRoute = () => <View style={[ styles.container, { backgroundColor: '#673ab7',height:30 } ]} />;
 
 const initialLayout = {
@@ -82,29 +82,29 @@ export default class App extends Component<Props> {
                   resizeMode={'stretch'}
                   source={require('./image/testlogo.png')}/>
 
-                <Text style={{height:60,alignItems:'center'}}>
+                <Text style={{height:60,alignItems:'center',marginTop:10}}>
                   آرش آقاجانی
                 </Text>
             </View>
 
-              <Text style={{fontSize:10,alignItems:'center',padding:10,textAlign:'center'}}>
+              <Text style={{marginHorizontal: 40,fontSize:10,alignItems:'center',padding:10,textAlign:'center'}}>
         جوانک جویای نام جاه طلب که در به دست آوردن آنچه مورد نیاز است تمام تلاش خود را مینماید
               </Text>
 
 
               <View style={{flex:3,flexDirection:'row',alignContent:'center',marginTop:10,maxHeight:80}}>
               
-                <View style={{flex:1,alignItems:'center',backgroundColor:'#f0f0f0'}}>
-                   <Text style={{height:60,alignItems:'center'}}>  36</Text>
-                   <Text style={{height:60,alignItems:'center'}}> منتشر شده</Text>
+                <View style={{flex:1,alignItems:'center'}}>
+                   <Text style={{height:30,alignItems:'center'}}>  36</Text>
+                   <Text style={{height:30,alignItems:'center'}}> منتشر شده</Text>
                 </View>
                 <View style={{flex:1,alignItems:'center'}}>
-                  <Text style={{height:60,alignItems:'center'}}>  450</Text>
-                  <Text style={{height:60,alignItems:'center'}}> امتیاز</Text>
+                  <Text style={{height:30,alignItems:'center'}}>  450</Text>
+                  <Text style={{height:30,alignItems:'flex-end'}}> امتیاز</Text>
                 </View>
                 <View style={{flex:1,alignItems:'center'}}>
-                  <Text style={{height:60,alignItems:'center'}}> t 3333331300</Text>
-                  <Text style={{height:60,alignItems:'center'}}> مبلغ</Text>
+                  <Text style={{height:30,alignItems:'center'}}> t 3333331300</Text>
+                  <Text style={{height:30,alignItems:'center'}}> مبلغ</Text>
                 </View>
 
               </View>

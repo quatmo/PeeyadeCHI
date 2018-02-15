@@ -149,11 +149,13 @@ const styles = StyleSheet.create({
     //flex: 1,
     //justifyContent: 'flex-end',
    // alignItems: 'flex-end',
-   alignSelf: 'flex-end',
+   //alignSelf: 'flex-end',
+   textAlign:'right',
    /// backgroundColor: '#F5FCFF',
   },
   log:{
-    alignSelf:'flex-end',
+    textAlign:'right',
+   // alignSelf:'flex-end',
     backgroundColor:'#ddd'
   }
   ,

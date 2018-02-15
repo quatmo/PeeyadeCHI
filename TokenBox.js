@@ -15,8 +15,8 @@ export class TokenBox extends Component {
             backgroundColor:'#999999',
             width:123,
             marginRight:30,
-            marginLeft:25
-            
+            marginLeft:25,
+            //height:30
             }}>
             <Text style={styles.welcome}>{this.props.name}</Text>
                 <Image

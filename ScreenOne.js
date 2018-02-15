@@ -47,6 +47,12 @@ class ScreenOne extends Component {
             style={styles.buttonText}>ReqAddPlace </Text>
         </TouchableHighlight>
         <TouchableHighlight
+          onPress={() => navigate("ReqActive", {screen: "ReqActive"})}
+          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
+          <Text
+            style={styles.buttonText}>ReqActive </Text>
+        </TouchableHighlight>
+        <TouchableHighlight
           onPress={() => navigate("TokenBox", {screen: "TokenBox  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
@@ -76,6 +82,7 @@ class ScreenOne extends Component {
           <Text
             style={styles.buttonText}>Req_AddPCH </Text>
         </TouchableHighlight>
+       
         <TouchableHighlight
           onPress={() => navigate("login", {screen: "login  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
