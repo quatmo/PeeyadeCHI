@@ -29,6 +29,13 @@ class ScreenOne extends Component {
             style={styles.buttonText}>Screen </Text>
         </TouchableHighlight>
         <TouchableHighlight
+          onPress={() => navigate("drawer", {screen: "drawer  "})}
+          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
+          <Text
+            style={styles.buttonText}>Drawer </Text>
+        </TouchableHighlight>
+
+        <TouchableHighlight
           onPress={() => navigate("SwipeoutExample", {screen: "SwipeoutExample"})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
@@ -65,6 +72,12 @@ class ScreenOne extends Component {
             style={styles.buttonText}>AddingPCH </Text>
         </TouchableHighlight>
         <TouchableHighlight
+          onPress={() => navigate("ReqReport", {screen: "ReqReport  "})}
+          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
+          <Text
+            style={styles.buttonText}>ReqReport </Text>
+        </TouchableHighlight>
+        <TouchableHighlight
           onPress={() => navigate("Notes", {screen: "Notes  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
@@ -81,6 +94,12 @@ class ScreenOne extends Component {
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>Req_AddPCH </Text>
+        </TouchableHighlight>
+        <TouchableHighlight
+          onPress={() => navigate("FilterMenu", {screen: "FilterMenu"})}
+          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
+          <Text
+            style={styles.buttonText}>FilterMenu </Text>
         </TouchableHighlight>
        
         <TouchableHighlight

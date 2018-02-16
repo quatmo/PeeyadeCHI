@@ -33,13 +33,48 @@ export default class App extends Component<Props> {
       <View style={{flex: 1}}>
         <View style={{width: Dimensions.get('window').width, height: Dimensions.get('window').height-100}}>
         <Text style={styles.welcome}>
-          تیتر
+          نام
         </Text>
         <TextInput
         style={styles.inputstyle}
         />
+        <Text style={styles.welcome}>
+          آدرس
+        </Text>
+        <TextInput
+        style={styles.inputstyle}
+        />
+        <Text style={styles.welcome}>
+          آدرس
+        </Text>
+        <View style={{flexDirection:'row'}}>
+        <TouchableHighlight
+            onPress={() => {}}
+            style={[styles.button, {justifyContent:'center',backgroundColor: 'gray'}]}>
+            <Text
+              style={{marginTop:10,fontWeight:'800',justifyContent:'center',alignItems:'center',textAlign:'center',width: Dimensions.get('window').width/4, height: 30,alignSelf:'stretch'}}>خبر  </Text>
+          </TouchableHighlight>
 
+           <TouchableHighlight
+            onPress={() => {}}
+            style={[styles.button, {justifyContent:'center',backgroundColor: 'gray'}]}>
+            <Text
+              style={{marginTop:10,fontWeight:'800',justifyContent:'center',alignItems:'center',textAlign:'center',width: Dimensions.get('window').width/4, height: 30,alignSelf:'stretch'}}>رویداد </Text>
+          </TouchableHighlight>
+
+           <TouchableHighlight
+            onPress={() => {}}
+            style={[styles.button, {justifyContent:'center',backgroundColor: 'gray'}]}>
+            <Text
+              style={{marginTop:10,fontWeight:'800',justifyContent:'center',alignItems:'center',textAlign:'center',width: Dimensions.get('window').width/4, height: 30,alignSelf:'stretch'}}>مکان </Text>
+          </TouchableHighlight>
+          
+        </View>
         
+
+        <Text style={styles.welcome}>
+          توضیحات
+        </Text>
         <TextInput
         style={{
           alignSelf: 'stretch',
@@ -74,6 +109,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+  },
+  button:{
+    margin:20,
+    marginRight: 5,
   },
   welcome: {
     fontSize: 20,

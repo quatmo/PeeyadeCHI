@@ -3,7 +3,6 @@
  * https://github.com/facebook/react-native
  * @flow
  */
-
 import React, { Component } from 'react';
 import {
   Platform,
@@ -14,6 +13,7 @@ import {
   Image
 } from 'react-native';
 
+import renderIf from './renderif';
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
     'Cmd+D or shake for dev menu',
@@ -61,14 +61,33 @@ export default class App extends Component<Props> {
                 borderBottomWidth:2,
                 padding:20
               }}>
-              <Image
-                style={styles.photo}
-                resizeMode={'stretch'}
-                source={require('./image/testlogo.png')}
-              />
-               
+                 {renderIf(data.ff==1, 
+                    <Image
+                      style={{height:40,width:40}}
+                      resizeMode={'stretch'}
+                      source={require('./image/testlogo.png')}
+                    />
+                )}
+                {renderIf(data.ff!=1, 
+                    <Image
+                      style={styles.photo}
+                      resizeMode={'stretch'}
+                      source={require('./image/testlogo.png')}
+                    />
+                )}
+
+        
                 <View>
-                  <Text style={{fontSize:20}}>{data.score}</Text>
+                 
+                {renderIf(data.ff==1, 
+                     <Text style={{fontSize:30}}>{data.score}</Text>
+                )}
+                   
+                {renderIf(data.ff!=1, 
+                     <Text style={{fontSize:20}}>{data.score}</Text>
+                )}
+
+                
                   <Text>{'امتیاز'}</Text>
                 </View>
 
@@ -79,7 +98,15 @@ export default class App extends Component<Props> {
 
 
                 <View>
-                  <Text style={{fontSize:20,backgroundColor:'white',borderRadius:1}}>{data.ff}</Text>
+                     
+                {renderIf(data.ff==1, 
+                       <Text style={{fontWeight:'500',fontSize:30,backgroundColor:'white',borderRadius:1}}>{data.ff}</Text>
+                )}
+                      
+                {renderIf(data.ff!=1, 
+                       <Text style={{fontSize:20,backgroundColor:'white',borderRadius:1}}>{data.ff}</Text>
+                )}
+                
                 </View>
             </View>
             

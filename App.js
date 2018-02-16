@@ -1,6 +1,6 @@
 //import React from 'react';
 
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator,DrawerNavigator } from 'react-navigation';
 
 //ßimport MyListItem from './MyListItem'           
 import ActionButton from './ActionButton';         
@@ -13,7 +13,11 @@ import AddingPCH from './AddingPCH'
 import Notes from './Notes'             
 import ReqNews from './ReqNews'             
 import data from './data'             
-//persoimport PersonPage from './PersonPage'             
+import FilterMenu from './FilterMenu'             
+import drawer from './drawer'             
+//import FilterMenu from './FilterMenu'             
+//import FilterMenu from './FilterMenu'             
+//import FilterMenu from './FilterMenu'             
 import Req_AddPCH from './Req_AddPCH'             
 import login from './login'             
 import Pic_template from './Pic_template'             
@@ -22,7 +26,7 @@ import message2Wall from './message2Wall'
 import ReqActive from './ReqActive'             
 import Profile from './Profile'             
 import ScreenThree from './ScreenThree'             
-//import MainPage from './MainPage'             
+import ReqReport from './ReqReport'             
 import score from './score'             
 import Quote from './Quote'             
 import ScreenTwo from './ScreenTwo'             
@@ -41,6 +45,7 @@ const App = StackNavigator({
     ActionButton: {screen: ActionButton},
     SwipeoutExample: {screen: SwipeoutExample},
     ActionButtonItem: {screen: ActionButtonItem},
+    drawer: {screen: drawer},
     NoNavigatorPage: {screen: NoNavigatorPage},
     ReqAddPlace: {screen: ReqAddPlace},
     TokenBox: {screen: TokenBox},
@@ -49,12 +54,13 @@ const App = StackNavigator({
     ReqNews: {screen: ReqNews},
     Req_AddPCH: {screen: Req_AddPCH},
     login: {screen: login},
+    FilterMenu:{screen:FilterMenu},
     Pic_template: {screen: Pic_template},
     message2Wall: {screen: message2Wall},
     ReqActive: {screen: ReqActive},
     Profile: {screen: Profile},
     ScreenThree: {screen: ScreenThree},
-    //MainPage: {screen: MainPage},
+    ReqReport: {screen: ReqReport},
     score: {screen: score},
     Quote: {screen: Quote},
     Details: {screen: Details},
@@ -62,6 +68,8 @@ const App = StackNavigator({
     RadiusButton: {screen: RadiusButton},
     SplashPage: {screen: SplashPage},
     suggest2Wall: {screen: suggest2Wall}
+
+    
    
 })
 

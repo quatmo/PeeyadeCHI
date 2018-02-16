@@ -14,12 +14,25 @@ class ScreenThree extends Component {
   render() {
     const { params } = this.props.navigation.state;
     return (
-      <View style={styles.container}>
-        <Text style={styles.titleText}>{params.screen}</Text>
+      <View style={{height:30,backgroundColor:'red',flex:1,flexDirection:'row',marginHorizontal:0}}>
+
         <TouchableHighlight
           style={styles.button}
           onPress={() => this.props.navigation.goBack()}>
-          <Text style={styles.buttonText}>Go Back</Text>
+          <Text style={styles.buttonText}>اطلاعات گزارش</Text>
+        </TouchableHighlight>
+
+         <TouchableHighlight
+          style={styles.button}
+          onPress={() => this.props.navigation.goBack()}>
+          <Text style={styles.buttonText}>اطلاعات مکان</Text>
+        </TouchableHighlight>
+
+
+        <TouchableHighlight
+          style={styles.button}
+          onPress={() => this.props.navigation.goBack()}>
+          <Text style={styles.buttonText}>اطلاعات پیاده‌چی</Text>
         </TouchableHighlight>
       </View>
     );
@@ -36,18 +49,22 @@ const styles = StyleSheet.create({
     fontSize: 22
   },
   button: {
+    flex:1,
     alignSelf: 'stretch',
     marginRight: 25,
     marginLeft: 25,
     marginTop: 20,
     borderRadius: 20,
-    backgroundColor: '#C56EE0',
-    height: 50,
+    width:70,
+    backgroundColor: 'white',
+    height: 20,
     justifyContent: 'center'
   },
   buttonText: {
-    color: 'white',
-    fontSize: 18,
+    fontSize:10,
+    color: 'black',
+    //backgroundColor:'white',
+    //fontSize: 18,
     alignSelf: 'center'
   }
 })
