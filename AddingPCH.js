@@ -61,22 +61,43 @@ export default class App extends Component<Props> {
     }];
 
     return (
-      <View style={styles.persianLayout}>
+      <View style={{}}>
         
      
+        <View style={{flexDirection:'row'}}>
+          <Dropdown
+            containerStyle={{flex:10,}}
+            //label=' پایه'
+            itemTextStyle={{}}
+            data={data}
+          />
+          <Text style={{flex:2,alignSelf:'flex-end',padding:10}}>
+            پیاده چی
+          </Text>
+        </View>
 
-        <Dropdown
-          label='نقش اصلی'
-          data={data}
-        />
-        <Dropdown
-          label='مهارت‌ها'
-          data={data}
-        />
-        <Dropdown
-          label='کتگوری اصلی'
-          data={data}
-        />
+        <View style={{flexDirection:'row'}}>
+          <Dropdown
+            containerStyle={{flex:10}}
+            //label='دسته‌ی اصلی'
+            data={data}
+          />
+          <Text style={{flex:2,alignSelf:'flex-end',padding:10}}>
+            پیاده چی
+          </Text>
+        </View>
+
+        <View style={{flexDirection:'row'}}>
+          <Dropdown
+            containerStyle={{flex:10}}
+            //label='مهارت‌ها'
+            data={data}
+          />
+          <Text style={{flex:2,alignSelf:'flex-end',padding:10}}>
+            پیاده چی
+          </Text>
+        </View>
+       
         <Button
              buttonStyle={styles.buttonStyle}
              title="تایید"
@@ -84,10 +105,11 @@ export default class App extends Component<Props> {
         />
        
         
-      <Text style={{padding:10, alignSelf:"flex-start"}}>
+      <Text style={{alignSelf:'flex-end',padding:10}}>
         پیاده چی
       </Text>
       <SelectMultiple
+          style={{direction:'rtl'}}
           items={fruits}
           selectedItems={this.state.selectedFruits}
           onSelectionsChange={this.onSelectionsChange} />
