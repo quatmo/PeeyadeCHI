@@ -1,12 +1,6 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 //import { ButtonGroup,Header } from 'react-native-elements'
-//import PersianDatePicker from 'react-native-persian-date-picker';
+import JalaliCalendarPicker from 'react-native-jalali-calendar-picker';
 import TimePicker from 'react-native-simple-time-picker';
 import {
   Platform,
@@ -31,11 +25,16 @@ export default class App extends Component<Props> {
       selectedIndex: 2,
         selectedHours: 0,
         selectedMinutes: 0,
-      
+        selectedStartDate: null,
     }
     this.updateIndex = this.updateIndex.bind(this)
+    this.onDateChange = this.onDateChange.bind(this);
   }
-  
+  onDateChange(date) {
+    this.setState({
+      selectedStartDate: date,
+    });
+  }
   updateIndex (selectedIndex) {
     this.setState({selectedIndex})
   }
@@ -43,47 +42,19 @@ export default class App extends Component<Props> {
     const { selectedIndex } = this.state;
     const buttons = ['Hello', 'World']
     const { selectedHours, selectedMinutes } = this.state;
+    const { selectedStartDate } = this.state;
+    const startDate = selectedStartDate ? selectedStartDate.format('jYYYY/jM/jD [is] YYYY/M/D') : '';
+ 
     return (
       
       <View style={styles.container}>
      
-        <Text style={styles.persianLayout}>
-          بیشترین امتیاز
-        </Text>
-        <TextInput
-          style={{
-            alignSelf: 'stretch',
-            flexDirection:'row',
-            height: 30,
-            borderColor: 'gray',
-            borderWidth: 1,
-            margin:10
-          }}
-        />
-         <Text style={styles.persianLayout}>
-          مبلغ
-        </Text>
-        <TextInput
-          style={{
-            alignSelf: 'stretch',
-            flexDirection:'row',
-            height: 30,
-            borderColor: 'gray',
-            borderWidth: 1,
-            margin:10
-          }}
-        />
-        <Text style={styles.persianLayout}>
-         روز و ساعت تهیه گزارش
-        </Text>
       
-        <Text style={styles.persianLayout}>
-        ساعت
-       </Text>
        
 
        <View style={styles.container}>
         <Text>{selectedHours}:{selectedMinutes}</Text>
+        <Text>{startDate}</Text>
         <TimePicker
           selectedHours={selectedHours}
           selectedMinutes={selectedMinutes}
@@ -91,6 +62,12 @@ export default class App extends Component<Props> {
         />
       </View>
         
+      <View style={styles.container}>
+      <JalaliCalendarPicker
+         onDateChange={this.onDateChange}
+      />
+      </View>
+
       </View>
     );
   }

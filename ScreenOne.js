@@ -26,7 +26,7 @@ class ScreenOne extends Component {
           onPress={() => navigate("ScreenThree", {screen: "Screen  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
-            style={styles.buttonText}>Screen </Text>
+            style={styles.buttonText}>Send/Recv Buttons </Text>
         </TouchableHighlight>
         <TouchableHighlight
           onPress={() => navigate("drawer", {screen: "drawer  "})}
@@ -41,17 +41,12 @@ class ScreenOne extends Component {
           <Text
             style={styles.buttonText}>SwipeoutExample </Text>
         </TouchableHighlight>
+       
         <TouchableHighlight
-          onPress={() => navigate("NoNavigatorPage", {screen: "NoNavigatorPage  "})}
+          onPress={() => navigate("Date_Time_Persian", {screen: "Date_Time_Persian"})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
-            style={styles.buttonText}>NoNavigatorPage </Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-          onPress={() => navigate("ReqAddPlace", {screen: "ReqAddPlace  "})}
-          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
-          <Text
-            style={styles.buttonText}>ReqAddPlace </Text>
+            style={styles.buttonText}>Date_Time_Persian </Text>
         </TouchableHighlight>
         <TouchableHighlight
           onPress={() => navigate("ReqActive", {screen: "ReqActive"})}

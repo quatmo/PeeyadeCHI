@@ -7,7 +7,7 @@ import ActionButton from './ActionButton';
 import SwipeoutExample from './SwipeoutExample'             
 import ActionButtonItem from './ActionButtonItem'             
 import NoNavigatorPage from './NoNavigatorPage'             
-import ReqAddPlace from './ReqAddPlace'             
+import Date_Time_Persian from './Date_Time_Persian'             
 import TokenBox from './TokenBox'             
 import AddingPCH from './AddingPCH'             
 import Notes from './Notes'             
@@ -46,8 +46,8 @@ const App = StackNavigator({
     SwipeoutExample: {screen: SwipeoutExample},
     ActionButtonItem: {screen: ActionButtonItem},
     drawer: {screen: drawer},
-    NoNavigatorPage: {screen: NoNavigatorPage},
-    ReqAddPlace: {screen: ReqAddPlace},
+    //NoNavigatorPage: {screen: NoNavigatorPage},
+    Date_Time_Persian: {screen: Date_Time_Persian},
     TokenBox: {screen: TokenBox},
     AddingPCH: {screen: AddingPCH},
     Notes: {screen: Notes},
