@@ -36,7 +36,8 @@ export default class App extends Component<Props> {
     super()
     this.state = {
       selectedFruits: [],
-      selectedIndex: 2
+      selectedIndex: 2,
+      text:'جستجو'
     }
     this.updateIndex = this.updateIndex.bind(this)
   }
@@ -62,6 +63,19 @@ export default class App extends Component<Props> {
 
     return (
       <View style={{}}>
+        <SearchBar
+          noIcon
+          lightTheme={true}
+          onChangeText={()=>{}}
+          onClearText={()=>{}}
+          
+          placeholder='جستجو' />
+         <TextInput
+            style={{borderRadius:300,textAlign:'center',backgroundColor:'grey',marginHorizontal:20,height: 40, borderColor: 'gray', borderWidth: 1}}
+            onChangeText={(text) => this.setState({text})}
+            onFocus={()=> this.setState({}) }
+            value={this.state.text}/>
+            
         
      
         <View style={{flexDirection:'row'}}>
