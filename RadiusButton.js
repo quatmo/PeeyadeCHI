@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ActionButton from './ActionButton';
-//import Icon from 'react-native-vector-icons/Ionicons';
 import { Container, Header, Content, Icon } from 'native-base';
 import {
   AppRegistry,
@@ -39,7 +38,7 @@ export default class App extends Component {
           </ActionButton.Item>
 
 
-          <ActionButton.Item buttonColor='#3498db' radius="100" title="Notifications" onPress={() => {}}>
+          <ActionButton.Item buttonColor='#3498db' radius={100} title="Notifications" onPress={() => {}}>
              <Text style={{fontSize:10}}>پیشنهاد</Text> 
             {/* <Icon name='home' /> */}
 

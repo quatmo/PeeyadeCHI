@@ -35,6 +35,12 @@ class ScreenOne extends Component {
             style={styles.buttonText}>Aicons </Text>
         </TouchableHighlight>
         <TouchableHighlight
+          onPress={() => navigate("imagevideo", {screen: "imagevideo"})}
+          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
+          <Text
+            style={styles.buttonText}>Image Video </Text>
+        </TouchableHighlight>
+        <TouchableHighlight
           onPress={() => navigate("drawer", {screen: "drawer  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text

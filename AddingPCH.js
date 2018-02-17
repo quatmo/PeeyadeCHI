@@ -85,6 +85,7 @@ export default class App extends Component<Props> {
         <View style={{flexDirection:'row'}}>
         
           <Dropdown
+            style={{textAlign:'center'}}
             containerStyle={{flex:10,}}
             //label=' پایه'
             itemTextStyle={{}}
@@ -97,6 +98,7 @@ export default class App extends Component<Props> {
 
         <View style={{flexDirection:'row'}}>
           <Dropdown
+            style={{textAlign:'center'}}
             containerStyle={{flex:10}}
             //label='دسته‌ی اصلی'
             data={data}
@@ -108,6 +110,7 @@ export default class App extends Component<Props> {
 
         <View style={{flexDirection:'row'}}>
           <Dropdown
+            style={{textAlign:'center'}}
             containerStyle={{flex:10}}
             //label='مهارت‌ها'
             data={data}

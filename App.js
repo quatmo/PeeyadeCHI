@@ -15,7 +15,7 @@ import ReqNews from './ReqNews'
 import data from './data'             
 import FilterMenu from './FilterMenu'             
 import drawer from './drawer'             
-//import FilterMenu from './FilterMenu'             
+import imagevideo from './imagevideo'             
 //import FilterMenu from './FilterMenu'             
 //import FilterMenu from './FilterMenu'             
 import Req_AddPCH from './Req_AddPCH'             
@@ -46,6 +46,11 @@ const App = StackNavigator({
     SwipeoutExample: {screen: SwipeoutExample},
     ActionButtonItem: {screen: ActionButtonItem},
     drawer: {screen: drawer},
+    imagevideo: {screen: imagevideo},
+    //NoNavigatorPage: {screen: NoNavigatorPage},
+    //NoNavigatorPage: {screen: NoNavigatorPage},
+    //NoNavigatorPage: {screen: NoNavigatorPage},
+    //NoNavigatorPage: {screen: NoNavigatorPage},
     //NoNavigatorPage: {screen: NoNavigatorPage},
     Date_Time_Persian: {screen: Date_Time_Persian},
     TokenBox: {screen: TokenBox},
