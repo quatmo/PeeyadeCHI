@@ -63,13 +63,17 @@ export default class App extends Component<Props> {
 
     return (
       <View style={{}}>
+
         <SearchBar
           noIcon
           lightTheme={true}
           onChangeText={()=>{}}
           onClearText={()=>{}}
-          
           placeholder='جستجو' />
+
+
+      
+  
          <TextInput
             style={{borderRadius:300,textAlign:'center',backgroundColor:'grey',marginHorizontal:20,height: 40, borderColor: 'gray', borderWidth: 1}}
             onChangeText={(text) => this.setState({text})}
@@ -79,6 +83,7 @@ export default class App extends Component<Props> {
         
      
         <View style={{flexDirection:'row'}}>
+        
           <Dropdown
             containerStyle={{flex:10,}}
             //label=' پایه'

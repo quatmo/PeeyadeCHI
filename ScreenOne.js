@@ -29,6 +29,12 @@ class ScreenOne extends Component {
             style={styles.buttonText}>Send/Recv Buttons </Text>
         </TouchableHighlight>
         <TouchableHighlight
+          onPress={() => navigate("Aicons", {screen: "Aicons"})}
+          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
+          <Text
+            style={styles.buttonText}>Aicons </Text>
+        </TouchableHighlight>
+        <TouchableHighlight
           onPress={() => navigate("drawer", {screen: "drawer  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
@@ -72,12 +78,12 @@ class ScreenOne extends Component {
           <Text
             style={styles.buttonText}>ReqReport </Text>
         </TouchableHighlight>
-        <TouchableHighlight
+      {/*  <TouchableHighlight
           onPress={() => navigate("Notes", {screen: "Notes  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>Notes </Text>
-        </TouchableHighlight>
+      </TouchableHighlight>*/}
         <TouchableHighlight
           onPress={() => navigate("ReqNews", {screen: "ReqNews  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
@@ -125,7 +131,7 @@ class ScreenOne extends Component {
           onPress={() => navigate("ScreenThree", {screen: "ScreenThree  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
-            style={styles.buttonText}>ScreenThree </Text>
+            style={styles.buttonText}>ButtonTypes </Text>
         </TouchableHighlight>
         <TouchableHighlight
           onPress={() => navigate("ScreenTwo", {screen: "ScreenTwo  "})}

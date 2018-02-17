@@ -10,7 +10,7 @@ import NoNavigatorPage from './NoNavigatorPage'
 import Date_Time_Persian from './Date_Time_Persian'             
 import TokenBox from './TokenBox'             
 import AddingPCH from './AddingPCH'             
-import Notes from './Notes'             
+import Aicons from './Aicons'             
 import ReqNews from './ReqNews'             
 import data from './data'             
 import FilterMenu from './FilterMenu'             
@@ -50,7 +50,7 @@ const App = StackNavigator({
     Date_Time_Persian: {screen: Date_Time_Persian},
     TokenBox: {screen: TokenBox},
     AddingPCH: {screen: AddingPCH},
-    Notes: {screen: Notes},
+    Aicons: {screen: Aicons},
     ReqNews: {screen: ReqNews},
     Req_AddPCH: {screen: Req_AddPCH},
     login: {screen: login},
