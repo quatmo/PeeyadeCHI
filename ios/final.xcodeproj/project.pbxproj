@@ -1501,6 +1501,7 @@
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
+					"$(SRCROOT)/ImageCropPickerSDK/**",
 				);
 				INFOPLIST_FILE = final/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1530,6 +1531,7 @@
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
+					"$(SRCROOT)/ImageCropPickerSDK/**",
 				);
 				INFOPLIST_FILE = final/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

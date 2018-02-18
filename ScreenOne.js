@@ -4,19 +4,49 @@ import {
   Text,
   StyleSheet,
   TouchableHighlight,
-  ScrollView
+  ScrollView,
+  Picker,
+  Dimensions
 } from 'react-native';
+import ModalDropdown from 'react-native-modal-dropdown';
+import { Container, Header, Content, Icon, Footer } from 'native-base';
 
 class ScreenOne extends Component {
   static navigationOptions = {
     title: "Welcome"
+  }
+  state={
+    language:'arash',
   }
   render() {
     const { navigate } = this.props.navigation;
     console.log(this.props, "props is here");
     return (
       <View style={{}}>
+      <Header>
+        <View style={{justifyContent:'flex-start',alignItems:'center',flexDirection:'row'}}>
+          <Icon name='arrow-down' />
+          <ModalDropdown 
+          defaultValue={'درخواست‌ها'}
+          
+          style={{}} 
+          dropdownStyle={{alignItems:'center',
+          width:Dimensions.get('window').width+30,
+          marginLeft:-Dimensions.get('window').width/2,
+          //padding:30 ,
+        }}
+          options={['فعال‌ها', ' در انتظار انتشار','منتشر شده ']}/>
+        </View>
+      </Header>
+      <View>
       <ScrollView contentContainerStyle={{ }}>
+      
+      <Picker
+        selectedValue={this.state.language}
+        onValueChange={(itemValue, itemIndex) => this.setState({language: itemValue})}>
+        <Picker.Item label="Java" value="java" />
+        <Picker.Item label="JavaScript" value="js" />
+      </Picker>
         <TouchableHighlight
             onPress={() => this.props.navigation.goBack()}
             style={[styles.button, {backgroundColor: '#C56EE0'}]}>
@@ -84,12 +114,6 @@ class ScreenOne extends Component {
           <Text
             style={styles.buttonText}>ReqReport </Text>
         </TouchableHighlight>
-      {/*  <TouchableHighlight
-          onPress={() => navigate("Notes", {screen: "Notes  "})}
-          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
-          <Text
-            style={styles.buttonText}>Notes </Text>
-      </TouchableHighlight>*/}
         <TouchableHighlight
           onPress={() => navigate("ReqNews", {screen: "ReqNews  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
@@ -187,7 +211,25 @@ class ScreenOne extends Component {
           <Text
             style={styles.buttonText}>suggest2Wall </Text>
         </TouchableHighlight>
+     
       </ScrollView>
+      </View>
+      <View style={{}}>
+        <Footer style={{}}>
+          <View style={{}}>
+            <Icon name='arrow-down' />
+            <ModalDropdown 
+            defaultValue={'درخواست‌ها'}
+            style={{}} 
+            dropdownStyle={{alignItems:'center',
+            width:Dimensions.get('window').width+30,
+            marginLeft:-Dimensions.get('window').width/2,
+            //padding:30 ,
+          }}
+            options={['فعال‌ها', ' در انتظار انتشار','منتشر شده ']}/>
+          </View>
+        </Footer>
+      </View>
       </View>
     );
   }
