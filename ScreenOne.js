@@ -41,17 +41,42 @@ class ScreenOne extends Component {
       <View>
       <ScrollView contentContainerStyle={{ }}>
       
-      <Picker
+      <Picker 
+        style={{flex:3,backgroundColor:'#de22bb'}}
         selectedValue={this.state.language}
         onValueChange={(itemValue, itemIndex) => this.setState({language: itemValue})}>
         <Picker.Item label="Java" value="java" />
         <Picker.Item label="JavaScript" value="js" />
+        <Picker.Item label="JavaScript" value="js" />
+        <Picker.Item label="JavaScript" value="js" />
+        <Picker.Item label="JavaScript" value="js" />
+        <Picker.Item label="JavaScript" value="js" />
+        <Picker.Item label="JavaScript" value="js" />
+        <Picker.Item label="JavaScript" value="js" />
       </Picker>
+
         <TouchableHighlight
             onPress={() => this.props.navigation.goBack()}
             style={[styles.button, {backgroundColor: '#C56EE0'}]}>
             <Text style={styles.buttonText}>Go Back</Text>
         </TouchableHighlight>
+
+
+
+        <TouchableHighlight
+          onPress={() => navigate("Profile", {screen: "Profile  "})}
+          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
+          <Text
+            style={styles.buttonText}>Profile(Instagram) </Text>
+        </TouchableHighlight>
+
+         <TouchableHighlight
+          onPress={() => navigate("Login_confirm", {screen: "Login_confirm"})}
+          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
+          <Text
+            style={styles.buttonText}>Login_confirm</Text>
+        </TouchableHighlight>
+
         <TouchableHighlight
           onPress={() => navigate("login", {screen: "login  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
@@ -152,12 +177,7 @@ class ScreenOne extends Component {
           <Text
             style={styles.buttonText}>message2Wall </Text>
         </TouchableHighlight>
-        <TouchableHighlight
-          onPress={() => navigate("Profile", {screen: "Profile  "})}
-          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
-          <Text
-            style={styles.buttonText}>Profile(Instagram) </Text>
-        </TouchableHighlight>
+       
         <TouchableHighlight
           onPress={() => navigate("ScreenThree", {screen: "ScreenThree  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>

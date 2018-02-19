@@ -15,6 +15,7 @@ import {
   ListView,
   Image,
   TouchableHighlight,
+  Alert,
   Dimensions
 } from 'react-native';
 
@@ -34,14 +35,78 @@ const initialLayout = {
 
 type Props = {};
 export default class App extends Component<Props> {
-  state = {
-    index: 0,
-    routes: [
-      { key: 'first', title: 'حساب من ' },
-      { key: 'second', title: 'خبرها' },
-    ],
-  };
+  constructor(props) {
+    super(props)
+    this.state = {
+      bons:10,
+      username:'-----',
+      bestphoto:'',
+      index: 0,
+      routes: [
+        { key: 'first', title: 'حساب من ' },
+        { key: 'second', title: 'خبرها' },
+      ],
+    };
+    this.addOne = this.addOne.bind(this)
+  //  this.gg = this.gg.bind(this)
+  }
 
+  addOne(res) {
+    console.log('^^^^^');
+    console.log(res);
+    this.setState({
+      bons: res.data.points
+    })
+  }
+
+  
+
+
+
+
+  componentDidMount(){
+    
+
+    try {
+      fetch(
+        'https://peeyade.com/api/pch/v1/users/profile/',{  
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization':'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI1YTg2ZDQ5ZGZhOTA2OTYyMDA5NWM2N2QiLCJ1c2VyIjoi2KLYsdi02YXbjNiv2LMifQ.dJloyq--dABpkcwRhw6OSBwH59z30ZKoLD6356Kozbk'
+          },
+         
+        }).then(function(response){
+          console.log(response);
+          this.addOne(response);
+          //return response.json().data
+        
+        })
+      //let responseJson = await ;
+      //console.log(responseJson)
+      //console.log('get profile completed !!');
+      //this.state.bons=200
+     // console.log(bons);
+     // console.log(this.bons);
+     // console.log(this.state.bons);
+      Alert.alert(
+        'Alert Title',
+        'My Alert Msg',
+        [
+          {text: 'xx', onPress: () => console.log('Ask me later pressed')},
+          {text: 'responseJson.data.user.bestPhoto.prefix', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ],
+        { cancelable: false }
+      );
+    } catch (error) {
+      console.log("Arash ::: "+error);
+    }
+
+    console.log('component did mount compelete !!!å'+this.state.username);
+
+  }
   _handleIndexChange = index => this.setState({ index });
 
   _renderHeader = props => <TabBar {...props} />;
@@ -51,26 +116,6 @@ export default class App extends Component<Props> {
     second: SecondRoute,
   });
 
-  /*constructor(props) {
-        super(props);
-        
-        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-        this.state = {
-          
-          dataSource: ds.cloneWithRows([
-            {ff:'این پارک',name:'آرش آقاجانی',score:'120'},
-            {ff:'این پارک',name:'آرشام ',score:'100'},
-            {ff:'این پارک',name:'آرشیدا',score:'80'},
-            {ff:'این پارک',name:'رشا',score:'60'},
-            {ff:'این پارک',name:' میدوس آرش',score:'40'},
-            {ff:'این پارک',name:'اوادا کاداورا',score:'20'}
-
-          ])
-          
-        };
-      }*/
-
-  
 
 
       render() {
@@ -83,12 +128,12 @@ export default class App extends Component<Props> {
                   source={require('./image/testlogo.png')}/>
 
                 <Text style={{height:60,alignItems:'center',marginTop:10}}>
-                  آرش آقاجانی
+                {this.state.username}
                 </Text>
             </View>
 
               <Text style={{marginHorizontal: 40,fontSize:10,alignItems:'center',padding:10,textAlign:'center'}}>
-        جوانک جویای نام جاه طلب که در به دست آوردن آنچه مورد نیاز است تمام تلاش خود را مینماید
+      {this.state.username}
               </Text>
 
 
@@ -99,11 +144,11 @@ export default class App extends Component<Props> {
                    <Text style={{height:30,alignItems:'center'}}> منتشر شده</Text>
                 </View>
                 <View style={{flex:1,alignItems:'center'}}>
-                  <Text style={{height:30,alignItems:'center'}}>  450</Text>
+                  <Text style={{height:30,alignItems:'center'}}>  {this.state.bons}</Text>
                   <Text style={{height:30,alignItems:'flex-end'}}> امتیاز</Text>
                 </View>
                 <View style={{flex:1,alignItems:'center'}}>
-                  <Text style={{height:30,alignItems:'center'}}> t 3333331300</Text>
+                  <Text style={{height:30,alignItems:'center'}}> t ????</Text>
                   <Text style={{height:30,alignItems:'center'}}> مبلغ</Text>
                 </View>
 

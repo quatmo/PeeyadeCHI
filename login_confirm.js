@@ -42,14 +42,15 @@ export default class Login extends Component<Props> {
         
         //  const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
+          code:'',
           bg:'gray',
           gg: async function getMoviesFromApi() {
           //  bg:'gray',
-            console.log('get movies from api requested');
+            console.log('your tex is :');
          
             try {
               let response = await fetch(
-                'https://peeyade.com/api/pch/v1/users/sendVerification',{  
+                'https://peeyade.com/api/pch/v1/users/recieveVerification',{  
                   method: 'POST',
                   headers: {
                     'Accept': 'application/json',
@@ -57,15 +58,22 @@ export default class Login extends Component<Props> {
                   },
                   body: JSON.stringify({
                     phone: '989120617453',
+                    code:'63644',
                   })
                 })
               let responseJson = await response.json();
-              //console.log(responseJson.movies);
-              console.log(responseJson.message);
-              //return responseJson.movies;
+              Alert.alert(
+                'Alert Title',
+                'My Alert Msg',
+                [
+                  {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
+                  {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                  {text: 'OK', onPress: () => console.log('OK Pressed')},
+                ],
+                { cancelable: false }
+              );
             } catch (error) {
               console.log("Arash ::: "+error);
-              //console.error('OOps that was error happedned');
             }
           },
            bb:function bing()
@@ -94,6 +102,14 @@ export default class Login extends Component<Props> {
     console.log('Yes mount complete');
   }
   
+  updateFormField () {
+    return (event) => {
+      this.setState({
+        code: event.nativeEvent.text,
+      })
+    }
+  }
+
 
   render() {
     
@@ -122,13 +138,13 @@ export default class Login extends Component<Props> {
       <View > 
         <TextInput
             style={{textAlign:'center',height: 30,width:200, borderColor: 'gray', borderWidth: 1}}
-            value={'09120617453'}
+            onChange={this.updateFormField()}
         />
        <TouchableHighlight
             //onPress={() => navigate("ScreenOne", {screen: "ScreenOne"})}
             onPress={()=>this.state.gg()}
             style={{height:40,marginTop:20,marginLeft:40,marginRight:40,backgroundColor: this.state.bg,alignItems:'center',justifyContent:'center'}}>
-            <Text style={{}}>ورود</Text>
+            <Text style={{}}>وارد کردن کد</Text>
         </TouchableHighlight>
       </View>
 
