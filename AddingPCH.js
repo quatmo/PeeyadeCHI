@@ -18,7 +18,6 @@ import {
   View,
   Icon,
   TextInput,
-  
 //  Button
 } from 'react-native';
 
