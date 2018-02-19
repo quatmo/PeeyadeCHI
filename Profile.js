@@ -48,16 +48,50 @@ export default class App extends Component<Props> {
       ],
     };
     this.addOne = this.addOne.bind(this)
-  //  this.gg = this.gg.bind(this)
-  }
+    this.setdata=this.setdata.bind(this)
+    //this.componentDidMount = this.componentDidMount.bind(this)
+    
 
-  addOne(res) {
-    console.log('^^^^^');
-    console.log(res);
-    this.setState({
-      bons: res.data.points
-    })
+
   }
+  setdata=(res)=>{
+    this.setState({bons:res.data.mainRole})
+    this.setdata(pic:res.data.prefi)
+  }
+   addOne=()=> {
+        try {
+          let ress='xxx'
+          fetch(
+            'https://peeyade.com/api/pch/v1/users/profile/',{  
+              method: 'GET',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization':'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI1YTg2ZDQ5ZGZhOTA2OTYyMDA5NWM2N2QiLCJ1c2VyIjoi2KLYsdi02YXbjNiv2LMifQ.dJloyq--dABpkcwRhw6OSBwH59z30ZKoLD6356Kozbk'
+              },
+            
+            }).then((response) => response.json())
+            .then((res)=>{
+              console.log(res);
+              this.setdata(res)
+              //this.state.bons= res.data.points
+        
+            
+            }).catch((err)=>{console.error(err)});
+
+         
+        } catch (error) {
+          console.log("Arash ::: "+error);
+        }
+
+
+    }
+
+
+
+
+
+  
 
   
 
@@ -66,45 +100,7 @@ export default class App extends Component<Props> {
 
   componentDidMount(){
     
-
-    try {
-      fetch(
-        'https://peeyade.com/api/pch/v1/users/profile/',{  
-          method: 'GET',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization':'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI1YTg2ZDQ5ZGZhOTA2OTYyMDA5NWM2N2QiLCJ1c2VyIjoi2KLYsdi02YXbjNiv2LMifQ.dJloyq--dABpkcwRhw6OSBwH59z30ZKoLD6356Kozbk'
-          },
-         
-        }).then(function(response){
-          console.log(response);
-          this.addOne(response);
-          //return response.json().data
-        
-        })
-      //let responseJson = await ;
-      //console.log(responseJson)
-      //console.log('get profile completed !!');
-      //this.state.bons=200
-     // console.log(bons);
-     // console.log(this.bons);
-     // console.log(this.state.bons);
-      Alert.alert(
-        'Alert Title',
-        'My Alert Msg',
-        [
-          {text: 'xx', onPress: () => console.log('Ask me later pressed')},
-          {text: 'responseJson.data.user.bestPhoto.prefix', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
-        ],
-        { cancelable: false }
-      );
-    } catch (error) {
-      console.log("Arash ::: "+error);
-    }
-
-    console.log('component did mount compelete !!!å'+this.state.username);
+    this.addOne();
 
   }
   _handleIndexChange = index => this.setState({ index });
