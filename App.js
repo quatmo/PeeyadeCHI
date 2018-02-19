@@ -2,7 +2,7 @@
 
 import { StackNavigator,DrawerNavigator } from 'react-navigation';
 
-//ßimport MyListItem from './MyListItem'           
+//import MyListItem from './MyListItem'           
 import ActionButton from './ActionButton';         
 import SwipeoutExample from './SwipeoutExample'             
 import ActionButtonItem from './ActionButtonItem'             
@@ -15,8 +15,8 @@ import ReqNews from './ReqNews'
 import data from './data'             
 import FilterMenu from './FilterMenu'             
 import drawer from './drawer'             
-import imagevideo from './imagevideo'             
-//import FilterMenu from './FilterMenu'             
+import Login_confirm from './login_confirm'             
+import FilterMenu from './FilterMenu'             
 //import FilterMenu from './FilterMenu'             
 import Req_AddPCH from './Req_AddPCH'             
 import login from './login'             
@@ -47,7 +47,7 @@ const App = StackNavigator({
     ActionButtonItem: {screen: ActionButtonItem},
     drawer: {screen: drawer},
     imagevideo: {screen: imagevideo},
-    //NoNavigatorPage: {screen: NoNavigatorPage},
+    Login_confirm: {screen: Login_confirm},
     //NoNavigatorPage: {screen: NoNavigatorPage},
     //NoNavigatorPage: {screen: NoNavigatorPage},
     //NoNavigatorPage: {screen: NoNavigatorPage},

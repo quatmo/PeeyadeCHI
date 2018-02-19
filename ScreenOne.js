@@ -13,7 +13,7 @@ import { Container, Header, Content, Icon, Footer } from 'native-base';
 
 class ScreenOne extends Component {
   static navigationOptions = {
-    title: "Welcome"
+    title: "+++"
   }
   state={
     language:'arash',
@@ -51,6 +51,12 @@ class ScreenOne extends Component {
             onPress={() => this.props.navigation.goBack()}
             style={[styles.button, {backgroundColor: '#C56EE0'}]}>
             <Text style={styles.buttonText}>Go Back</Text>
+        </TouchableHighlight>
+        <TouchableHighlight
+          onPress={() => navigate("login", {screen: "login  "})}
+          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
+          <Text
+            style={styles.buttonText}>login </Text>
         </TouchableHighlight>
         <TouchableHighlight
           onPress={() => navigate("ScreenThree", {screen: "Screen  "})}
@@ -133,12 +139,7 @@ class ScreenOne extends Component {
             style={styles.buttonText}>FilterMenu </Text>
         </TouchableHighlight>
        
-        <TouchableHighlight
-          onPress={() => navigate("login", {screen: "login  "})}
-          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
-          <Text
-            style={styles.buttonText}>login </Text>
-        </TouchableHighlight>
+        
         <TouchableHighlight
           onPress={() => navigate("Pic_template", {screen: "Pic_template  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
