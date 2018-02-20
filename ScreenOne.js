@@ -41,7 +41,7 @@ class ScreenOne extends Component {
       <View>
       <ScrollView contentContainerStyle={{ }}>
       
-      <Picker 
+      {/*<Picker 
         style={{flex:3,backgroundColor:'#de22bb'}}
         selectedValue={this.state.language}
         onValueChange={(itemValue, itemIndex) => this.setState({language: itemValue})}>
@@ -53,7 +53,7 @@ class ScreenOne extends Component {
         <Picker.Item label="JavaScript" value="js" />
         <Picker.Item label="JavaScript" value="js" />
         <Picker.Item label="JavaScript" value="js" />
-      </Picker>
+      </Picker>*/}
 
         <TouchableHighlight
             onPress={() => this.props.navigation.goBack()}

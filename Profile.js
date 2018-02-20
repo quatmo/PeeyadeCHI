@@ -39,6 +39,7 @@ export default class App extends Component<Props> {
     super(props)
     this.state = {
       bons:10,
+      pic:"https://facebook.github.io/react-native/docs/assets/favicon.png",
       username:'-----',
       bestphoto:'',
       index: 0,
@@ -55,8 +56,12 @@ export default class App extends Component<Props> {
 
   }
   setdata=(res)=>{
-    this.setState({bons:res.data.mainRole})
-    this.setdata(pic:res.data.prefi)
+    this.setState({bons:res.data.user.bons})
+    this.setState({pic:'https://peeyade.com'+res.data.user.bestPhoto.prefix+res.data.user.bestPhoto.suffix})
+    this.setState({username:res.data.user.username})
+    //this.setState({pic:'peeyade.com/'+res.data.prefix+res.data.possix})
+    //this.setState({pic:'peeyade.com/'+res.data.prefix+res.data.possix})
+
   }
    addOne=()=> {
         try {
@@ -73,6 +78,7 @@ export default class App extends Component<Props> {
             }).then((response) => response.json())
             .then((res)=>{
               console.log(res);
+              console.log('https://peeyade.com'+res.data.user.bestPhoto.prefix+res.data.user.bestPhoto.suffix)
               this.setdata(res)
               //this.state.bons= res.data.points
         
@@ -121,7 +127,7 @@ export default class App extends Component<Props> {
                 <Image
                   style={styles.photo}
                   resizeMode={'stretch'}
-                  source={require('./image/testlogo.png')}/>
+                  source={{uri:this.state.pic }}/>
 
                 <Text style={{height:60,alignItems:'center',marginTop:10}}>
                 {this.state.username}
