@@ -4,6 +4,7 @@ import { StackNavigator,DrawerNavigator } from 'react-navigation';
 
 //import MyListItem from './MyListItem'           
 import ActionButton from './ActionButton';         
+import webview from './webview';         
 import SwipeoutExample from './SwipeoutExample'             
 import ActionButtonItem from './ActionButtonItem'             
 import NoNavigatorPage from './NoNavigatorPage'             
@@ -72,7 +73,8 @@ const App = StackNavigator({
     Message: {screen: Message},
     RadiusButton: {screen: RadiusButton},
     SplashPage: {screen: SplashPage},
-    suggest2Wall: {screen: suggest2Wall}
+    suggest2Wall: {screen: suggest2Wall},
+    webview: {screen: webview},
 
     
    
