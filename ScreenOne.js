@@ -60,14 +60,20 @@ class ScreenOne extends Component {
             style={[styles.button, {backgroundColor: '#C56EE0'}]}>
             <Text style={styles.buttonText}>Go Back</Text>
         </TouchableHighlight>
-        
+
         <TouchableHighlight
           onPress={() => navigate("score", {screen: "score  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>score </Text>
         </TouchableHighlight>
-
+        
+        <TouchableHighlight
+          onPress={() => navigate("AddingPCH", {screen: "AddingPCH  "})}
+          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
+          <Text
+            style={styles.buttonText}>AddingPCH </Text>
+        </TouchableHighlight>
 
         <TouchableHighlight
           onPress={() => navigate("Profile", {screen: "Profile  "})}
@@ -139,12 +145,7 @@ class ScreenOne extends Component {
           <Text
             style={styles.buttonText}>TokenBox </Text>
         </TouchableHighlight>
-        <TouchableHighlight
-          onPress={() => navigate("AddingPCH", {screen: "AddingPCH  "})}
-          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
-          <Text
-            style={styles.buttonText}>AddingPCH </Text>
-        </TouchableHighlight>
+       
         <TouchableHighlight
           onPress={() => navigate("ReqReport", {screen: "ReqReport  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
