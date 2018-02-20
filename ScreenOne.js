@@ -60,7 +60,13 @@ class ScreenOne extends Component {
             style={[styles.button, {backgroundColor: '#C56EE0'}]}>
             <Text style={styles.buttonText}>Go Back</Text>
         </TouchableHighlight>
-
+        
+        <TouchableHighlight
+          onPress={() => navigate("score", {screen: "score  "})}
+          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
+          <Text
+            style={styles.buttonText}>score </Text>
+        </TouchableHighlight>
 
 
         <TouchableHighlight
@@ -196,12 +202,7 @@ class ScreenOne extends Component {
           <Text
             style={styles.buttonText}>MainPage </Text>
         </TouchableHighlight>
-        <TouchableHighlight
-          onPress={() => navigate("score", {screen: "score  "})}
-          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
-          <Text
-            style={styles.buttonText}>score </Text>
-        </TouchableHighlight>
+        
         <TouchableHighlight
           onPress={() => navigate("Details", {screen: "Details  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
