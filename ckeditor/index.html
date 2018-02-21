@@ -1,27 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html dir="rtl">
 
 <head>
     <meta charset="utf-8">
-    <title>CKEditor</title>
+    <title>Arash</title>
     <script src="./ckeditor/ckeditor.js"></script>
     <style>
         html,
         body {
-            height: 100%;
-            margin: 0;
+            margin: 40;
+            padding:40;
         }
     </style>
 </head>
 
-<body>
-    <textarea name="editor1"></textarea>
+<body >
+    <textarea name="editor1" style="direction: rtl"></textarea>
     <script>
-        CKEDITOR.replace('editor1', {
+         CKEDITOR.replace('editor1', {
             on: {
                 'instanceReady': function (evt) { evt.editor.execCommand('maximize'); }
             }
         });
+
+       
     </script>
 </body>
 

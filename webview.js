@@ -32,10 +32,11 @@ export default class App extends Component<Props> {
     const peeyade = require('./ckeditor/index.html');
     
     return (
-      <View style={{flex:1,}}>
+      <View style={{flex:1,flexDirection:'row-reverse',direction:'rtl'}}>
       <WebView
         source={peeyade}
-        style={{flex:1,marginTop: 20}}
+        style={{marginTop: 20,direction:'rtl'}}
+        scrollEnabled={true}
       />
 
       </View>
