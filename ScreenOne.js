@@ -41,19 +41,7 @@ class ScreenOne extends Component {
       <View>
       <ScrollView contentContainerStyle={{ }}>
       
-      {/*<Picker 
-        style={{flex:3,backgroundColor:'#de22bb'}}
-        selectedValue={this.state.language}
-        onValueChange={(itemValue, itemIndex) => this.setState({language: itemValue})}>
-        <Picker.Item label="Java" value="java" />
-        <Picker.Item label="JavaScript" value="js" />
-        <Picker.Item label="JavaScript" value="js" />
-        <Picker.Item label="JavaScript" value="js" />
-        <Picker.Item label="JavaScript" value="js" />
-        <Picker.Item label="JavaScript" value="js" />
-        <Picker.Item label="JavaScript" value="js" />
-        <Picker.Item label="JavaScript" value="js" />
-      </Picker>*/}
+      
 
         <TouchableHighlight
             onPress={() => this.props.navigation.goBack()}

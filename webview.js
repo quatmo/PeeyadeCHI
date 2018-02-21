@@ -29,7 +29,7 @@ export default class App extends Component<Props> {
  
 
   render() {
-    const peeyade = require('./peeyade.html');
+    const peeyade = require('./ckeditor/index.html');
     
     return (
       <View style={{flex:1,}}>

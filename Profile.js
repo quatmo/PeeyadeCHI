@@ -39,6 +39,7 @@ export default class App extends Component<Props> {
     super(props)
     this.state = {
       bons:10,
+      bio:'---',
       pic:"https://facebook.github.io/react-native/docs/assets/favicon.png",
       username:'-----',
       bestphoto:'',
@@ -59,6 +60,7 @@ export default class App extends Component<Props> {
     this.setState({bons:res.data.user.bons})
     this.setState({pic:'https://peeyade.com'+res.data.user.bestPhoto.prefix+res.data.user.bestPhoto.suffix})
     this.setState({username:res.data.user.username})
+    this.setState({bio:res.data.user.profile.bio})
     //this.setState({pic:'peeyade.com/'+res.data.prefix+res.data.possix})
     //this.setState({pic:'peeyade.com/'+res.data.prefix+res.data.possix})
 
@@ -129,13 +131,13 @@ export default class App extends Component<Props> {
                   resizeMode={'stretch'}
                   source={{uri:this.state.pic }}/>
 
-                <Text style={{height:60,alignItems:'center',marginTop:10}}>
+                <Text style={{height:20,alignItems:'center',marginTop:10}}>
                 {this.state.username}
                 </Text>
             </View>
 
               <Text style={{marginHorizontal: 40,fontSize:10,alignItems:'center',padding:10,textAlign:'center'}}>
-      {this.state.username}
+      {this.state.bio}
               </Text>
 
 
