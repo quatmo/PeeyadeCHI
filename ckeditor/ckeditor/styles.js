@@ -77,14 +77,14 @@ CKEDITOR.stylesSet.add( 'default', [
 	{ name: 'Inline Quotation',	element: 'q' },
 
 	{ name: 'Language: RTL',	element: 'span', attributes: { 'dir': 'rtl' } },
-	{ name: 'Language: LTR',	element: 'span', attributes: { 'dir': 'ltr' } },
+	{ name: 'Language: LTR',	element: 'span', attributes: { 'dir': 'rtl' } },
 
 	/* Object styles */
 
 	{
 		name: 'Styled Image (left)',
 		element: 'img',
-		attributes: { 'class': 'left' }
+		attributes: { 'class': 'right' }
 	},
 
 	{

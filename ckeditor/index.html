@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html dir="rtl">
+<html dir="rtl" lang="ar">
 
 <head>
     <meta charset="utf-8">
@@ -15,14 +15,27 @@
 </head>
 
 <body >
-    <textarea name="editor1" style="direction: rtl"></textarea>
+    <textarea name="editor1" style="text-align:right;"></textarea>
     <script>
          CKEDITOR.replace('editor1', {
+            language: 'fa',
+            uiColor: '#9AB8F3',
+           // contentsLangDirection = 'RTL',
+        //CKEDITOR.contentsLanguage='ar';
+        //CKEDITOR.config.language = 'ar';
+        //CKEDITOR.config.defaultLanguage = 'en';
+        //contentsLangDirection = 'RTL',
+        //dialog_buttonsOrder = 'RTL',
             on: {
-                'instanceReady': function (evt) { evt.editor.execCommand('maximize'); }
+              //  'instanceReady': function (evt) { evt.editor.execCommand('maximize'); }
             }
         });
-
+        CKEDITOR.config.contentsLangDirection = 'rtl';
+        CKEDITOR.contentsLanguage='ar';
+        CKEDITOR.config.language = 'ar';
+        CKEDITOR.config.defaultLanguage = 'en';
+        CKEDITOR.config.contentsLangDirection = 'rtl';
+        CKEDITOR.config.dialog_buttonsOrder = 'rtl';
        
     </script>
 </body>

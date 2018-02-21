@@ -30,15 +30,9 @@ export default class App extends Component<Props> {
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
           pic:"https://facebook.github.io/react-native/docs/assets/favicon.png",
-          dataSource: ds.cloneWithRows([
-            {ff:'1',name:'آرش آقاجانی',score:'120'},
-            {ff:'2',name:'آنا لاوا',score:'100'},
-            {ff:'3',name:'کسرا وفایی',score:'80'},
-            {ff:'4',name:'لنا وفایی',score:'60'},
-            {ff:'5',name:' میدوس آرش',score:'40'},
-            {ff:'6',name:'اوادا کاداورا',score:'20'}
+          firstName:'---',
 
-          ]),
+          dataSource: ds.cloneWithRows([]),
         };
         this.addOne = this.addOne.bind(this)
         this.setdata=this.setdata.bind(this)
@@ -49,7 +43,7 @@ export default class App extends Component<Props> {
        // this.setState({username:res.data.user.username})
        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
        this.setState({dataSource:ds.cloneWithRows(res.data)});
-       //this.setState({pic:'peeyade.com/'+res.data.prefix+res.data.possix})
+       
         //this.setState({pic:'peeyade.com/'+res.data.prefix+res.data.possix})
     
       }
@@ -110,14 +104,18 @@ componentDidMount()
                     <Image
                       style={{height:40,width:40}}
                       resizeMode={'stretch'}
-                      source={{uri:this.state.pic}}
+//                      source={{uri:'http://'+data.user.bestPhoto.prefix+data.user.bestPhoto.suffix}}
+                      source={{uri:'https://peeyade.com'+data.user.bestPhoto.prefix+data.user.bestPhoto.suffix}}
+                      //source={{uri:this.state.pic}}
+                      
                     />
                 )}
                 {renderIf(Number(rowID)!=0, 
                     <Image
                       style={styles.photo}
                       resizeMode={'stretch'}
-                      source={{uri:this.state.pic}}
+                     // source={{uri:'http://'+data.user.bestPhoto.prefix+data.user.bestPhoto.suffix}}
+                      source={{uri:'https://peeyade.com'+data.user.bestPhoto.prefix+data.user.bestPhoto.suffix}}
                     />
                 )}
 
@@ -137,7 +135,7 @@ componentDidMount()
                 </View>
 
                 <View>
-                  <Text style={{fontSize:20}}>{data.mainRole}</Text>
+                  <Text style={{fontSize:20}}>{data.user.profile.firstName}</Text>
                   <Text>{'پیاده چی کتاب'}</Text>
                 </View>
 

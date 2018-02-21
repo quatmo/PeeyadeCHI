@@ -5,6 +5,7 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 
 body
 {
+	direction: rtl;
 	/* Font */
 	font-family: sans-serif, Arial, Verdana, "Trebuchet MS";
 	font-size: 12px;
@@ -22,11 +23,13 @@ body
 {
 	font-size: 13px;
 	line-height: 1.6;
-
 	/* Fix for missing scrollbars with RTL texts. (#10488) */
 	word-wrap: break-word;
 }
-
+/* .cke_top
+{
+	float: rißght;
+} */
 blockquote
 {
 	font-style: italic;
@@ -39,6 +42,7 @@ blockquote
 
 .cke_contents_ltr blockquote
 {
+	
 	padding-left: 20px;
 	padding-right: 8px;
 	border-left-width: 5px;
@@ -46,6 +50,8 @@ blockquote
 
 .cke_contents_rtl blockquote
 {
+	direction: rtl;
+	
 	padding-left: 8px;
 	padding-right: 20px;
 	border-right-width: 5px;

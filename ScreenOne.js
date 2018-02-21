@@ -92,6 +92,12 @@ class ScreenOne extends Component {
             style={styles.buttonText}>login </Text>
         </TouchableHighlight>
         <TouchableHighlight
+          onPress={() => navigate("RadiusButton", {screen: "RadiusButton  "})}
+          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
+          <Text
+            style={styles.buttonText}>RadiusButton </Text>
+        </TouchableHighlight>
+        <TouchableHighlight
           onPress={() => navigate("ScreenThree", {screen: "Screen  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
@@ -212,12 +218,7 @@ class ScreenOne extends Component {
           <Text
             style={styles.buttonText}>Message </Text>
         </TouchableHighlight>
-        <TouchableHighlight
-          onPress={() => navigate("RadiusButton", {screen: "RadiusButton  "})}
-          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
-          <Text
-            style={styles.buttonText}>RadiusButton </Text>
-        </TouchableHighlight>
+       
         <TouchableHighlight
           onPress={() => navigate("SplashPage", {screen: "SplashPage  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>

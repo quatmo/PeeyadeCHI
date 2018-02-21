@@ -19,6 +19,12 @@ CKEDITOR.editorConfig = function( config ) {
 	];
 	config.format_tags = 'p;h1;h2;h3;pre';
 	config.ContentLangDirection = 'rtl'; 
+	config.contentsLangDirection = 'rtl';
+	//contentsLangDirection : 'rtl'
+	config.language = "fa";
+	config.defaultLanguage = 'en';
+	config.contentsLangDirection = 'rtl';
+	config.dialog_buttonsOrder = 'rtl';
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 	config.removeButtons = 'Subscript,Superscript,PasteFromWord,PasteText,Scayt,Table,SpecialChar,Format,Styles';
 };
