@@ -123,10 +123,11 @@ edIt=(rowID)=>
       <Swipeout
         close={!(this.state.sectionID === sectionID && this.state.rowID === rowID)}
         //left={rowData.left}
+        autoClose={true}
         right={swipeBtns}
         rowID={rowID}
         sectionID={sectionID}
-        autoClose={rowData.autoClose}
+        //autoClose={rowData.autoClose}
         backgroundColor={rowData.backgroundColor}
         onOpen={(sectionID, rowID) => {
           this.setState({
@@ -138,12 +139,13 @@ edIt=(rowID)=>
         scroll={event => console.log('scroll event') }
       >
         <TouchableWithoutFeedback onPress={() => console.log('press children')}>
-          <View style={{flexDirection:'row',backgroundColor:'white',height:80,justifyContent:'flex-end',alignItems:'center'}} >
+        <View style={{flexDirection:'row-reverse'}}>
+          <View style={{flex:8,flexDirection:'row',backgroundColor:'white',height:80,justifyContent:'flex-end',alignItems:'center'}} >
           
            
-            <Text style={{alignItems:'flex-end'}}>{String(rowData.createdAt).substr(String(rowData.createdAt).length-5,5)}</Text>
+            
+            <Text style={styles.liText}>{String(rowData.text).substring(0,20)}</Text>
             <Text style={styles.liText}>{String(rowData.relatedUser.profile.firstName).substring(0,10)}</Text>
-            <Text style={styles.liText}>{String(rowData.text).substring(0,10)}</Text>
             <Image
                 style={{
                   alignItems: 'center',
@@ -157,6 +159,10 @@ edIt=(rowID)=>
                   uri:'https://peeyade.com'+rowData.relatedUser.bestPhoto.prefix+rowData.relatedUser.bestPhoto.suffix,
           }}/>
           </View>
+          <View style={{flex:1,flexDirection:'row',backgroundColor:'white',height:80,justifyContent:'flex-start',alignItems:'center'}}>
+            <Text style={{alignItems:'flex-end'}}>{String(rowData.createdAt).substr(String(rowData.createdAt).length-5,5)}</Text>
+           </View> 
+           </View>
         </TouchableWithoutFeedback>
       </Swipeout>
     );
