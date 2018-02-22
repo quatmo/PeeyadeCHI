@@ -18,6 +18,11 @@ import FilterMenu from './FilterMenu'
 import drawer from './drawer'             
 import Login_confirm from './login_confirm'             
 import imagevideo from './imagevideo'             
+import wall from './wall'              
+//import FilterMenu from './FilterMenu'              
+//import FilterMenu from './FilterMenu'              
+//import FilterMenu from './FilterMenu'              
+//import FilterMenu from './FilterMenu'              
 //import FilterMenu from './FilterMenu'              
 import Req_AddPCH from './Req_AddPCH'             
 import login from './login'             
@@ -49,7 +54,7 @@ const App = StackNavigator({
     drawer: {screen: drawer},
     imagevideo: {screen: imagevideo},
     Login_confirm: {screen: Login_confirm},
-    //NoNavigatorPage: {screen: NoNavigatorPage},
+    wall: {screen: wall},
     //NoNavigatorPage: {screen: NoNavigatorPage},
     //NoNavigatorPage: {screen: NoNavigatorPage},
     //NoNavigatorPage: {screen: NoNavigatorPage},

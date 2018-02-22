@@ -57,13 +57,29 @@ class ScreenOne extends Component {
             style={styles.buttonText}>webview </Text>
         </TouchableHighlight>
 
+
+
+        <TouchableHighlight
+          onPress={() => navigate("SwipeoutExample", {screen: "SwipeoutExample"})}
+          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
+          <Text
+            style={styles.buttonText}>SwipeoutExample😊  </Text>
+        </TouchableHighlight>
+       
+        <TouchableHighlight
+          onPress={() => navigate("wall", {screen: "wall"})}
+          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
+          <Text
+            style={styles.buttonText}>Wall😊 </Text>
+        </TouchableHighlight>
+
         <TouchableHighlight
           onPress={() => navigate("score", {screen: "score  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>score </Text>
         </TouchableHighlight>
-        
+
         <TouchableHighlight
           onPress={() => navigate("message2Wall", {screen: "message2Wall  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
@@ -137,13 +153,7 @@ class ScreenOne extends Component {
             style={styles.buttonText}>Drawer </Text>
         </TouchableHighlight>
 
-        <TouchableHighlight
-          onPress={() => navigate("SwipeoutExample", {screen: "SwipeoutExample"})}
-          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
-          <Text
-            style={styles.buttonText}>SwipeoutExample </Text>
-        </TouchableHighlight>
-       
+        
         <TouchableHighlight
           onPress={() => navigate("Date_Time_Persian", {screen: "Date_Time_Persian"})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
