@@ -37,26 +37,30 @@ export default class App extends Component<Props> {
     //dataSource: ds.cloneWithRows([]),
     this.state = {
       title_:"-------",
-      text_:"----"
+      text_:"----",
     };
     this.send2wall=this.send2wall.bind(this);
     this.checkit=this.checkit.bind(this);
-  }
-  checkit=(res)=>{
-      if(res.data.success=='true')
-      {
-        Alert.alert('ok',res.data.success,{text:'okk'},  { cancelable: false });
-      }
-      else
-      {
-        Alert.alert('err',res.data.success,{text:'err'},  { cancelable: false });
+       
+          
 
-      }
 
+
+      
+  //this.sndwl=this.sndwl
+  
+  
   }
-  send2wall=()=>{
+  send2wall=()=>
+  {
     try {
       //let ress='xxx'
+      if(this.state.title_=='' || this.state.text_=='')
+      {
+        Alert.alert('empty not allowed',res.data.success,{text:'got it'},  { cancelable: false });
+          
+      }
+
       fetch(
         'https://peeyade.com/api/pch/v1/wall/global/item',{  
           method: 'POST',
@@ -93,30 +97,42 @@ export default class App extends Component<Props> {
   
   
     }
-
-componentDidMount()
+  
+checkit=(res)=>
 {
+  console.log(res.data);
+    if(String(res.success))
+    {
+      Alert.alert('حله!',String(res.success),[{text:'اوکی'}],  { cancelable: false });
+    }
+    else
+    {
+      Alert.alert('خطا',String(res.success),[{text:'اوپپپس'}],  { cancelable: false });
 
-}
-  render() {
+    }
+
+  }
+  
+
+render() {
     
     
     return (
       <View style={{flex: 1}}>
         <View style={{width: Dimensions.get('window').width, height: Dimensions.get('window').height-100}}>
         <Text 
-        onChangeText={(title) => this.setState({title})}
+       // onChangeText={(title) => this.setState({title})}
         style={styles.welcome}>
           تیتر
         </Text>
         <TextInput
         style={styles.inputstyle}
-        onChangeText={(title_) => this.setState({title_})}
+        onChangeText={(e) => this.setState({ title_:e})}
         />
 
         
         <TextInput
-        onChangeText={(text_) => this.setState({text_})}
+        onChangeText={(e) => this.setState({text_:e})}
         style={{
           alignSelf: 'stretch',
           flexDirection:'row',
@@ -131,7 +147,10 @@ componentDidMount()
         </View>
         <View style={{justifyContent:'center',backgroundColor:'gray',alignItems:'center',width: Dimensions.get('window').width, height: 50}}>
           <TouchableHighlight
-            onPress={this.send2wall()}
+            onPress={()=>{
+              this.send2wall()
+             // Alert.alert('err','test',[{text:this.state.title_},{text:this.state.text_}],  { cancelable: false })
+            }}
             style={[styles.button, {justifyContent:'center',backgroundColor: 'gray'}]}>
             <Text
               
