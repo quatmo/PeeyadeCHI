@@ -103,7 +103,7 @@ checkit=(res)=>
   console.log(res.data);
     if(String(res.success))
     {
-      Alert.alert('حله!',String(res.success),[{text:'اوکی'}],  { cancelable: false });
+      Alert.alert('حله!',String(res.success),[{text:res.message}],  { cancelable: false });
     }
     else
     {
