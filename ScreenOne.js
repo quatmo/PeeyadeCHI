@@ -65,6 +65,21 @@ class ScreenOne extends Component {
         </TouchableHighlight>
         
         <TouchableHighlight
+          onPress={() => navigate("message2Wall", {screen: "message2Wall  "})}
+          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
+          <Text
+            style={styles.buttonText}>message2Wall </Text>
+        </TouchableHighlight>
+
+        <TouchableHighlight
+          onPress={() => navigate("suggest2Wall", {screen: "suggest2Wall  "})}
+          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
+          <Text
+            style={styles.buttonText}>suggest2Wall </Text>
+        </TouchableHighlight>
+       
+        
+        <TouchableHighlight
           onPress={() => navigate("AddingPCH", {screen: "AddingPCH  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
@@ -180,12 +195,7 @@ class ScreenOne extends Component {
           <Text
             style={styles.buttonText}>Pic_template </Text>
         </TouchableHighlight>
-        <TouchableHighlight
-          onPress={() => navigate("message2Wall", {screen: "message2Wall  "})}
-          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
-          <Text
-            style={styles.buttonText}>message2Wall </Text>
-        </TouchableHighlight>
+       
        
         <TouchableHighlight
           onPress={() => navigate("ScreenThree", {screen: "ScreenThree  "})}
@@ -225,12 +235,7 @@ class ScreenOne extends Component {
           <Text
             style={styles.buttonText}>SplashPage </Text>
         </TouchableHighlight>
-        <TouchableHighlight
-          onPress={() => navigate("suggest2Wall", {screen: "suggest2Wall  "})}
-          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
-          <Text
-            style={styles.buttonText}>suggest2Wall </Text>
-        </TouchableHighlight>
+       
      
       </ScrollView>
       </View>
