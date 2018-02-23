@@ -77,6 +77,13 @@ class ScreenOne extends Component {
             style={styles.buttonText}>details👀 </Text>
         </TouchableHighlight>
 
+         <TouchableHighlight
+          onPress={() => navigate("scrolview", {screen: "scrolview"})}
+          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
+          <Text
+            style={styles.buttonText}>scrolview 🙅 </Text>
+        </TouchableHighlight>
+
         <TouchableHighlight
           onPress={() => navigate("project", {screen: "project  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>

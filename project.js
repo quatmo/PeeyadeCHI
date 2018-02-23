@@ -9,9 +9,11 @@ import {
     TouchableHighlight,
     Alert,
     Dimensions,
+    scrollView,
   } from 'react-native';
-
-  
+  var device_width = Dimensions.get('window').width;
+    
+ import MyScrollView from './scrolview'; 
 type Props = {};
 export default class App extends Component<Props> {
 
@@ -25,10 +27,10 @@ export default class App extends Component<Props> {
             </View>
           </Tab>
 
-       <Tab heading={ <TabHeading><Icon name="alarm" /></TabHeading>}>
+        <Tab heading={ <TabHeading><Icon name="alarm" /></TabHeading>}>
             <View style={{}}>
             </View>
-          </Tab>
+        </Tab>
           
           <Tab heading={ <TabHeading><Icon name="reorder" /></TabHeading>}>
             <View style={{}}>
@@ -41,7 +43,26 @@ export default class App extends Component<Props> {
           </Tab>
           
           <Tab heading={ <TabHeading><Icon name="add" /></TabHeading>}>
-            <View style={{}}>
+            <View style={{flex:1}}>
+                <MyScrollView>
+                    <View style = { {backgroundColor:'red',flex:1,width:device_width} }>
+                    <Text style = { {} }>
+                        View #1
+                    </Text>
+                    </View>
+
+                    <View style = {  {backgroundColor:'green',flex:1,width:device_width}}>
+                    <Text style = { {} }>
+                        View #2
+                    </Text>
+                    </View>
+
+                    <View style = {  {backgroundColor:'yellow',flex:1,width:device_width} }>
+                    <Text style = { {} }>
+                        View #3
+                    </Text>
+                    </View>
+                </MyScrollView>
             </View>
           </Tab>
         </Tabs>
