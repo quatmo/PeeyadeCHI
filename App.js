@@ -14,11 +14,16 @@ import AddingPCH from './AddingPCH'
 import Aicons from './Aicons'             
 import ReqNews from './ReqNews'             
 import data from './data'             
-import FilterMenu from './FilterMenu'             
 import drawer from './drawer'             
 import Login_confirm from './login_confirm'             
 import imagevideo from './imagevideo'             
 import wall from './wall'              
+import details from './Details'              
+import Reqaddplace from './Reqaddplace'              
+import FilterMenu from './FilterMenu'              
+import project from './project'              
+//import FilterMenu from './FilterMenu'              
+//import FilterMenu from './FilterMenu'              
 //import FilterMenu from './FilterMenu'              
 //import FilterMenu from './FilterMenu'              
 //import FilterMenu from './FilterMenu'              
@@ -55,6 +60,11 @@ const App = StackNavigator({
     imagevideo: {screen: imagevideo},
     Login_confirm: {screen: Login_confirm},
     wall: {screen: wall},
+    details: {screen: details},
+    Reqaddplace: {screen: Reqaddplace},
+    project: {screen: project},
+    //NoNavigatorPage: {screen: NoNavigatorPage},
+    //NoNavigatorPage: {screen: NoNavigatorPage},
     //NoNavigatorPage: {screen: NoNavigatorPage},
     //NoNavigatorPage: {screen: NoNavigatorPage},
     //NoNavigatorPage: {screen: NoNavigatorPage},

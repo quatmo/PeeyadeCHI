@@ -25,19 +25,11 @@ export default class App_1 extends Component<Props> {
 
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
-          dataSource: ds.cloneWithRows([
-            {ff:'1',name:'آرش آقاجانی',score:'120'},
-            {ff:'2',name:'آنا لاوا',score:'100'},
-            {ff:'3',name:'کسرا وفایی',score:'80'},
-            {ff:'4',name:'لنا وفایی',score:'60'},
-            {ff:'5',name:' میدوس آرش',score:'40'},
-            {ff:'6',name:'اوادا کاداورا',score:'20'}
-
-          ]),
+          dataSource: ds.cloneWithRows([]),
         };
       }
-
-
+  
+  
 
       render() {
         return (

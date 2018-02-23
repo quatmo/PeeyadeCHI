@@ -48,7 +48,12 @@ class ScreenOne extends Component {
             style={[styles.button, {backgroundColor: '#C56EE0'}]}>
             <Text style={styles.buttonText}>Go Back</Text>
         </TouchableHighlight>
-
+        <TouchableHighlight
+          onPress={() => navigate("Reqaddplace", {screen: "Reqaddplace  "})}
+          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
+          <Text
+            style={styles.buttonText}>Reqaddplace 🤓</Text>
+        </TouchableHighlight>
 
         <TouchableHighlight
           onPress={() => navigate("webview", {screen: "webview"})}
@@ -65,12 +70,18 @@ class ScreenOne extends Component {
           <Text
             style={styles.buttonText}>SwipeoutExample😊  </Text>
         </TouchableHighlight>
-       
         <TouchableHighlight
-          onPress={() => navigate("wall", {screen: "wall"})}
+          onPress={() => navigate("details", {screen: "details  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
-            style={styles.buttonText}>Wall😊 </Text>
+            style={styles.buttonText}>details👀 </Text>
+        </TouchableHighlight>
+
+        <TouchableHighlight
+          onPress={() => navigate("project", {screen: "project  "})}
+          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
+          <Text
+            style={styles.buttonText}>project 😈 </Text>
         </TouchableHighlight>
 
         <TouchableHighlight
@@ -79,7 +90,7 @@ class ScreenOne extends Component {
           <Text
             style={styles.buttonText}>score </Text>
         </TouchableHighlight>
-
+        
         <TouchableHighlight
           onPress={() => navigate("message2Wall", {screen: "message2Wall  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
@@ -173,6 +184,8 @@ class ScreenOne extends Component {
             style={styles.buttonText}>TokenBox </Text>
         </TouchableHighlight>
        
+      
+
         <TouchableHighlight
           onPress={() => navigate("ReqReport", {screen: "ReqReport  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>

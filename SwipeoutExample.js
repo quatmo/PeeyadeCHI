@@ -4,7 +4,7 @@ import Swipeout from 'react-native-swipeout';
 import rows from './data';
 //  example styles
 import styles from './styles';
-
+import ActionButton from './ActionButton';
 import React, {Component} from 'react';
 import {AppRegistry, StyleSheet,Image , ListView, Text,Alert, View, TouchableWithoutFeedback} from 'react-native';
 
@@ -82,23 +82,31 @@ deleteNote=(rowID)=>
   this.state.all_messages.splice(rowID,1);
   this.setState({dataSource:ds.cloneWithRows(this.state.all_messages)});
 }
-pinIt=(rowID)=>
+pinIt=(id)=>
 {
+  //API.pinWallId(id)
+
+
+
+
   //Alert.alert('dddd','dddd',[{text:'dfdsf'}],{cancelable:false});
   //console.log('$$$$$$$$$');
   //console.log(this.state.all_messages);
-  const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => true });
-  this.state.all_messages.splice(rowID,1);
-  this.setState({dataSource:ds.cloneWithRows(this.state.all_messages)});
+  //const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => true });
+  //this.state.all_messages.splice(rowID,1);
+  //this.setState({dataSource:ds.cloneWithRows(this.state.all_messages)});
 }
-edIt=(rowID)=>
+edIt=(id)=>
 {
+
+  //API.editWallId(id)
+
   //Alert.alert('dddd','dddd',[{text:'dfdsf'}],{cancelable:false});
   //console.log('$$$$$$$$$');
   //console.log(this.state.all_messages);
-  const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => true });
-  this.state.all_messages.splice(rowID,1);
-  this.setState({dataSource:ds.cloneWithRows(this.state.all_messages)});
+  //const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => true });
+  //this.state.all_messages.splice(rowID,1);
+  //this.setState({dataSource:ds.cloneWithRows(this.state.all_messages)});
 }
   _renderRow(rowData: string, sectionID: number, rowID: number) {
     let swipeBtns = 
@@ -111,12 +119,12 @@ edIt=(rowID)=>
       text: '∆',
       backgroundColor: 'yellow',
       //underlayColor: 'rgba(0, 0, 0, 1, 0.6)',
-      onPress: () => { this.pinIt(rowID) }
+      onPress: () => { this.pinIt(rowID._id) }
     },{
       text: 'O',
       backgroundColor: 'green',
       //underlayColor: 'rgba(0, 0, 0, 1, 0.6)',
-      onPress: () => { this.edIt(rowID) }
+      onPress: () => { this.edIt(rowID._id) }
     }];
     //this.deleteNote=this.deleteNote.bind(this);
     return (
@@ -177,8 +185,42 @@ edIt=(rowID)=>
           scrollEnabled
           dataSource={this.state.dataSource}
           renderRow={this._renderRow.bind(this)}
-          style={styles.listview}
+          //style={[{flex:2}]}
         />
+        <View style={{ backgroundColor: '#f3f3f3'}}>
+        
+        <ActionButton  
+        style={{flex:1}}
+        buttonColor="rgba(231,76,60,1)">
+          
+          <ActionButton.Item buttonColor='#9b59b6' title="New Task" onPress={() => console.log("notes tapped!")}>
+            <Text>مکان</Text>
+          </ActionButton.Item>
+          
+          <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => {}}>
+            <Text>خبر</Text>
+          </ActionButton.Item>
+
+           
+           <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => {}}>
+            <Text>رویداد</Text>
+          </ActionButton.Item>
+
+   
+          <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => {}}>
+            <Text>پیام</Text>
+          </ActionButton.Item>
+
+
+          <ActionButton.Item buttonColor='#3498db' radius={100} title="Notifications" onPress={() => {}}>
+             <Text style={{fontSize:10}}>پیشنهاد</Text> 
+            {/* <Icon name='home' /> */}
+
+          </ActionButton.Item>
+
+
+        </ActionButton>
+      </View>
       </View>
     );
   }

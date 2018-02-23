@@ -7,9 +7,8 @@ import {
   Text,
   View,
   ListView,
-  Image
+  Image,
 } from 'react-native';
-
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
     'Cmd+D or shake for dev menu',
@@ -101,6 +100,7 @@ export default class App extends Component<Props> {
                
                <View style={{flexDirection:'row',alignItems:'center'}}> 
                   <Text>{'در انتظار تایید'}</Text>
+                  
                 </View>
 
 
