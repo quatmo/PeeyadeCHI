@@ -10,9 +10,9 @@ import {
   Text,
   View,
   ListView,
-  Image
+  Image,Alert
 } from 'react-native';
-
+import fetching from './fetchapi';
 import renderIf from './renderif';
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -48,34 +48,9 @@ export default class App extends Component<Props> {
     
       }
       addOne=()=> {
-        try {
-          let ress='xxx'
-          fetch(
-            'https://peeyade.com/api/pch/v1/scoreboard',{  
-              method: 'GET',
-              headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization':'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI1YTg2ZDQ5ZGZhOTA2OTYyMDA5NWM2N2QiLCJ1c2VyIjoi2KLYsdi02YXbjNiv2LMifQ.dJloyq--dABpkcwRhw6OSBwH59z30ZKoLD6356Kozbk'
-              },
-            
-            }).then((response) => response.json())
-            .then((res)=>{
-              console.log(res);
-              //console.log('https://peeyade.com'+res.data.user.bestPhoto.prefix+res.data.user.bestPhoto.suffix)
-              this.setdata(res)
-              //this.state.bons= res.data.points
-        
-            
-            }).catch((err)=>{console.error(err)});
-
-         
-        } catch (error) {
-          console.log("Arash ::: "+error);
-        }
-
-
-    }
+          fetching("https://peeyade.com/api/pch/v1/scoreboard","GET")
+          .then((res)=>{this.setdata(res)})
+      }
 
 componentDidMount()
 {
