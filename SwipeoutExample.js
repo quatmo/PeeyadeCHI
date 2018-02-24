@@ -16,16 +16,18 @@ class SwipeoutExample extends Component {
 
     var ds = new ListView.DataSource({rowHasChanged: (row1, row2) => true});
     this.state = {
-      dataSource: ds.cloneWithRows([]),
+      dataSourceToday: ds.cloneWithRows([]),
+      dataSourcePinned:ds.cloneWithRows([]),
+      dataSourceOtherMessages:ds.cloneWithRows([]),
       sectionID: null,
       rowID: null,
-      all_messages:[],
+      todayMessages:[],
+      pinnedMessages:[],
+      otherMessages:[],
     };
     this.loadData=this.loadData.bind(this);
     this.setdata=this.setdata.bind(this);
-   // this.deleteNote=this.deleteNote.bind(this);
-    //this._renderRow=this._renderRow.bind(this);
-  //  this._del=this._del.bind(this);
+  
   }
 
 
@@ -34,13 +36,16 @@ setdata=(res)=>{
     // this.setState({pic:'https://peeyade.com'+res.data.user.bestPhoto.prefix+res.data.user.bestPhoto.suffix})
     // this.setState({username:res.data.user.username})
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => true });
-   // all_messages=res.data.messages;
-    //this.setState({all_messages:res.data.messages});
-    this.setState({all_messages:res.data.today});
-    this.setState({dataSource:ds.cloneWithRows(this.state.all_messages)});
-    
-     //this.setState({pic:'peeyade.com/'+res.data.prefix+res.data.possix})
- 
+   // todayMessages=res.data.messages;
+    //this.setState({todayMessages:res.data.messages});
+    this.setState({pinnedMessages:res.data.pinnedMessages});
+    this.setState({todayMessages:res.data.today});
+    this.setState({otherMessages:res.data.messages});
+   
+   
+    this.setState({dataSourceOtherMessages:ds.cloneWithRows(this.state.otherMessages)});
+    this.setState({dataSourcePinned:ds.cloneWithRows(this.state.pinnedMessages)});
+    this.setState({dataSourceToday:ds.cloneWithRows(this.state.todayMessages)});
    }
    componentDidMount()
    {
@@ -77,24 +82,32 @@ deleteNote=(rowID)=>
 {
   //Alert.alert('dddd','dddd',[{text:'dfdsf'}],{cancelable:false});
   //console.log('$$$$$$$$$');
-  //console.log(this.state.all_messages);
+  //console.log(this.state.todayMessages);
   const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => true });
-  this.state.all_messages.splice(rowID,1);
-  this.setState({dataSource:ds.cloneWithRows(this.state.all_messages)});
+  this.state.todayMessages.splice(rowID,1);
+  this.setState({dataSourceToday:ds.cloneWithRows(this.state.todayMessages)});
 }
-pinIt=(id)=>
+pinIt=(rowID,id)=>
 {
   //API.pinWallId(id)
 
 
+  const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => true });
+  let tmp =this.state.todayMessages.splice(rowID,1);
+  console.log('......');
+  console.log(tmp);
+  tmp[0].ispinned=true;
+  this.state.pinnedMessages.push(tmp[0]);
 
+  this.setState({dataSourcePinned:ds.cloneWithRows(this.state.pinnedMessages)});
+  this.setState({dataSourceToday:ds.cloneWithRows(this.state.todayMessages)});
 
   //Alert.alert('dddd','dddd',[{text:'dfdsf'}],{cancelable:false});
   //console.log('$$$$$$$$$');
-  //console.log(this.state.all_messages);
+  //console.log(this.state.todayMessages);
   //const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => true });
-  //this.state.all_messages.splice(rowID,1);
-  //this.setState({dataSource:ds.cloneWithRows(this.state.all_messages)});
+  //this.state.todayMessages.splice(rowID,1);
+  //this.setState({dataSource:ds.cloneWithRows(this.state.todayMessages)});
 }
 edIt=(id)=>
 {
@@ -103,10 +116,10 @@ edIt=(id)=>
 
   //Alert.alert('dddd','dddd',[{text:'dfdsf'}],{cancelable:false});
   //console.log('$$$$$$$$$');
-  //console.log(this.state.all_messages);
+  //console.log(this.state.todayMessages);
   //const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => true });
-  //this.state.all_messages.splice(rowID,1);
-  //this.setState({dataSource:ds.cloneWithRows(this.state.all_messages)});
+  //this.state.todayMessages.splice(rowID,1);
+  //this.setState({dataSource:ds.cloneWithRows(this.state.todayMessages)});
 }
   _renderRow(rowData: string, sectionID: number, rowID: number) {
     let swipeBtns = 
@@ -119,7 +132,7 @@ edIt=(id)=>
       text: '∆',
       backgroundColor: 'yellow',
       //underlayColor: 'rgba(0, 0, 0, 1, 0.6)',
-      onPress: () => { this.pinIt(rowID._id) }
+      onPress: () => { this.pinIt(rowID,rowID._id) }
     },{
       text: 'O',
       backgroundColor: 'green',
@@ -147,8 +160,8 @@ edIt=(id)=>
         scroll={event => console.log('scroll event') }
       >
         <TouchableWithoutFeedback onPress={() => console.log('press children')}>
-        <View style={{flexDirection:'row-reverse'}}>
-          <View style={{flex:8,flexDirection:'row',backgroundColor:'white',height:80,justifyContent:'flex-end',alignItems:'center'}} >
+        <View style={{flexDirection:'row-reverse', backgroundColor:rowData.ispinned?'gray':'white'}}>
+          <View style={{flex:8,flexDirection:'row',height:80,justifyContent:'flex-end',alignItems:'center'}} >
           
            
             
@@ -169,7 +182,7 @@ edIt=(id)=>
           </View>
           <View style={{flex:1,flexDirection:'row',backgroundColor:'white',height:80,justifyContent:'flex-start',alignItems:'center'}}>
             <Text style={{alignItems:'flex-end'}}>{String(rowData.createdAt).substr(String(rowData.createdAt).length-5,5)}</Text>
-           </View> 
+          </View> 
            </View>
         </TouchableWithoutFeedback>
       </Swipeout>
@@ -182,45 +195,56 @@ edIt=(id)=>
         <View style={styles.statusbar}/>
         <View style={styles.navbar}><Text style={styles.navbarTitle}>Swipeout</Text></View>
         <ListView
+          //Pinned
           scrollEnabled
-          dataSource={this.state.dataSource}
-          renderRow={this._renderRow.bind(this)}
-          //style={[{flex:2}]}
-        />
+          dataSource={this.state.dataSourcePinned}
+          renderRow={this._renderRow.bind(this)}/>
+          <Text>امروز</Text>
+        <ListView
+          //Today list view
+          scrollEnabled
+          dataSource={this.state.dataSourceToday}
+          renderRow={this._renderRow.bind(this)}/>
+        <Text>سایر پیام‌ها</Text>
+        <ListView
+          //Today list view
+          scrollEnabled
+          dataSource={this.state.dataSourceOtherMessages}
+          renderRow={this._renderRow.bind(this)}/>
+
         <View style={{ backgroundColor: '#f3f3f3'}}>
-        
-        <ActionButton  
-        style={{flex:1}}
-        buttonColor="rgba(231,76,60,1)">
-          
-          <ActionButton.Item buttonColor='#9b59b6' title="New Task" onPress={() => console.log("notes tapped!")}>
-            <Text>مکان</Text>
-          </ActionButton.Item>
-          
-          <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => {}}>
-            <Text>خبر</Text>
-          </ActionButton.Item>
+          <ActionButton  
+            style={{flex:1}}
+            buttonColor="rgba(231,76,60,1)">
+            
+            <ActionButton.Item buttonColor='#9b59b6' title="New Task" onPress={() => console.log("notes tapped!")}>
+              <Text>مکان</Text>
+            </ActionButton.Item>
+            
+            <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => {}}>
+              <Text>خبر</Text>
+            </ActionButton.Item>
 
-           
-           <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => {}}>
-            <Text>رویداد</Text>
-          </ActionButton.Item>
+            
+            <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => {}}>
+              <Text>رویداد</Text>
+            </ActionButton.Item>
 
-   
-          <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => {}}>
-            <Text>پیام</Text>
-          </ActionButton.Item>
-
-
-          <ActionButton.Item buttonColor='#3498db' radius={100} title="Notifications" onPress={() => {}}>
-             <Text style={{fontSize:10}}>پیشنهاد</Text> 
-            {/* <Icon name='home' /> */}
-
-          </ActionButton.Item>
+    
+            <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => {}}>
+              <Text>پیام</Text>
+            </ActionButton.Item>
 
 
-        </ActionButton>
-      </View>
+            <ActionButton.Item buttonColor='#3498db' radius={100} title="Notifications" onPress={() => {}}>
+              <Text style={{fontSize:10}}>پیشنهاد</Text> 
+              {/* <Icon name='home' /> */}
+
+            </ActionButton.Item>
+
+
+          </ActionButton>
+        </View>
       </View>
     );
   }
