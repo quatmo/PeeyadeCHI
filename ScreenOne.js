@@ -61,9 +61,12 @@ class ScreenOne extends Component {
           <Text
             style={styles.buttonText}>webview </Text>
         </TouchableHighlight>
-
-
-
+        <TouchableHighlight
+          onPress={() => navigate("Requests_RS", {screen: "Requests_RS"})}
+          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
+          <Text
+            style={styles.buttonText}>Requests_RS 😇 </Text>
+        </TouchableHighlight>
         <TouchableHighlight
           onPress={() => navigate("SwipeoutExample", {screen: "SwipeoutExample"})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>

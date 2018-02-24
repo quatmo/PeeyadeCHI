@@ -22,7 +22,7 @@ import details from './Details'
 import Reqaddplace from './Reqaddplace'              
 import FilterMenu from './FilterMenu'              
 import project from './project'              
-//import scrolview from './scrolview'              
+import Requests_RS from './Requests_RS'              
 //import FilterMenu from './FilterMenu'              
 //import FilterMenu from './FilterMenu'              
 //import FilterMenu from './FilterMenu'              
@@ -63,7 +63,7 @@ const App = StackNavigator({
     details: {screen: details},
     Reqaddplace: {screen: Reqaddplace},
     project: {screen: project},
-    //scrolview: {screen: scrolview},
+    Requests_RS: {screen: Requests_RS},
     //NoNavigatorPage: {screen: NoNavigatorPage},
     //NoNavigatorPage: {screen: NoNavigatorPage},
     //NoNavigatorPage: {screen: NoNavigatorPage},

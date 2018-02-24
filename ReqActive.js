@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
   photo: {
     height: 20,
     width: 20,
-    borderRadius: 20,
+    borderRadius: 10,
   },
   welcome: {
     fontSize: 20,
