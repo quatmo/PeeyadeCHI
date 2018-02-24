@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { AppRegistry, Text, View, ScrollView, Dimensions, TouchableOpacity, TextInput, StyleSheet, Platform } from 'react-native';
 var device_width = Dimensions.get('screen').width;
-
+import Progre from './ProgressBar'
 export  class MyScrollView extends Component
 {
   constructor()
   {
     super();
-    this.state = { getTextInput: 1 }
+    this.state = { getTextInput: 1 ,progress:30}
    // this.moveToPage=this.moveToPage.bind(this);
     {/* <View style = { {} }>
     <View style = { styles.insideHolder }>
@@ -33,6 +33,7 @@ export  class MyScrollView extends Component
     {
         let cc= (this.state.getTextInput+1) % 3+1;
         this.setState({getTextInput: cc });
+        this.setState({progress:this.state.progress+10})
         this.refs.scrollView.scrollTo({ x: (( (this.state.getTextInput) - 1 ) * device_width ), y: 0, animated: true });
         
     }  
@@ -42,6 +43,38 @@ export  class MyScrollView extends Component
   {
     return(
       <View style = { styles.container }>
+        <View style={{flexDirection:'column'}}>
+        {this.state.progress==100?
+        (<View style={{flexDirection:'row'}}>
+        <TouchableOpacity activeOpacity = { 0.8 } 
+              onPress = { this.moveToPage.bind(this) } 
+              style = {{flex:1,margin:0,justifyContent:'center',backgroundColor:'gray',height:50} }>
+                <Text style = { {textAlign:'center'}}>مرحله سوم</Text>
+        </TouchableOpacity>
+        </View>)
+        :
+         ( <View style={{flexDirection:'row'}}>
+            <TouchableOpacity activeOpacity = { 0.8 } 
+              onPress = { this.moveToPage.bind(this) } 
+              style = {{flex:1,margin:0,justifyContent:'center',backgroundColor:'gray',height:50} }>
+                <Text style = { {textAlign:'center'}}>مرحله سوم</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity activeOpacity = { 0.8 } 
+              onPress = { this.moveToPage.bind(this) } 
+              style = {{flex:1,margin:0,justifyContent:'center',backgroundColor:'gray',height:50} }>
+                <Text style = { {textAlign:'center'}}>مرحله دوم</Text>
+              </TouchableOpacity>
+              
+              <TouchableOpacity activeOpacity = { 0.8 } 
+              onPress = { this.moveToPage.bind(this) } 
+              style = {{flex:1,margin:0,justifyContent:'center',backgroundColor:'gray',height:50} }>
+                <Text style = { {textAlign:'center'}}>مرحله اول</Text>
+              </TouchableOpacity>
+          </View>
+         )}
+         <Progre progress={this.state.progress} height={10}/>
+        </View>
         <ScrollView ref = "scrollView" showsHorizontalScrollIndicator = { false } horizontal = { true } pagingEnabled = { true }>
           { this.props.children }
         </ScrollView>
@@ -75,7 +108,7 @@ const styles = StyleSheet.create(
   {
     flex: 1,
     position: 'relative',
-    marginTop: (Platform.OS === 'ios') ? 20 : 0
+    marginTop: (Platform.OS === 'ios') ? 0 : 0
   },
 
   View1:

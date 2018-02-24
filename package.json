@@ -23,6 +23,8 @@
     "react-native-modal-dropdown": "^0.6.1",
     "react-native-persian-calendar-picker": "^1.1.1",
     "react-native-persian-date-picker": "^1.0.1",
+    "react-native-progress": "^3.4.0",
+    "react-native-progress-bar": "^0.1.2",
     "react-native-select-multiple": "^1.2.0",
     "react-native-simple-modal": "^7.0.0",
     "react-native-simple-time-picker": "^0.2.0",
