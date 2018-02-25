@@ -9,19 +9,91 @@ import {
   Dimensions
 } from 'react-native';
 import ModalDropdown from 'react-native-modal-dropdown';
-import { Container, Header, Content, Icon, Footer } from 'native-base';
+import { Drawer } from 'native-base';
+import { Container, Header, Content, Icon, Footer,Button } from 'native-base';
 
 class ScreenOne extends Component {
   static navigationOptions = {
-    title: "+++"
+    title:"+++",
+    headerRight: <TouchableHighlight ><Icon ios='ios-menu' android="md-menu"></Icon></TouchableHighlight>,
   }
   state={
     language:'arash',
   }
+  constructor(props) {
+    super(props);
+        this.state = {
+        
+        };
+       
+        this.openDrawer=this.openDrawer.bind(this);
+        this.closeDrawer=this.closeDrawer.bind(this);
+    
+    
+    
+    }
+
+    closeDrawer = () => {
+      this.drawer._root.close()
+    };
+    openDrawer = () => {
+      this.drawer._root.open()
+    };
+
+
+
   render() {
+
+
+     
+    const draw=(
+      <View style={{flexDirection:'row'}}>
+      <View style={{justifyContent:'space-around',flexDirection:'column',flex:2,backgroundColor:'white',height:Dimensions.get('window').height}}>
+      <TouchableHighlight onPress={()=>{this.closeDrawer()}}>
+        <Text style={{margin:10}} >X</Text>
+      </TouchableHighlight>
+
+       <View style={{flex:4,justifyContent:'center',alignItems:'center'}}>
+          <Text style={{marginRight:20,fontSize:20,fontWeight:'bold'}}> پیاده‌چی</Text>
+        </View>
+        <View style={{flex:4,justifyContent:'center',alignItems:'flex-end'}}> 
+          <View>
+                  <TouchableHighlight   onPress={() => navigate("Requests_RS", {screen: "Requests_RS"})} ><Text style={styles.RightButton}>دیوار </Text></TouchableHighlight>
+         </View>
+          <View>
+                  <TouchableHighlight onPress={() => {}}><Text style={styles.RightButton}>پروژه </Text></TouchableHighlight>
+          </View>
+          <View >
+                  <TouchableHighlight onPress={() => {}}><Text style={styles.RightButton}>چت </Text></TouchableHighlight>
+          </View>
+          <View>
+                  <TouchableHighlight onPress={() => {}}><Text style={styles.RightButton}>پروفایل </Text></TouchableHighlight>
+          </View>
+          <View>
+                  <TouchableHighlight onPress={() => {}}><Text style={styles.RightButton}>تنظیمات </Text></TouchableHighlight>
+          </View>
+
+
+
+        </View>
+
+        <View style={{flex:4,justifyContent:'center',alignItems:'center'}}>
+          
+        </View>
+      </View>
+
+
+    </View>
+  );
+
     const { navigate } = this.props.navigation;
     console.log(this.props, "props is here");
     return (
+      <Drawer
+      ref={(ref) => { this.drawer = ref; }}
+      content={draw}
+      side={'right'}
+      onClose={() => this.closeDrawer()} >
       <View style={{}}>
       <Header>
         <View style={{justifyContent:'flex-start',alignItems:'center',flexDirection:'row'}}>
@@ -38,13 +110,14 @@ class ScreenOne extends Component {
           options={['فعال‌ها', ' در انتظار انتشار','منتشر شده ']}/>
         </View>
       </Header>
+     
       <View>
-      <ScrollView contentContainerStyle={{ }}>
+       <ScrollView contentContainerStyle={{ }}>
       
       
 
         <TouchableHighlight
-            onPress={() => this.props.navigation.goBack()}
+            onPress={() => {this.openDrawer()}}
             style={[styles.button, {backgroundColor: '#C56EE0'}]}>
             <Text style={styles.buttonText}>Go Back</Text>
         </TouchableHighlight>
@@ -270,25 +343,11 @@ class ScreenOne extends Component {
         </TouchableHighlight>
        
      
-      </ScrollView>
+        </ScrollView>
+       </View>
+  
       </View>
-      <View style={{}}>
-        <Footer style={{}}>
-          <View style={{}}>
-            <Icon name='arrow-down' />
-            <ModalDropdown 
-            defaultValue={'درخواست‌ها'}
-            style={{}} 
-            dropdownStyle={{alignItems:'center',
-            width:Dimensions.get('window').width+30,
-            marginLeft:-Dimensions.get('window').width/2,
-            //padding:30 ,
-          }}
-            options={['فعال‌ها', ' در انتظار انتشار','منتشر شده ']}/>
-          </View>
-        </Footer>
-      </View>
-      </View>
+      </Drawer>
     );
   }
 };
@@ -298,6 +357,12 @@ const styles = StyleSheet.create({
     flex:1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  RightButton: {
+    marginBottom:10,
+    marginRight:50,
+    fontSize:20,
+    fontWeight:'300',
   },
   button: {
     alignSelf: 'stretch',

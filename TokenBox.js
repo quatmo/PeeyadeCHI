@@ -26,9 +26,9 @@ export class TokenBox extends Component {
                   />
                 
                 <Button
-                buttonStyle={{backgroundColor:'#999999'}}
-                title="x"
-                onPress={() => {}}/>
+                  buttonStyle={{backgroundColor:'#999999'}}
+                  title="x"
+                  onPress={() => {}}/>
             </View>
     );
   }
