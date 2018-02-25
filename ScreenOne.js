@@ -15,7 +15,8 @@ import { Container, Header, Content, Icon, Footer,Button } from 'native-base';
 class ScreenOne extends Component {
   static navigationOptions = {
     title:"+++",
-    headerRight: <TouchableHighlight ><Icon ios='ios-menu' android="md-menu"></Icon></TouchableHighlight>,
+    headerRight: <TouchableHighlight   onPress={() => navigate('DrawerOpen')} ><Icon ios='ios-menu' android="md-menu"></Icon></TouchableHighlight>,
+    headerLeft: <TouchableHighlight   onPress={() => navigate('drawer')}  ><Icon ios='ios-menu' android="md-menu"></Icon></TouchableHighlight>,
   }
   state={
     language:'arash',
