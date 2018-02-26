@@ -1,5 +1,5 @@
 //import React from 'react';
-
+import React, { Component } from "react";
 import { StackNavigator,DrawerNavigator } from 'react-navigation';
 
 //import MyListItem from './MyListItem'           
@@ -14,7 +14,7 @@ import AddingPCH from './AddingPCH'
 import Aicons from './Aicons'             
 import ReqNews from './ReqNews'             
 import data from './data'             
-import drawer from './drawer'             
+import Drawer from './drawer'             
 import Login_confirm from './login_confirm'             
 import imagevideo from './imagevideo'             
 import wall from './wall'              
@@ -48,7 +48,7 @@ import RadiusButton from './RadiusButton'
 import SplashPage from './SplashPage'             
 import suggest2Wall from './suggest2Wall'             
 
-const App = StackNavigator({
+const App = DrawerNavigator({
    // ScreenZero: { screen: ScreenZero},
     ScreenOne: { screen: ScreenOne},
     ScreenTwo: { screen: ScreenTwo},
@@ -56,7 +56,7 @@ const App = StackNavigator({
     ActionButton: {screen: ActionButton},
     SwipeoutExample: {screen: SwipeoutExample},
     ActionButtonItem: {screen: ActionButtonItem},
-    drawer: {screen: drawer},
+    Drawer: {screen: Drawer},
     imagevideo: {screen: imagevideo},
     Login_confirm: {screen: Login_confirm},
     wall: {screen: wall},
@@ -92,7 +92,12 @@ const App = StackNavigator({
     webview: {screen: webview},
     
    
-},{ headerMode: 'none' })
+},{ 
+    headerMode: 'none' , 
+    drawerPosition: 'right',
+    contentComponent: props => <Drawer {...props}
+    />
+})
 
 
 

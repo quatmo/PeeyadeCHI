@@ -6,16 +6,17 @@ import rows from './data';
 import styles from './styles';
 import ActionButton from './ActionButton';
 import React, {Component} from 'react';
-import {AppRegistry, StyleSheet,Image , ListView, Text,Alert, View, TouchableWithoutFeedback} from 'react-native';
+import {Dimensions,AppRegistry, StyleSheet,Image , ListView, Text,Alert, View, TouchableWithoutFeedback} from 'react-native';
 
 //  example swipout app
 class SwipeoutExample extends Component {
-
+  
   constructor() {
     super();
-
+    
     var ds = new ListView.DataSource({rowHasChanged: (row1, row2) => true});
     this.state = {
+      contentOffsetY: 0,
       dataSourceToday: ds.cloneWithRows([]),
       dataSourcePinned:ds.cloneWithRows([]),
       dataSourceOtherMessages:ds.cloneWithRows([]),
@@ -24,10 +25,14 @@ class SwipeoutExample extends Component {
       todayMessages:[],
       pinnedMessages:[],
       otherMessages:[],
+      isLoading:true,
+      refreshing: false,
     };
+    
     this.loadData=this.loadData.bind(this);
     this.setdata=this.setdata.bind(this);
-  
+    this._onScroll = this._onScroll.bind(this)
+    
   }
 
 
@@ -55,7 +60,7 @@ loadData=()=>{
     try {
       let ress='xxx'
       fetch(
-        'https://peeyade.com/api/pch/v1/wall/global?limit=10&offset=0',{  
+        'https://peeyade.com/api/pch/v1/wall/global?limit=3&offset=0',{  
           method: 'GET',
           headers: {
             'Accept': 'application/json',
@@ -67,6 +72,7 @@ loadData=()=>{
         .then((res)=>{
           console.log(res);
           //console.log('https://peeyade.com'+res.data.user.bestPhoto.prefix+res.data.user.bestPhoto.suffix)
+          //this.setState({isLoading:true});
           this.setdata(res);
           //this.state.bons= res.data.points
     
@@ -188,7 +194,100 @@ edIt=(id)=>
       </Swipeout>
     );
   }
+  _loadMore()
+  {
+    alert('load_more')
+    try {
+      let ress='xxx'
+      fetch(
+        'https://peeyade.com/api/pch/v1/wall/global?limit=10&offset=0',{  
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization':'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI1YTg2ZDQ5ZGZhOTA2OTYyMDA5NWM2N2QiLCJ1c2VyIjoi2KLYsdi02YXbjNiv2LMifQ.dJloyq--dABpkcwRhw6OSBwH59z30ZKoLD6356Kozbk'
+          },
+        
+        }).then((response) => response.json())
+        .then((res)=>{
+          console.log(res);
+          //console.log('https://peeyade.com'+res.data.user.bestPhoto.prefix+res.data.user.bestPhoto.suffix)
+          //this.setState({isLoading:true});
+          this.addMoreListView(res);
+          //this.state.bons= res.data.points
+    
+        
+        }).catch((err)=>{console.error(err)});
 
+     
+    } catch (error) {
+      console.log("Arash ::: "+error);
+    }
+
+  }
+  addMoreListView(res)
+  {
+    //alert("Faaar")
+    console.log('////////');
+   //if(!this.state.isLoading)
+    {
+      const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => true });    
+      this.setState({otherMessages:this.state.otherMessages.concat(res.data.messages)});
+      console.log(res.data.messages);
+      console.log('--------------');
+      console.log(this.state.otherMessages);
+      this.setState({dataSourceOtherMessages:ds.cloneWithRows(this.state.otherMessages)});
+    }
+    //this.setState({isLoading:!this.state.isLoading});
+   
+  }
+
+  _onRefresh() {
+    this.setState({refreshing: true});
+    try {
+      let ress='xxx'
+      fetch(
+        'https://peeyade.com/api/pch/v1/wall/global?limit=3&offset=0',{  
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization':'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI1YTg2ZDQ5ZGZhOTA2OTYyMDA5NWM2N2QiLCJ1c2VyIjoi2KLYsdi02YXbjNiv2LMifQ.dJloyq--dABpkcwRhw6OSBwH59z30ZKoLD6356Kozbk'
+          },
+        
+        }).then((response) => response.json())
+        .then((res)=>{
+          console.log(res);
+          //console.log('https://peeyade.com'+res.data.user.bestPhoto.prefix+res.data.user.bestPhoto.suffix)
+          //this.setState({isLoading:true});
+          this.addMoreListView(res);
+          //this.state.bons= res.data.points
+    
+        
+        }).then(() => {
+          this.setState({refreshing: false});
+        }).catch((err)=>{console.error(err)});
+
+     
+    } catch (error) {
+      console.log("Arash ::: "+error);
+    }
+   
+  }
+  _onScroll(e){
+    var contentOffset = e.nativeEvent.contentOffset.y;
+    if(this.state.contentOffsetY <30 )
+     {
+       
+              console.log("Scroll Down");
+              this._loadMore();
+
+
+     }
+     else
+     console.log("Scroll Up");
+    this.setState({contentOffsetY: contentOffset});
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -208,8 +307,16 @@ edIt=(id)=>
         <Text>سایر پیام‌ها</Text>
         <ListView
           //Today list view
+          //style={{flex:1}}
           scrollEnabled
           dataSource={this.state.dataSourceOtherMessages}
+          //onScroll={(e)=>{alert('ssss');this._onScroll(e)}}
+          onEndReached={this._loadMore.bind(this)}
+          //onEndReached={() => alert('Ok, I\'m @ the bottom')}
+          //refreshing={this.state.refreshing}
+          //onRefresh={this._onRefresh.bind(this)}
+
+
           renderRow={this._renderRow.bind(this)}/>
 
         <View style={{ backgroundColor: '#f3f3f3'}}>

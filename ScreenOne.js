@@ -54,13 +54,13 @@ class ScreenOne extends Component {
       <Drawer
       ref={(ref) => { this.drawer = ref; }}
       content={<Draw />}
-      side={'right'}
+      side={'left'}
       onClose={() => this.closeDrawer()} >
       <View style={{}}>
 
       <Header>
           <Left>
-            <Button transparent onPress={()=>{this.openDrawer()}}>
+            <Button transparent    onPress={() => this.props.navigation.navigate("DrawerOpen")}>
               <Icon name="arrow-back" />
             </Button>
           </Left>
@@ -125,6 +125,13 @@ class ScreenOne extends Component {
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>details👀 </Text>
+        </TouchableHighlight>
+
+          <TouchableHighlight
+          onPress={() => navigate("wall", {screen: "wall  "})}
+          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
+          <Text
+            style={styles.buttonText}>WALL </Text>
         </TouchableHighlight>
 
          <TouchableHighlight

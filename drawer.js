@@ -23,25 +23,27 @@ export default class Drawer extends React.Component<Props> {
     return (
       <View style={{flexDirection:'row'}}>
         <View style={{justifyContent:'space-around',flexDirection:'column',flex:2,backgroundColor:'white',height:Dimensions.get('window').height}}>
-        {/* <TouchableHighlight onPress={()=>{}}>
-          <Text style={{margin:10}} >X</Text>
-        </TouchableHighlight> */}
+        <TouchableHighlight
+        style={{alignItems:'flex-start',margin:20}}
+        onPress={() => this.props.navigation.navigate("DrawerClose")}>
+          <Text>X</Text>
+        </TouchableHighlight>
 
          <View style={{flex:4,justifyContent:'center',alignItems:'center'}}>
             <Text style={{marginRight:20,fontSize:20,fontWeight:'bold'}}> پیاده‌چی</Text>
           </View>
           <View style={{flex:4,justifyContent:'center',alignItems:'flex-end'}}> 
             <View>
-<TouchableHighlight onPress={() => {}}><Text style={styles.RightButton}>دیوار </Text></TouchableHighlight>
+<TouchableHighlight onPress={() => this.props.navigation.navigate("wall")}><Text style={styles.RightButton}>دیوار </Text></TouchableHighlight>
            </View>
             <View>
-<TouchableHighlight onPress={() => {}}><Text style={styles.RightButton}>پروژه </Text></TouchableHighlight>
+<TouchableHighlight onPress={() => this.props.navigation.navigate("Chat")}><Text style={styles.RightButton}>پروژه </Text></TouchableHighlight>
             </View>
             <View >
-<TouchableHighlight onPress={() => {}}><Text style={styles.RightButton}>چت </Text></TouchableHighlight>
+<TouchableHighlight onPress={() => this.props.navigation.navigate("Message")}><Text style={styles.RightButton}>چت </Text></TouchableHighlight>
             </View>
             <View>
-<TouchableHighlight onPress={() => this.props.navigate("Profile", {screen: "Profile"})}><Text style={styles.RightButton}>پروفایل </Text></TouchableHighlight>
+<TouchableHighlight onPress={() => this.props.navigation.navigate("Profile")}><Text style={styles.RightButton}>پروفایل </Text></TouchableHighlight>
             </View>
             <View>
 <TouchableHighlight onPress={() => {}}><Text style={styles.RightButton}>تنظیمات </Text></TouchableHighlight>
