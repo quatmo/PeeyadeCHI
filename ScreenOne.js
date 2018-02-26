@@ -9,15 +9,12 @@ import {
   Dimensions
 } from 'react-native';
 import ModalDropdown from 'react-native-modal-dropdown';
-import { Drawer } from 'native-base';
-import { Container, Header, Content, Icon, Footer,Button } from 'native-base';
+import { Drawer, } from 'native-base';
+import Draw from './drawer';
+import { Container, Content, Icon, Footer,Button,Header, Left, Body, Right } from 'native-base';
 
 class ScreenOne extends Component {
-  static navigationOptions = {
-    title:"+++",
-    headerRight: <TouchableHighlight   onPress={() => navigate('DrawerOpen')} ><Icon ios='ios-menu' android="md-menu"></Icon></TouchableHighlight>,
-    headerLeft: <TouchableHighlight   onPress={() => navigate('drawer')}  ><Icon ios='ios-menu' android="md-menu"></Icon></TouchableHighlight>,
-  }
+  static navigationOptions = { title: 'Welcome', header: null };
   state={
     language:'arash',
   }
@@ -47,71 +44,47 @@ class ScreenOne extends Component {
 
 
      
-    const draw=(
-      <View style={{flexDirection:'row'}}>
-      <View style={{justifyContent:'space-around',flexDirection:'column',flex:2,backgroundColor:'white',height:Dimensions.get('window').height}}>
-      <TouchableHighlight onPress={()=>{this.closeDrawer()}}>
-        <Text style={{margin:10}} >X</Text>
-      </TouchableHighlight>
+    
+//TODO imp drawer
 
-       <View style={{flex:4,justifyContent:'center',alignItems:'center'}}>
-          <Text style={{marginRight:20,fontSize:20,fontWeight:'bold'}}> پیاده‌چی</Text>
-        </View>
-        <View style={{flex:4,justifyContent:'center',alignItems:'flex-end'}}> 
-          <View>
-                  <TouchableHighlight   onPress={() => navigate("Requests_RS", {screen: "Requests_RS"})} ><Text style={styles.RightButton}>دیوار </Text></TouchableHighlight>
-         </View>
-          <View>
-                  <TouchableHighlight onPress={() => {}}><Text style={styles.RightButton}>پروژه </Text></TouchableHighlight>
-          </View>
-          <View >
-                  <TouchableHighlight onPress={() => {}}><Text style={styles.RightButton}>چت </Text></TouchableHighlight>
-          </View>
-          <View>
-                  <TouchableHighlight onPress={() => {}}><Text style={styles.RightButton}>پروفایل </Text></TouchableHighlight>
-          </View>
-          <View>
-                  <TouchableHighlight onPress={() => {}}><Text style={styles.RightButton}>تنظیمات </Text></TouchableHighlight>
-          </View>
-
-
-
-        </View>
-
-        <View style={{flex:4,justifyContent:'center',alignItems:'center'}}>
-          
-        </View>
-      </View>
-
-
-    </View>
-  );
 
     const { navigate } = this.props.navigation;
     console.log(this.props, "props is here");
     return (
       <Drawer
       ref={(ref) => { this.drawer = ref; }}
-      content={draw}
+      content={<Draw />}
       side={'right'}
       onClose={() => this.closeDrawer()} >
       <View style={{}}>
+
       <Header>
-        <View style={{justifyContent:'flex-start',alignItems:'center',flexDirection:'row'}}>
-          <Icon name='arrow-down' />
-          <ModalDropdown 
-          defaultValue={'درخواست‌ها'}
-          
-          style={{}} 
-          dropdownStyle={{alignItems:'center',
-          width:Dimensions.get('window').width+30,
-          marginLeft:-Dimensions.get('window').width/2,
-          //padding:30 ,
-        }}
-          options={['فعال‌ها', ' در انتظار انتشار','منتشر شده ']}/>
-        </View>
-      </Header>
-     
+          <Left>
+            <Button transparent onPress={()=>{this.openDrawer()}}>
+              <Icon name="arrow-back" />
+            </Button>
+          </Left>
+          <Body>
+            <View style={{justifyContent:'flex-start',alignItems:'center',flexDirection:'row'}}>
+            <Icon name='arrow-down' />
+            <ModalDropdown 
+            defaultValue={'درخواست‌ها'}
+            
+            style={{}} 
+            dropdownStyle={{alignItems:'center',
+            width:Dimensions.get('window').width+30,
+            marginLeft:-Dimensions.get('window').width/2,
+            //padding:30 ,
+          }}
+            options={['فعال‌ها', ' در انتظار انتشار','منتشر شده ']}/>
+          </View>
+          </Body>
+          <Right>
+            <Button transparent>
+              <Icon name="search" />
+            </Button>
+          </Right>
+        </Header>
       <View>
        <ScrollView contentContainerStyle={{ }}>
       

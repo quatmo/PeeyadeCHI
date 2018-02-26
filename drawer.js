@@ -11,26 +11,21 @@ import {
 const routes = ["Home", "BlankPage2"];
 type Props = {};
 export default class Drawer extends React.Component<Props> {
+  static navigationOptions = { title: 'Welcome', header: null };
   constructor(props) {
   super(props);
   //this.closeDrawer = this.closeDrawer.bind(this); 
   this.state = { };
 }
-  
-  static navigationOptions = ({ navigation }) => {
-    return {
-      title: `Welcome ${navigation.state.params.screen}`,
-    }
-  };
  
   render() {
-    //const { state, navigate } = this.props.navigation;
+   // const { state, navigate } = this.props.navigation;
     return (
       <View style={{flexDirection:'row'}}>
         <View style={{justifyContent:'space-around',flexDirection:'column',flex:2,backgroundColor:'white',height:Dimensions.get('window').height}}>
-        <TouchableHighlight onPress={()=>{}}>
+        {/* <TouchableHighlight onPress={()=>{}}>
           <Text style={{margin:10}} >X</Text>
-        </TouchableHighlight>
+        </TouchableHighlight> */}
 
          <View style={{flex:4,justifyContent:'center',alignItems:'center'}}>
             <Text style={{marginRight:20,fontSize:20,fontWeight:'bold'}}> پیاده‌چی</Text>
@@ -46,7 +41,7 @@ export default class Drawer extends React.Component<Props> {
 <TouchableHighlight onPress={() => {}}><Text style={styles.RightButton}>چت </Text></TouchableHighlight>
             </View>
             <View>
-<TouchableHighlight onPress={() => {}}><Text style={styles.RightButton}>پروفایل </Text></TouchableHighlight>
+<TouchableHighlight onPress={() => this.props.navigate("Profile", {screen: "Profile"})}><Text style={styles.RightButton}>پروفایل </Text></TouchableHighlight>
             </View>
             <View>
 <TouchableHighlight onPress={() => {}}><Text style={styles.RightButton}>تنظیمات </Text></TouchableHighlight>

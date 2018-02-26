@@ -90,10 +90,11 @@ const App = StackNavigator({
     SplashPage: {screen: SplashPage},
     suggest2Wall: {screen: suggest2Wall},
     webview: {screen: webview},
-
     
    
-})
+},{ headerMode: 'none' })
+
+
 
 export default App;
 //export default App;
