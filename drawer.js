@@ -34,10 +34,10 @@ export default class Drawer extends React.Component<Props> {
           </View>
           <View style={{flex:4,justifyContent:'center',alignItems:'flex-end'}}> 
             <View>
-<TouchableHighlight onPress={() => this.props.navigation.navigate("wall")}><Text style={styles.RightButton}>دیوار </Text></TouchableHighlight>
+<TouchableHighlight onPress={() => this.props.navigation.navigate("Wall")}><Text style={styles.RightButton}>دیوار </Text></TouchableHighlight>
            </View>
             <View>
-<TouchableHighlight onPress={() => this.props.navigation.navigate("Chat")}><Text style={styles.RightButton}>پروژه </Text></TouchableHighlight>
+<TouchableHighlight onPress={() => this.props.navigation.navigate("Project")}><Text style={styles.RightButton}>پروژه </Text></TouchableHighlight>
             </View>
             <View >
 <TouchableHighlight onPress={() => this.props.navigation.navigate("Message")}><Text style={styles.RightButton}>چت </Text></TouchableHighlight>

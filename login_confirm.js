@@ -14,6 +14,7 @@ import {
   TextInput,
   Button,
   Alert,
+  AsyncStorage,
   TouchableHighlight,
 } from 'react-native';
 
@@ -27,12 +28,7 @@ const instructions = Platform.select({
 type Props = {};
 
 export default class Login extends Component<Props> {
-  static navigationOptions = ({ navigation }) => {
-          return {
-            title: `Welcome ${navigation.state.params.screen}`,
-          }
-        };
-  
+ 
       constructor(props) {
           super(props);
 
@@ -44,73 +40,52 @@ export default class Login extends Component<Props> {
         this.state = {
           code:'',
           bg:'gray',
-          gg: async function getMoviesFromApi() {
-          //  bg:'gray',
-            console.log('your tex is :');
-         
-            try {
-              let response = await fetch(
-                'https://peeyade.com/api/pch/v1/users/recieveVerification',{  
-                  method: 'POST',
-                  headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                  },
-                  body: JSON.stringify({
-                    phone: '989120617453',
-                    code:'63644',
-                  })
-                })
-              let responseJson = await response.json();
-              Alert.alert(
-                'Alert Title',
-                'My Alert Msg',
-                [
-                  {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
-                  {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-                  {text: 'OK', onPress: () => console.log('OK Pressed')},
-                ],
-                { cancelable: false }
-              );
-            } catch (error) {
-              console.log("Arash ::: "+error);
-            }
-          },
-           bb:function bing()
-           {
-             let _this=this;
-
-            this.setState({bg:'red'});
-            //this.bg='#ff00aa';
-             Alert.alert(
-               'Alert Title',
-               'My Alert Msg',
-               [
-                 {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
-                 {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-                 {text: 'OK', onPress: () => console.log('OK Pressed')},
-               ],
-               { cancelable: false }
-             );
-           }
           };
         }
-  
-  
+  async setAS(val)
+  {
+    try{
+      await AsyncStorage.setItem('@PeeyadeCHI_!@#:key',String(val));
+    }catch(e){
+      alert(e.message);
+    }
+
+  }
+  checkCode()
+  {
+    fetch(
+      'https://peeyade.com/api/pch/v1/users/recieveVerification',{  
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          phone: '989363027341',
+          code:this.state.code,
+        })
+      }).then((resj)=>{return resj.json()})
+      .then((res)=>{
+        if(res.success)
+        {
+          alert('شما با موفقیت وارد شدید');
+          this.setAS(res.token);
+          this.props.navigation.navigate('ScreenOne');
+        }
+        else
+        {
+          alert(res.message);
+        }
+      }).catch( (error)=>
+      {
+        alert(error.message)
+      });
+  }
  
   componentWillMount() {
     console.log('Yes mount complete');
   }
   
-  updateFormField () {
-    return (event) => {
-      this.setState({
-        code: event.nativeEvent.text,
-      })
-    }
-  }
-
-
   render() {
     
 
@@ -138,11 +113,11 @@ export default class Login extends Component<Props> {
       <View > 
         <TextInput
             style={{textAlign:'center',height: 30,width:200, borderColor: 'gray', borderWidth: 1}}
-            onChange={this.updateFormField()}
-        />
+            onChangeText={(t)=>this.setState({code:t})}
+            />
        <TouchableHighlight
             //onPress={() => navigate("ScreenOne", {screen: "ScreenOne"})}
-            onPress={()=>this.state.gg()}
+            onPress={this.checkCode.bind(this)}
             style={{height:40,marginTop:20,marginLeft:40,marginRight:40,backgroundColor: this.state.bg,alignItems:'center',justifyContent:'center'}}>
             <Text style={{}}>وارد کردن کد</Text>
         </TouchableHighlight>

@@ -65,7 +65,6 @@ class ScreenOne extends Component {
             <Icon name='arrow-down' />
             <ModalDropdown 
             defaultValue={'درخواست‌ها'}
-            
             style={{}} 
             dropdownStyle={{alignItems:'center',
             width:Dimensions.get('window').width+30,
@@ -83,7 +82,7 @@ class ScreenOne extends Component {
       
 
         <TouchableHighlight
-            onPress={() => {this.openDrawer()}}
+            onPress={() => {this.props.navigation.navigate("DrawerOpen")}}
             style={[styles.button, {backgroundColor: '#C56EE0'}]}>
             <Text style={styles.buttonText}>Go Back</Text>
         </TouchableHighlight>

@@ -17,11 +17,11 @@ import data from './data'
 import Drawer from './drawer'             
 import Login_confirm from './login_confirm'             
 import imagevideo from './imagevideo'             
-import wall from './wall'              
+import Wall from './wall'              
 import details from './Details'              
 import Reqaddplace from './Reqaddplace'              
 import FilterMenu from './FilterMenu'              
-import project from './project'              
+import Project from './project'              
 import Requests_RS from './Requests_RS'              
 //import FilterMenu from './FilterMenu'              
 //import FilterMenu from './FilterMenu'              
@@ -49,7 +49,9 @@ import SplashPage from './SplashPage'
 import suggest2Wall from './suggest2Wall'             
 
 const App = DrawerNavigator({
-   // ScreenZero: { screen: ScreenZero},
+    // ScreenZero: { screen: ScreenZero},
+    login: {screen: login},
+    Login_confirm: {screen: Login_confirm},
     ScreenOne: { screen: ScreenOne},
     ScreenTwo: { screen: ScreenTwo},
     ScreenThree: {screen: ScreenThree},
@@ -58,11 +60,10 @@ const App = DrawerNavigator({
     ActionButtonItem: {screen: ActionButtonItem},
     Drawer: {screen: Drawer},
     imagevideo: {screen: imagevideo},
-    Login_confirm: {screen: Login_confirm},
-    wall: {screen: wall},
+    Wall: {screen: Wall},
     details: {screen: details},
     Reqaddplace: {screen: Reqaddplace},
-    project: {screen: project},
+    Project: {screen: Project},
     Requests_RS: {screen: Requests_RS},
     //NoNavigatorPage: {screen: NoNavigatorPage},
     //NoNavigatorPage: {screen: NoNavigatorPage},
@@ -74,7 +75,6 @@ const App = DrawerNavigator({
     Aicons: {screen: Aicons},
     ReqNews: {screen: ReqNews},
     Req_AddPCH: {screen: Req_AddPCH},
-    login: {screen: login},
     FilterMenu:{screen:FilterMenu},
     Pic_template: {screen: Pic_template},
     message2Wall: {screen: message2Wall},

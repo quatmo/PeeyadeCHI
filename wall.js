@@ -27,11 +27,7 @@ const instructions = Platform.select({
 type Props = {};
 
 export default class wall extends Component<Props> {
-  static navigationOptions = ({ navigation }) => {
-          return {
-            title: `Welcome ${navigation.state.params.screen}`,
-          }
-        };
+ 
   
       constructor(props) {
         super(props);
