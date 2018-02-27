@@ -39,7 +39,11 @@ class ScreenOne extends Component {
     };
 
 
-
+componentDidMount()
+{
+  //alert(PeeyadeJWT);
+  
+}
   render() {
 
 
@@ -127,7 +131,7 @@ class ScreenOne extends Component {
         </TouchableHighlight>
 
         <TouchableHighlight
-          onPress={() => navigate("project", {screen: "project  "})}
+          onPress={() => navigate("Project", {screen: "Project  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>project 😈 </Text>

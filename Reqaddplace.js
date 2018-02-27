@@ -10,9 +10,12 @@ import { Dropdown } from 'react-native-material-dropdown';
 import JalaliCalendarPicker from 'react-native-jalali-calendar-picker';
 import { Container, Content,Title, Icon, Footer,Button,Header, Left, Body, Right } from 'native-base';
 
+
+import MyScrollView from './AddPlacescrolview'
+
 import TimePicker from 'react-native-simple-time-picker';
 import {
-  Platform,
+  Platform,Dimensions,
   StyleSheet,
   Text,
   View,
@@ -26,7 +29,7 @@ const instructions = Platform.select({
   android: 'Double tap R on your keyboard to reload,\n' +
     'Shake or press menu button for dev menu',
 });
-
+var device_width = Dimensions.get('window').width;
 type Props = {};
 export default class App extends Component<Props> {
   constructor () {
@@ -79,7 +82,7 @@ export default class App extends Component<Props> {
           </Left>
           <Body>
             <View style={{justifyContent:'flex-start',alignItems:'center',flexDirection:'row'}}>
-           <Text>666</Text>
+           <Text>گزارش مکان</Text>
           </View>
           </Body>
           <Right>
@@ -89,8 +92,30 @@ export default class App extends Component<Props> {
           </Right>
         </Header>
 
+        <MyScrollView>
+            <View style = { {backgroundColor:'red',flex:1,width:device_width} }>
+            <Text style = { {} }>
+                View #1
+            </Text>
+            </View>
 
-        <Text style={styles.welcome}>
+            <View style = {  {backgroundColor:'green',flex:1,width:device_width}}>
+            <Text style = { {} }>
+                View #2
+            </Text>
+            </View>
+
+            <View style = {  {backgroundColor:'yellow',flex:1,width:device_width} }>
+            <Text style = { {} }>
+                View #3
+            </Text>
+            </View>
+        </MyScrollView>
+
+
+
+{/* 
+      <Text style={{alignSelf:'flex-end'}}>
          نام گزارش
         </Text>
         <TextInput
@@ -106,7 +131,7 @@ export default class App extends Component<Props> {
         />
        
      
-          <Text style={styles.instructions}>
+          <Text style={{alignSelf:'flex-end'}}>
           تاریخ تحویل 
           </Text>
           <TextInput
@@ -122,7 +147,7 @@ export default class App extends Component<Props> {
               margin:10,
             }}/>
         
-{/* addiing row  */}
+//* addiing row  
             <View style={{flexDirection:'row'}}>
               
               <View style={{flex:1}}>
@@ -168,7 +193,7 @@ export default class App extends Component<Props> {
                   label='انتخاب عکاس'
                   labelTextStyle={{alignItems:'center',textAlign:'center',justifyContent:'center'}}
                 style={{marginHorizontal:10,textAlign:'center'}}
-                data={[{value:"lala"},{value:"mini"},{value:"ddd"}]}
+                data={[{value:"1"},{value:"2"},{value:"3"},{value:"4"},{value:"+4"}]}
                     />
                 
               </View>
@@ -178,7 +203,7 @@ export default class App extends Component<Props> {
                   label='انتخاب فیلمبردار'
                   labelTextStyle={{alignItems:'center',textAlign:'center',justifyContent:'center'}}
                 style={{marginHorizontal:10,textAlign:'center'}}
-                data={[{value:"lala"},{value:"mini"},{value:"ddd"}]}
+                data={[{value:"1"},{value:"2"},{value:"3"},{value:"4"},{value:"+4"}]}
                     />
               </View>
             </View>
@@ -257,11 +282,11 @@ export default class App extends Component<Props> {
               style={{alignItems: 'center'}}>
               <View style={{alignItems:'center'}}>
                 <Text style={{alignItems:'center',fontSize: 20, marginBottom: 10}}>انتخاب تاریخ</Text>
-               {/* <TimePicker
+               //* <TimePicker
                     selectedHours={selectedHours}
                     selectedMinutes={selectedMinutes}
                     onChange={(hours, minutes) => this.setState({ selectedHours: hours, selectedMinutes: minutes })}
-               />*/}
+               />
               <JalaliCalendarPicker
               onDateChange={this.onDateChange}
               />
@@ -281,11 +306,11 @@ export default class App extends Component<Props> {
               style={{alignItems: 'center'}}>
               <View style={{alignItems:'center'}}>
                 <Text style={{alignItems:'center',fontSize: 20, marginBottom: 10}}>انتخاب تاریخ</Text>
-               {/* <TimePicker
+               /* <TimePicker
                     selectedHours={selectedHours}
                     selectedMinutes={selectedMinutes}
                     onChange={(hours, minutes) => this.setState({ selectedHours: hours, selectedMinutes: minutes })}
-               />*/}
+               />*
               <JalaliCalendarPicker
               onDateChange={this.onDeadChange}
               />
@@ -319,7 +344,7 @@ export default class App extends Component<Props> {
         </View>
       </Modal>
 
-
+              */}
 
 
 

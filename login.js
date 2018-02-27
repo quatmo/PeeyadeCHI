@@ -28,7 +28,7 @@ type Props = {};
  var STORAGE_KEY = '@PeeyadeCHI_!@#:key';
 export default class Login extends Component<Props> {
 
-  
+  static  PeeyadeJWT='';
       constructor(props) {
           super(props);
 
@@ -90,6 +90,7 @@ export default class Login extends Component<Props> {
         
         
         alert('Added JWT SuccessFull');
+        PeeyadeJWT=value;
         this.props.navigation.navigate('ScreenOne')
       } else {
         //this._appendMessage('Initialized with no selection on disk.');
