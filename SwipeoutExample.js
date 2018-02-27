@@ -7,6 +7,7 @@ import styles from './styles';
 import ActionButton from './ActionButton';
 import React, {Component} from 'react';
 import {Dimensions,AppRegistry, StyleSheet,Image , ListView, Text,Alert, View, TouchableWithoutFeedback} from 'react-native';
+import { Container, Content,Title, Icon, Footer,Button,Header, Left, Body, Right } from 'native-base';
 
 //  example swipout app
 class SwipeoutExample extends Component {
@@ -31,10 +32,9 @@ class SwipeoutExample extends Component {
     
     this.loadData=this.loadData.bind(this);
     this.setdata=this.setdata.bind(this);
-    this._onScroll = this._onScroll.bind(this)
+   // this._onScroll = this._onScroll.bind(this)
     
   }
-
 
 setdata=(res)=>{
     // this.setState({bons:res.data.user.bons})
@@ -196,7 +196,7 @@ edIt=(id)=>
   }
   _loadMore()
   {
-    alert('load_more')
+   // alert('load_more')
     try {
       let ress='xxx'
       fetch(
@@ -242,57 +242,30 @@ edIt=(id)=>
    
   }
 
-  _onRefresh() {
-    this.setState({refreshing: true});
-    try {
-      let ress='xxx'
-      fetch(
-        'https://peeyade.com/api/pch/v1/wall/global?limit=3&offset=0',{  
-          method: 'GET',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization':'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI1YTg2ZDQ5ZGZhOTA2OTYyMDA5NWM2N2QiLCJ1c2VyIjoi2KLYsdi02YXbjNiv2LMifQ.dJloyq--dABpkcwRhw6OSBwH59z30ZKoLD6356Kozbk'
-          },
-        
-        }).then((response) => response.json())
-        .then((res)=>{
-          console.log(res);
-          //console.log('https://peeyade.com'+res.data.user.bestPhoto.prefix+res.data.user.bestPhoto.suffix)
-          //this.setState({isLoading:true});
-          this.addMoreListView(res);
-          //this.state.bons= res.data.points
-    
-        
-        }).then(() => {
-          this.setState({refreshing: false});
-        }).catch((err)=>{console.error(err)});
-
-     
-    } catch (error) {
-      console.log("Arash ::: "+error);
-    }
-   
-  }
-  _onScroll(e){
-    var contentOffset = e.nativeEvent.contentOffset.y;
-    if(this.state.contentOffsetY <30 )
-     {
-       
-              console.log("Scroll Down");
-              this._loadMore();
-
-
-     }
-     else
-     console.log("Scroll Up");
-    this.setState({contentOffsetY: contentOffset});
-  }
   render() {
+    //const { navigatio } = this.props.navigation;
     return (
       <View style={styles.container}>
         <View style={styles.statusbar}/>
-        <View style={styles.navbar}><Text style={styles.navbarTitle}>Swipeout</Text></View>
+        
+      <Header>
+          <Left>
+            <Button transparent    >
+              <Icon name="arrow-back" onPress={() => this.props.navigation.goBack()}/>
+            </Button>
+          </Left>
+          <Body>
+            <View style={{justifyContent:'flex-start',alignItems:'center',flexDirection:'row'}}>
+           <Text>666</Text>
+          </View>
+          </Body>
+          <Right>
+            <Button transparent onPress={() => this.props.navigation.navigate("DrawerOpen")}>
+              <Icon name="menu" />
+            </Button>
+          </Right>
+        </Header>
+
         <ListView
           //Pinned
           scrollEnabled
@@ -333,7 +306,8 @@ edIt=(id)=>
             </ActionButton.Item>
 
             
-            <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => {}}>
+            <ActionButton.Item buttonColor='#3498db' title="Notifications"  
+              onPress={() => this.props.navigation.navigate("ReqNews")}>
               <Text>رویداد</Text>
             </ActionButton.Item>
 

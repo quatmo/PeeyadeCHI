@@ -11,6 +11,8 @@ import {
   Dimmensions,
 //  Button
 } from 'react-native';
+import {  Content,Title, Footer, Left, Body, Right } from 'native-base';
+
 import { ButtonGroup } from 'react-native-elements'
 import { Dropdown } from 'react-native-material-dropdown';
 import { Button,SearchBar } from 'react-native-elements';
@@ -154,6 +156,25 @@ componentDidMount(){
     return (
       <View style={{}}>
 
+         <Header>
+          <Left>
+            <Button transparent    >
+              <Icon name="arrow-back" onPress={() => this.props.navigation.goBack()}/>
+            </Button>
+          </Left>
+          <Body>
+            <View style={{justifyContent:'flex-start',alignItems:'center',flexDirection:'row'}}>
+           <Text>666</Text>
+          </View>
+          </Body>
+          <Right>
+            <Button transparent onPress={() => this.props.navigation.navigate("DrawerOpen")}>
+              <Icon name="menu" />
+            </Button>
+          </Right>
+        </Header>
+
+
         <SearchBar
           icon={{ type: 'font-awesome', name: 'search' }}
           round
@@ -248,12 +269,24 @@ componentDidMount(){
           selectedRowStyle={{backgroundColor:'gray'}}
           onSelectionsChange={this.onSelectionsChange} />
         </View>
-       <Button
+
+        <Footer>
+          <Left>
+            <Button transparent    >
+              <Icon name="arrow-back" onPress={() => this.props.navigation.goBack()}/>
+            </Button>
+          </Left>
+          <Body>
+              <Button
             style={{flex:1}}
              buttonStyle={styles.buttonStyle}
              title="تایید"
-             onPress={()=>{}}
-        />
+             onPress={()=>{}}/>
+          </Body>
+         
+        </Footer>
+
+     
       </View>
     )
   }

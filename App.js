@@ -93,7 +93,7 @@ const App = DrawerNavigator({
     
    
 },{ 
-    headerMode: 'none' , 
+   // headerMode: 'none' , 
     drawerPosition: 'right',
     contentComponent: props => <Drawer {...props}
     />

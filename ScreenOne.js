@@ -59,11 +59,7 @@ class ScreenOne extends Component {
       <View style={{}}>
 
       <Header>
-          <Left>
-            <Button transparent    onPress={() => this.props.navigation.navigate("DrawerOpen")}>
-              <Icon name="arrow-back" />
-            </Button>
-          </Left>
+          
           <Body>
             <View style={{justifyContent:'flex-start',alignItems:'center',flexDirection:'row'}}>
             <Icon name='arrow-down' />
@@ -79,11 +75,7 @@ class ScreenOne extends Component {
             options={['فعال‌ها', ' در انتظار انتشار','منتشر شده ']}/>
           </View>
           </Body>
-          <Right>
-            <Button transparent>
-              <Icon name="search" />
-            </Button>
-          </Right>
+          
         </Header>
       <View>
        <ScrollView contentContainerStyle={{ }}>
@@ -118,7 +110,7 @@ class ScreenOne extends Component {
           onPress={() => navigate("SwipeoutExample", {screen: "SwipeoutExample"})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
-            style={styles.buttonText}>SwipeoutExample😊  </Text>
+            style={styles.buttonText}>wall  </Text>
         </TouchableHighlight>
         <TouchableHighlight
           onPress={() => navigate("details", {screen: "details  "})}
@@ -127,12 +119,6 @@ class ScreenOne extends Component {
             style={styles.buttonText}>details👀 </Text>
         </TouchableHighlight>
 
-          <TouchableHighlight
-          onPress={() => navigate("wall", {screen: "wall  "})}
-          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
-          <Text
-            style={styles.buttonText}>WALL </Text>
-        </TouchableHighlight>
 
          <TouchableHighlight
           onPress={() => navigate("scrolview", {screen: "scrolview"})}
