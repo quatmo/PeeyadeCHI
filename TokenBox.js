@@ -21,7 +21,7 @@ export class TokenBox extends Component {
             //height:30
             }}>
             <Text style={styles.welcome}>{this.props.name}</Text>
-             <Text style={{color:'red'}}>{this.props.did}</Text> 
+             <Text style={[styles.welcome,{color:'red'}]}>{this.props.did}</Text> 
                 <Image
                     style={styles.photo}
                     resizeMode={'stretch'}
@@ -54,9 +54,10 @@ const styles = StyleSheet.create({
       flexDirection:'row',
     },
     welcome: {
+      maxWidth: 60,
       fontSize: 10,
       textAlign: 'center',
-      margin: 10,
+      //margin: 10,
     },
     instructions: {
       textAlign: 'center',

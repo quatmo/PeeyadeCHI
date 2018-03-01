@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { Dropdown } from 'react-native-material-dropdown';
 import JalaliCalendarPicker from 'react-native-jalali-calendar-picker';
 import { Container, Content,Title, Icon,Button, Footer,Header, Left, Body, Right } from 'native-base';
-
-
 import MyScrollView from './AddPlacescrolview'
 import MapView from 'react-native-maps';
+import { Modal  as MM} from "react-native";
 import TimePicker from 'react-native-simple-time-picker';
 import {
   Platform,Dimensions,
@@ -17,20 +16,18 @@ import {
   TouchableHighlight
 } from 'react-native';
 import TokenBox from './TokenBox';
-//import { BTN as Button } from 'react-native-elements';
 import Modal from 'react-native-simple-modal';
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+import {Button as Btn ,SearchBar } from 'react-native-elements';
+import SelectMultiple from 'react-native-select-multiple'
+
+
 var device_width = Dimensions.get('window').width;
 type Props = {};
 export default class App extends Component<Props> {
   constructor () {
     super()
     this.state = {
+      fruits : ['honda','kotlin','آرش توکلی', 'ساتوشی', 'ناکامورا','استیو وزنیاک', 'جابز امپرالیست', 'بیل گیتس'],
         selectedIndex: 2,
         selectedHours: 0,
         selectedMinutes: 0,
@@ -50,6 +47,7 @@ export default class App extends Component<Props> {
         photogsIndex:0,
         contents:[],
         contentsIndex:0,
+        openA:false,
 
     }
     this.updateIndex = this.updateIndex.bind(this)
@@ -77,9 +75,9 @@ export default class App extends Component<Props> {
     this.state.authors.push(
     <TokenBox 
       name={this.state.authorsIndex} 
-      key={this.state.authorsIndex} 
-      did={this.state.authorsIndex}
-      kk={this.delAuthors}/>);
+      key ={this.state.authorsIndex} 
+      did ={this.state.authorsIndex}
+      kk  ={this.delAuthors}/>);
     this.setState({authorsIndex:this.state.authorsIndex+1})
   }
   addmoviems()
@@ -164,17 +162,6 @@ export default class App extends Component<Props> {
     console.log('key',tmp);
     this.setState({contents:tmp   })
   }
-
-
-
-
-
-
-
-
-
-
-
   onDateChange(date) {
     this.setState({
       selectedStartDate: date,
@@ -217,7 +204,7 @@ export default class App extends Component<Props> {
           </Header>
 
         <MyScrollView>
-            <View style = { {justifyContent:'space-around',backgroundColor:'red',width:device_width} }>
+            <View style = { {justifyContent:'space-around',backgroundColor:'#F5FCFF',width:device_width} }>
               <View style = { {flex:1} }>{/*main compoenent*/}
               <Text style={{alignSelf:'flex-end'}}>
                 نام گزارش
@@ -511,12 +498,143 @@ export default class App extends Component<Props> {
                      {this.state.authors}
                   </View>
                   <TouchableHighlight
-                        onPress={this.addAuthors}
+                        onPress={()=>{this.setState({openA: true}) }   }
+                        
                         style={{alignItems:'center',
                                 backgroundColor:'black',
                                 marginHorizontal:10}}>
                         <Text style={{color:'white'}}>+</Text>
                   </TouchableHighlight>
+                  <MM
+                    animationType="slide"
+                    transparent={false}
+                    visible={this.state.openA}
+                    onRequestClose={() => {
+                      alert('Modal has been closed.');
+                    }}>
+                     <View style={{}}>
+
+                        <Header>
+                          <Left>
+                            <Button transparent    >
+                              <Icon name="close" onPress={() => this.setState({openA:false})}/>
+                            </Button>
+                          </Left>
+                          <Body>
+                            <View style={{justifyContent:'flex-start',alignItems:'center',flexDirection:'row'}}>
+                            <Text>666</Text>
+                          </View>
+                          </Body>
+                          <Right>
+                          </Right>
+                        </Header>
+
+
+                        <SearchBar
+                          icon={{ type: 'font-awesome', name: 'search' }}
+                          round
+                          lightTheme={true}
+                          onChangeText={this.onSelectedSearchName}
+                          onClearText={()=>{}}
+                          inputStyle={{textAlign:'center'}}
+                          containerStyle={{direction:'rtl'}}
+                          placeholder='جستجو' />
+
+
+
+
+
+                        <View style={{flexDirection:'row'}}>
+
+                        <SearchBar
+                          // icon={{ type: 'font-awesome', name: 'search' }}
+                          round
+                          lightTheme={true}
+                          onChangeText={()=>{}}
+                          onClearText={()=>{}}
+                          inputStyle={{textAlign:'center'}}
+                          containerStyle={{direction:'rtl',flex:10}}
+                          placeholder='نقش اصلی' />
+
+
+                        <Text style={{flex:2,alignSelf:'flex-end',padding:10}}>
+                          نقش اصلی
+                        </Text>
+                        </View>
+
+                        <View style={{flexDirection:'row'}}>
+                        <SearchBar
+                        //icon={{ type: 'font-awesome', name: 'search' }}
+                        round
+                        lightTheme={true}
+                        onChangeText={()=>{}}
+                        onClearText={()=>{}}
+                        inputStyle={{textAlign:'center'}}
+                        containerStyle={{direction:'rtl',flex:10}}
+                        placeholder=' کتگوری اصلی ' />
+                        <Text style={{flex:2,alignSelf:'flex-end',padding:10}}>
+                        کتگوری  
+                        </Text>
+                        </View>
+
+                        <View style={{flexDirection:'row'}}>
+
+                        <SearchBar
+                        style={{}}
+                        //icon={{ type: 'font-awesome', name: 'search' }}
+                        round
+                          lightTheme={true}
+                          onChangeText={this.onSelectedSearchSkills}
+                          onClearText={()=>{}}
+                          inputStyle={{textAlign:'center'}}
+                          containerStyle={{direction:'rtl',flex:10}}
+                          placeholder='مهارت ها' />
+                        <Text style={{flex:2,alignSelf:'flex-end',padding:10}}>
+                          مهارت ها
+                        </Text>
+                        </View>
+
+                        <Btn
+                            buttonStyle={styles.buttonStyle}
+                            title="جستجو"
+                            onPress={()=>this.addOne()}
+                        />
+
+                        <View style={{flexDirection:'row'}}>  
+                        <Text style={{flex:2,alignSelf:'flex-start',}}>
+                        پیاده‌چی ها 
+                        </Text>
+                        <Text style={{flex:1,alignSelf:'center',}}>
+                        پیاده‌چی ها 
+                        </Text>
+                        </View>  
+                        <View style={{}}>
+                        <SelectMultiple
+                        style={{direction:'rtl',height: 300}}
+                        items={this.state.fruits}
+                        selectedItems={this.state.selectedFruits}
+                        selectedLabelStyle={{color:'white'}}
+                        selectedRowStyle={{backgroundColor:'gray'}}
+                        onSelectionsChange={this.onSelectionsChange} />
+                        </View>
+
+                        <Footer>
+                        <Left>
+                        </Left>
+                        <Body>
+                            <Btn
+                            style={{}}
+                              buttonStyle={styles.buttonStyle}
+                              title="تایید"
+                              onPress={()=>{}}/>
+                        </Body>
+                        <Right>
+                        </Right>
+                        </Footer>
+
+
+                     </View>
+                  </MM>
 
               </View>
               
@@ -579,225 +697,6 @@ export default class App extends Component<Props> {
 
             </View>
         </MyScrollView>
-
-
-
-{/* 
-      
-        
-
-            <View style={{flexDirection:'row'}}>
-              
-              <View style={{flex:1}}>
-                <Text style={styles.instructions}>
-                بیشترین امتیاز
-                </Text>
-
-                <TextInput
-                    style={{
-                    alignSelf: 'stretch',
-                    flexDirection:'row',
-                    textAlign:'center',
-                    height: 30,
-                    borderColor: 'gray',
-                    borderWidth: 1,
-                    margin:10
-                  }}/>
-              </View>
-          
-              <View style={{flex:1}}>
-                <Text style={styles.instructions}>
-                   مبلغ
-                </Text>
-
-                <TextInput
-                    style={{
-                    alignSelf: 'stretch',
-                    flexDirection:'row',
-                    height: 30,
-                    textAlign:'center',
-                    borderColor: 'gray',
-                    borderWidth: 1,
-                    margin:10
-                  }}/>
-              </View>
-            </View>
-
-
-
-            <View style={{flexDirection:'row'}}>
-              <View style={{flex:1}}>
-                <Dropdown 
-                  label='انتخاب عکاس'
-                  labelTextStyle={{alignItems:'center',textAlign:'center',justifyContent:'center'}}
-                style={{marginHorizontal:10,textAlign:'center'}}
-                data={[{value:"1"},{value:"2"},{value:"3"},{value:"4"},{value:"+4"}]}
-                    />
-                
-              </View>
-          
-              <View style={{flex:1}}>
-                 <Dropdown 
-                  label='انتخاب فیلمبردار'
-                  labelTextStyle={{alignItems:'center',textAlign:'center',justifyContent:'center'}}
-                style={{marginHorizontal:10,textAlign:'center'}}
-                data={[{value:"1"},{value:"2"},{value:"3"},{value:"4"},{value:"+4"}]}
-                    />
-              </View>
-            </View>
-
-
-
-
-
-
-            <Text style={{justifyContent:'flex-end',alignItems:'flex-end'}}>
-                         روز و ساعت تهیه گزارش 
-            </Text>
-
-            <View style={{flexDirection:'row',}}>
-              <View style={{flex:1}}>
-                <Text style={styles.instructions}>
-               تاریخ 
-                </Text>
-
-               <TouchableOpacity 
-                style={{alignItems:'center',backgroundColor:'gray',borderRadius:30}}
-                onPress={() => this.setState({openDate: true})}>
-                <Text>تنظیم تاریخ</Text>
-              </TouchableOpacity>
-              <Text>{selectedStartDate?selectedStartDate.format('jYYYY/jM/jD'):''}</Text>
-              </View>
-          
-              <View style={{flex:1}}>
-                <Text style={styles.instructions}>
-                   ساعت
-                </Text>
-            <TouchableOpacity 
-                style={{alignItems:'center',backgroundColor:'gray',borderRadius:30}}
-                onPress={() => this.setState({openTime: true})}>
-              <Text style={{alignItems:'center'}}>تنظیم ساعت</Text>
-            </TouchableOpacity>
-            <Text>{String(this.state.selectedHours)+':'+String(this.state.selectedMinutes)}</Text>
-              </View>
-            </View>
-
-
-                  
-             
-            <View style={{flexDirection:'row'}}>
-              <View style={{flex:1}}>
-                <TouchableOpacity 
-                  style={{alignItems:'center',
-                  backgroundColor:this.state.detOrLib?'gray':'white'
-                  }}
-                  onPress={() => {
-                    this.setState({detOrLib:true})
-                  }}>
-                  <Text>معین</Text>
-                </TouchableOpacity>
-              </View>
-          
-              <View style={{flex:1}}>
-                <TouchableOpacity 
-                  style={{alignItems:'center',
-                  backgroundColor:this.state.detOrLib?'white':'gray',
-                  }}
-                  onPress={() => {
-                    this.setState({detOrLib:false})
-                  }}>
-                <Text>اختیاری</Text>
-              </TouchableOpacity>
-              </View>
-            </View>
-
-            
-          <Modal
-              offset={this.state.offset}
-              open={this.state.openDate}
-              modalDidOpen={() => console.log('modal did open')}
-              modalDidClose={() => this.setState({openDate: false})}
-              style={{alignItems: 'center'}}>
-              <View style={{alignItems:'center'}}>
-                <Text style={{alignItems:'center',fontSize: 20, marginBottom: 10}}>انتخاب تاریخ</Text>
-               //* <TimePicker
-                    selectedHours={selectedHours}
-                    selectedMinutes={selectedMinutes}
-                    onChange={(hours, minutes) => this.setState({ selectedHours: hours, selectedMinutes: minutes })}
-               />
-              <JalaliCalendarPicker
-              onDateChange={this.onDateChange}
-              />
-        
-            <TouchableOpacity
-              style={{margin: 5,alignItems:'center'}}
-              onPress={() => this.setState({openDate: false})}>
-              <Text>X</Text>
-            </TouchableOpacity>
-            </View>
-          </Modal>
-          <Modal
-              offset={this.state.offset}
-              open={this.state.openDead}
-              modalDidOpen={() => console.log('modal did open')}
-              modalDidClose={() => this.setState({openDead: false})}
-              style={{alignItems: 'center'}}>
-              <View style={{alignItems:'center'}}>
-                <Text style={{alignItems:'center',fontSize: 20, marginBottom: 10}}>انتخاب تاریخ</Text>
-               /* <TimePicker
-                    selectedHours={selectedHours}
-                    selectedMinutes={selectedMinutes}
-                    onChange={(hours, minutes) => this.setState({ selectedHours: hours, selectedMinutes: minutes })}
-               />*
-              <JalaliCalendarPicker
-              onDateChange={this.onDeadChange}
-              />
-        
-            <TouchableOpacity
-              style={{margin: 5,alignItems:'center'}}
-              onPress={() => this.setState({openDead: false})}>
-              <Text>X</Text>
-            </TouchableOpacity>
-            </View>
-          </Modal>
-
-      <Modal
-        offset={this.state.offset}
-        open={this.state.openTime}
-        modalDidOpen={() => console.log('modal did open')}
-        modalDidClose={() => this.setState({openTime: false})}
-        style={{alignItems: 'center'}}>
-        <View>
-          <Text style={{alignItems:'center',fontSize: 20, marginBottom: 10}}>انتخاب ساعت</Text>
-          <TimePicker
-              selectedHours={selectedHours}
-              selectedMinutes={selectedMinutes}
-              onChange={(hours, minutes) => this.setState({ selectedHours: hours, selectedMinutes: minutes })}
-            />
-          <TouchableOpacity
-            style={{margin: 5,alignItems:'center'}}
-            onPress={() => this.setState({openTime: false})}>
-            <Text>X</Text>
-          </TouchableOpacity>
-        </View>
-      </Modal>
-
-              */}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       </Container>
     );
   }
@@ -810,6 +709,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
+  
   buttonStyle:{
     backgroundColor: '#333333',
     alignSelf: 'stretch',
