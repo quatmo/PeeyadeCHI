@@ -21,6 +21,7 @@ export class TokenBox extends Component {
             //height:30
             }}>
             <Text style={styles.welcome}>{this.props.name}</Text>
+             <Text style={{color:'red'}}>{this.props.did}</Text> 
                 <Image
                     style={styles.photo}
                     resizeMode={'stretch'}
@@ -30,7 +31,7 @@ export class TokenBox extends Component {
                 <Button
                   buttonStyle={{backgroundColor:'#999999'}}
                   title="x"
-                  onPress={this.props.onPress}/>
+                  onPress={()=>{this.props.kk(this.props.did)}}/>
             </View>
     );
   }

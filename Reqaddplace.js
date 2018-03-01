@@ -42,22 +42,139 @@ export default class App extends Component<Props> {
         openDate:false,
         openDead:false,
         detOrLib:true,
-        authors:[<TokenBox name="Ali" onPress={()=>{alert('ok')}}/>],
+        authors:[],
+        authorsIndex:0,
         moviems:[],
+        moviemsIndex:0,
         photogs:[],
+        photogsIndex:0,
         contents:[],
+        contentsIndex:0,
 
     }
     this.updateIndex = this.updateIndex.bind(this)
     this.onDateChange = this.onDateChange.bind(this);
     this.onDeadChange = this.onDeadChange.bind(this);
+
     this.addAuthors = this.addAuthors.bind(this);
+    this.delAuthors = this.delAuthors.bind(this);
+
+    this.addmoviems = this.addmoviems.bind(this);
+    this.delmoviems = this.delmoviems.bind(this);
+
+    this.addphotogs = this.addphotogs.bind(this);
+    this.delphotogs = this.delphotogs.bind(this);
+
+    this.addcontents = this.addcontents.bind(this);
+    this.delphotogs = this.delphotogs.bind(this);
+
+
+
+
   }
   addAuthors()
   {
-    this.state.authors.push(<TokenBox name="Ali" onPress={()=>{alert('ok')}}/>);
-
+    this.state.authors.push(
+    <TokenBox 
+      name={this.state.authorsIndex} 
+      key={this.state.authorsIndex} 
+      did={this.state.authorsIndex}
+      kk={this.delAuthors}/>);
+    this.setState({authorsIndex:this.state.authorsIndex+1})
   }
+  addmoviems()
+  {
+    this.state.moviems.push(
+    <TokenBox 
+      name={this.state.moviemsIndex} 
+      key={this.state.moviemsIndex} 
+      did={this.state.moviemsIndex}
+      kk={this.delmoviems}/>);
+    this.setState({moviemsIndex:this.state.moviemsIndex+1})
+  }
+  addphotogs()
+  {
+    this.state.photogs.push(
+    <TokenBox 
+      name={this.state.photogsIndex} 
+      key={this.state.photogsIndex} 
+      did={this.state.photogsIndex}
+      kk={this.delphotogs}/>);
+    this.setState({photogsIndex:this.state.photogsIndex+1})
+  }
+  addcontents()
+  {
+    this.state.contents.push(
+    <TokenBox 
+      name={this.state.contentsIndex} 
+      key={this.state.contentsIndex} 
+      did={this.state.contentsIndex}
+      kk={this.delcontents}/>);
+    this.setState({contentsIndex:this.state.contentsIndex+1})
+  }
+  delAuthors(k)//aka key
+  {
+    alert('با موفقیت حذف شد')
+    let tmp=this.state.authors.slice()
+    for (let index = 0; index < tmp.length; index++) {
+          if(tmp[index].props.did==k)
+          {
+            tmp.splice(index,1);
+          }
+    }
+    console.log('key',tmp);
+    this.setState({authors:tmp   })
+  }
+  delmoviems(k)//aka key
+  {
+    alert('با موفقیت حذف شد')
+    let tmp=this.state.moviems.slice()
+    for (let index = 0; index < tmp.length; index++) {
+          if(tmp[index].props.did==k)
+          {
+            tmp.splice(index,1);
+          }
+    }
+    console.log('key',tmp);
+    this.setState({moviems:tmp   })
+  }
+  delphotogs(k)//aka key
+  {
+    alert('با موفقیت حذف شد')
+    let tmp=this.state.photogs.slice()
+    for (let index = 0; index < tmp.length; index++) {
+          if(tmp[index].props.did==k)
+          {
+            tmp.splice(index,1);
+          }
+    }
+    console.log('key',tmp);
+    this.setState({photogs:tmp   })
+  }
+  delcontents(k)//aka key
+  {
+    alert('با موفقیت حذف شد')
+    let tmp=this.state.contents.slice()
+    for (let index = 0; index < tmp.length; index++) {
+          if(tmp[index].props.did==k)
+          {
+            tmp.splice(index,1);
+          }
+    }
+    console.log('key',tmp);
+    this.setState({contents:tmp   })
+  }
+
+
+
+
+
+
+
+
+
+
+
   onDateChange(date) {
     this.setState({
       selectedStartDate: date,
@@ -408,13 +525,11 @@ export default class App extends Component<Props> {
                     اضافه کردن فیلم بردار
                   </Text>
                   <View style={{flexDirection:'row',alignItems:'center',flexWrap:'wrap'}}>
-                      <TokenBox name="آرش آقاجانی"/>
-                      <TokenBox name="آرش آقاجانی"/>
-                      <TokenBox name="آرش آقاجانی"/>
+                    {this.state.moviems}
                   </View>
 
                   <TouchableHighlight
-                        onPress={() => {}}
+                        onPress={this.addmoviems}
                         style={{alignItems:'center',
                                 backgroundColor:'black',
                                 marginHorizontal:10}}>
@@ -427,13 +542,11 @@ export default class App extends Component<Props> {
                     اضافه کردن سرپرست محتوا
                   </Text>
                   <View style={{flexDirection:'row',alignItems:'center',flexWrap:'wrap'}}>
-                      <TokenBox name="آرش آقاجانی"/>
-                      <TokenBox name="آرش آقاجانی"/>
-                      <TokenBox name="آرش آقاجانی"/>
+                    {this.state.contents}
                   </View>
 
                   <TouchableHighlight
-                        onPress={() => {}}
+                        onPress={this.addcontents}
                         style={{alignItems:'center',
                                 backgroundColor:'black',
                                 marginHorizontal:10}}>
@@ -446,11 +559,11 @@ export default class App extends Component<Props> {
                       اضافه کردن عکاس
                     </Text>
                     <View style={{flexDirection:'row',alignItems:'center',flexWrap:'wrap'}}>
-                        <TokenBox name="آرش آقاجانی"/>
+                      {this.state.photogs}
                     </View>
 
                     <TouchableHighlight
-                        onPress={() => {}}
+                        onPress={this.addphotogs}
                         style={{alignItems:'center',
                                 backgroundColor:'black',
                                 marginHorizontal:10}}>
