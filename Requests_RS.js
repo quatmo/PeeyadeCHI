@@ -11,7 +11,7 @@ import {
   Text,
   View,
   ListView,
-  Image
+  Image,Dimensions
 } from 'react-native';
 
 const instructions = Platform.select({
@@ -20,7 +20,9 @@ const instructions = Platform.select({
   android: 'Double tap R on your keyboard to reload,\n' +
     'Shake or press menu button for dev menu',
 });
-
+import {ButtonGroup} from 'react-native-elements'
+import { Container, Content, Icon,FooterTab, Footer,Button,Header, Left, Body, Right } from 'native-base';
+import ModalDropdown from 'react-native-modal-dropdown';
 type Props = {};
 export default class App extends Component<Props> {
 
@@ -79,6 +81,50 @@ loadData=()=>{
 
       render() {
         return (
+          <Container>
+             <Header>
+            <Left>
+              <Button transparent    >
+                <Icon name="arrow-back" onPress={() => this.props.navigation.navigate("ScreenOne")}/>
+              </Button>
+            </Left>
+            <Body>
+
+              <View style={{justifyContent:'flex-start',alignItems:'center',flexDirection:'row'}}>
+                  <Icon name='arrow-down' />
+                  <ModalDropdown 
+                  defaultValue={'درخواست‌ها'}
+                  style={{}} 
+                  dropdownStyle={{alignItems:'center',
+                  width:Dimensions.get('window').width+30,
+                  marginLeft:-Dimensions.get('window').width/2,
+                  //padding:30 ,
+                }}
+                  options={['فعال‌ها', ' در انتظار انتشار','منتشر شده ']}/>
+              </View>
+            </Body>
+            <Right>
+              <Button transparent onPress={() => this.props.navigation.navigate("DrawerOpen")}>
+                <Icon name="menu" />
+              </Button>
+            </Right>
+          </Header>
+            <ButtonGroup
+              //onPress={}
+              selectedIndex={0}
+              style={{borderRadius:50}}
+              buttons={[{ element: () => <Text> دریافتی</Text> },
+                 { element: () => 
+                <View style={{flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
+                  <Text style={{color:'red',marginRight:10}}>*</Text>
+                 <Text>       ارسالی</Text>
+                </View> }]}
+              innerBorderStyle={{borderRadius:300,color:'white'}}
+              buttonStyle={{borderRadius:50}}
+              containerBorderRadius={1}
+              selectedButtonStyle={{borderRadius:50,backgroundColor:'gray'}}
+              containerStyle={{borderRadius:300,backgroundColor:'white'}}
+            />
           <ListView
             style={styles.listview}
             dataSource={this.state.dataSource}
@@ -110,6 +156,22 @@ loadData=()=>{
             
           }
           />
+            <Footer>
+                <View style={{flexDirection:'row'}}>
+                  <Icon name='arrow-up' />
+                  <ModalDropdown 
+                    defaultValue={'درخواست خبر'}
+                    style={{justifyContent:'center',backgroundColor:'yellow'}} 
+                    dropdownStyle={{alignItems:'center',
+                    width:Dimensions.get('window').width+30,
+                    marginLeft:-Dimensions.get('window').width/2,
+                    //padding:30 ,
+                  }}
+                    options={['درخواست خبر', 'درخواست رویداد ','درخواست مکان']}/>
+
+                  </View>
+            </Footer>
+          </Container>
         );
       }
 

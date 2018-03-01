@@ -5,7 +5,9 @@ import {
   Text,
   Platform,
   StyleSheet,
-  Image
+  Image,
+  Dimensions,
+
 } from 'react-native';
 
 export class TokenBox extends Component {
@@ -13,7 +15,7 @@ export class TokenBox extends Component {
     return (
         <View style={{flexDirection:'row',
             backgroundColor:'#999999',
-            width:123,
+            width:Dimensions.get('window').width/3,
             marginRight:30,
             marginLeft:25,
             //height:30

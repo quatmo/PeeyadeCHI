@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Dropdown } from 'react-native-material-dropdown';
 import JalaliCalendarPicker from 'react-native-jalali-calendar-picker';
-import { Container, Content,Title, Icon, Footer,Button,Header, Left, Body, Right } from 'native-base';
+import { Container, Content,Title, Icon,Button, Footer,Header, Left, Body, Right } from 'native-base';
 
 
 import MyScrollView from './AddPlacescrolview'
@@ -13,8 +13,11 @@ import {
   Text,
   View,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  TouchableHighlight
 } from 'react-native';
+import TokenBox from './TokenBox';
+//import { BTN as Button } from 'react-native-elements';
 import Modal from 'react-native-simple-modal';
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -70,7 +73,7 @@ export default class App extends Component<Props> {
           <Header>
             <Left>
               <Button transparent    >
-                <Icon name="arrow-back" onPress={() => this.props.navigation.goBack()}/>
+                <Icon name="arrow-back" onPress={() => this.props.navigation.navigate("ScreenOne")}/>
               </Button>
             </Left>
             <Body>
@@ -369,9 +372,87 @@ export default class App extends Component<Props> {
             </View>
 
             <View style = {  {justifyContent:'space-around',backgroundColor:'yellow',flex:1,width:device_width} }>
-            <Text style = { {} }>
-                View #3
-            </Text>
+           
+
+            
+              <View style={{}}>
+                  <Text style={{alignSelf:'flex-end',marginRight:20}}>
+                    اضافه کردن نویسنده
+                  </Text>
+                  <View style={{flexDirection:'row',alignItems:'center',flexWrap:'wrap'}}>
+                      <TokenBox name="آرش آقاجانی"/>
+                  </View>
+                  <TouchableHighlight
+                        onPress={() => {}}
+                        style={{alignItems:'center',
+                                backgroundColor:'black',
+                                marginHorizontal:10}}>
+                        <Text style={{color:'white'}}>+</Text>
+                  </TouchableHighlight>
+
+              </View>
+              
+              <View>
+                <Text style={{alignSelf:'flex-end',marginRight:20}}>
+                    اضافه کردن فیلم بردار
+                  </Text>
+                  <View style={{flexDirection:'row',alignItems:'center',flexWrap:'wrap'}}>
+                      <TokenBox name="آرش آقاجانی"/>
+                      <TokenBox name="آرش آقاجانی"/>
+                      <TokenBox name="آرش آقاجانی"/>
+                  </View>
+
+                  <TouchableHighlight
+                        onPress={() => {}}
+                        style={{alignItems:'center',
+                                backgroundColor:'black',
+                                marginHorizontal:10}}>
+                        <Text style={{color:'white'}}>+</Text>
+                    </TouchableHighlight>
+                  
+              </View>
+              <View>
+                <Text style={{alignSelf:'flex-end',marginRight:20}}>
+                    اضافه کردن سرپرست محتوا
+                  </Text>
+                  <View style={{flexDirection:'row',alignItems:'center',flexWrap:'wrap'}}>
+                      <TokenBox name="آرش آقاجانی"/>
+                      <TokenBox name="آرش آقاجانی"/>
+                      <TokenBox name="آرش آقاجانی"/>
+                  </View>
+
+                  <TouchableHighlight
+                        onPress={() => {}}
+                        style={{alignItems:'center',
+                                backgroundColor:'black',
+                                marginHorizontal:10}}>
+                        <Text style={{color:'white'}}>+</Text>
+                    </TouchableHighlight>
+                  
+              </View>
+              <View>
+                    <Text style={{alignSelf:'flex-end',marginRight:20}}>
+                      اضافه کردن عکاس
+                    </Text>
+                    <View style={{flexDirection:'row',alignItems:'center',flexWrap:'wrap'}}>
+                        <TokenBox name="آرش آقاجانی"/>
+                    </View>
+
+                    <TouchableHighlight
+                        onPress={() => {}}
+                        style={{alignItems:'center',
+                                backgroundColor:'black',
+                                marginHorizontal:10}}>
+                        <Text style={{color:'white'}}>+</Text>
+                    </TouchableHighlight>
+                   
+              </View>
+
+
+
+
+
+
             </View>
         </MyScrollView>
 
@@ -604,6 +685,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+  },
+  buttonStyle:{
+    backgroundColor: '#333333',
+    alignSelf: 'stretch',
+    flexDirection:'row',
+    height:2,
+    margin: 0,
+    padding:8 ,
   },
   welcome: {
     fontSize: 20,
