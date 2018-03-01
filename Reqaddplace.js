@@ -42,10 +42,21 @@ export default class App extends Component<Props> {
         openDate:false,
         openDead:false,
         detOrLib:true,
+        authors:[<TokenBox name="Ali" onPress={()=>{alert('ok')}}/>],
+        moviems:[],
+        photogs:[],
+        contents:[],
+
     }
     this.updateIndex = this.updateIndex.bind(this)
     this.onDateChange = this.onDateChange.bind(this);
     this.onDeadChange = this.onDeadChange.bind(this);
+    this.addAuthors = this.addAuthors.bind(this);
+  }
+  addAuthors()
+  {
+    this.state.authors.push(<TokenBox name="Ali" onPress={()=>{alert('ok')}}/>);
+
   }
   onDateChange(date) {
     this.setState({
@@ -380,10 +391,10 @@ export default class App extends Component<Props> {
                     اضافه کردن نویسنده
                   </Text>
                   <View style={{flexDirection:'row',alignItems:'center',flexWrap:'wrap'}}>
-                      <TokenBox name="آرش آقاجانی"/>
+                     {this.state.authors}
                   </View>
                   <TouchableHighlight
-                        onPress={() => {}}
+                        onPress={this.addAuthors}
                         style={{alignItems:'center',
                                 backgroundColor:'black',
                                 marginHorizontal:10}}>

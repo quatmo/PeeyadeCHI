@@ -63,22 +63,30 @@ componentDidMount()
       <View style={{}}>
 
       <Header>
+          <Left>
+              <Button transparent    >
+                <Icon name="camera" onPress={() => this.props.navigation.navigate("DrawerOpen")}/>
+              </Button>
+          </Left>
           
           <Body>
             <View style={{justifyContent:'flex-start',alignItems:'center',flexDirection:'row'}}>
             <Icon name='arrow-down' />
-            <ModalDropdown 
-            defaultValue={'درخواست‌ها'}
-            style={{}} 
-            dropdownStyle={{alignItems:'center',
-            width:Dimensions.get('window').width+30,
-            marginLeft:-Dimensions.get('window').width/2,
-            //padding:30 ,
-          }}
-            options={['فعال‌ها', ' در انتظار انتشار','منتشر شده ']}/>
-          </View>
+              <ModalDropdown 
+                defaultValue={'درخواست‌ها'}
+                style={{}} 
+                dropdownStyle={{alignItems:'center',
+                width:Dimensions.get('window').width+30,
+                marginLeft:-Dimensions.get('window').width/2,
+                }}
+                  options={['فعال‌ها', ' در انتظار انتشار','منتشر شده ']}/>
+            </View>
           </Body>
-          
+          <Right>
+              <Button transparent    >
+                <Icon name="arrow-back" onPress={() => this.props.navigation.navigate("ScreenOne")}/>
+              </Button>
+          </Right>
         </Header>
       <View>
        <ScrollView contentContainerStyle={{ }}>
@@ -144,6 +152,13 @@ componentDidMount()
             style={styles.buttonText}>score </Text>
         </TouchableHighlight>
         
+        <TouchableHighlight
+          onPress={() => navigate("ChatList", {screen: "ChatList  "})}
+          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
+          <Text
+            style={styles.buttonText}>ChatList 👻👻</Text>
+        </TouchableHighlight>
+
         <TouchableHighlight
           onPress={() => navigate("message2Wall", {screen: "message2Wall  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>

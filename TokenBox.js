@@ -9,7 +9,7 @@ import {
   Dimensions,
 
 } from 'react-native';
-
+//TODO override tokenbox del button
 export class TokenBox extends Component {
   render() {
     return (
@@ -30,7 +30,7 @@ export class TokenBox extends Component {
                 <Button
                   buttonStyle={{backgroundColor:'#999999'}}
                   title="x"
-                  onPress={() => {}}/>
+                  onPress={this.props.onPress}/>
             </View>
     );
   }

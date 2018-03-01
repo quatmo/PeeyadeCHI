@@ -83,32 +83,32 @@ loadData=()=>{
         return (
           <Container>
              <Header>
-            <Left>
-              <Button transparent    >
-                <Icon name="arrow-back" onPress={() => this.props.navigation.navigate("ScreenOne")}/>
-              </Button>
-            </Left>
-            <Body>
+              <Left>
+                <Button transparent    >
+                  <Icon name="arrow-back" onPress={() => this.props.navigation.navigate("ScreenOne")}/>
+                </Button>
+              </Left>
+              <Body>
 
-              <View style={{justifyContent:'flex-start',alignItems:'center',flexDirection:'row'}}>
-                  <Icon name='arrow-down' />
-                  <ModalDropdown 
-                  defaultValue={'درخواست‌ها'}
-                  style={{}} 
-                  dropdownStyle={{alignItems:'center',
-                  width:Dimensions.get('window').width+30,
-                  marginLeft:-Dimensions.get('window').width/2,
-                  //padding:30 ,
-                }}
-                  options={['فعال‌ها', ' در انتظار انتشار','منتشر شده ']}/>
-              </View>
-            </Body>
-            <Right>
-              <Button transparent onPress={() => this.props.navigation.navigate("DrawerOpen")}>
-                <Icon name="menu" />
-              </Button>
-            </Right>
-          </Header>
+                <View style={{justifyContent:'flex-start',alignItems:'center',flexDirection:'row'}}>
+                    <Icon name='arrow-down' />
+                    <ModalDropdown 
+                    defaultValue={'درخواست‌ها'}
+                    style={{}} 
+                    dropdownStyle={{alignItems:'center',
+                    width:Dimensions.get('window').width+30,
+                    marginLeft:-Dimensions.get('window').width/2,
+                    //padding:30 ,
+                  }}
+                    options={['فعال‌ها', ' در انتظار انتشار','منتشر شده ']}/>
+                </View>
+              </Body>
+              <Right>
+                <Button transparent onPress={() => this.props.navigation.navigate("DrawerOpen")}>
+                  <Icon name="menu" />
+                </Button>
+              </Right>
+            </Header>
             <ButtonGroup
               //onPress={}
               selectedIndex={0}
