@@ -14,7 +14,8 @@ import {
   TextInput,
   TouchableOpacity,
   TouchableHighlight,
-  ScrollView
+  ScrollView,
+  ListView,Image,Alert
 } from 'react-native';
 import TokenBox from './TokenBox';
 import Modal from 'react-native-simple-modal';
@@ -28,12 +29,30 @@ type Props = {};
 export default class App extends Component<Props> {
   constructor () {
     super()
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});    
+    
     this.state = {
      // fruits : ['honda','kotlin','آرش توکلی', 'ساتوشی', 'ناکامورا','استیو وزنیاک', 'جابز امپرالیست', 'بیل گیتس'],
-      fruits : [],
-      fruitsFull : [],
-      catogryType:0,
+        fruits : [],
+        fruitsFull : [],
 
+        selectedFindPlaces:[],
+        findPlaces:[],
+        placesFullInfo:[],
+        _latitude:35.704981,
+        _longitude:51.416007,
+
+
+
+        catogryType:0,
+
+        ReportName:'',
+        MaxMoney:'',
+        Points:'',
+
+        PlaceName:'',
+        PlaceAddress:'',
+        ReportHint:'',
 
         selectedIndex: 2,
         selectedHours: 0,
@@ -66,10 +85,25 @@ export default class App extends Component<Props> {
         moviemsIndex:0,
         photogs:[],
         photogsIndex:0,
-        contents:[],
+        contents_:[],
         contentsIndex:0,
-        openA:false,
         selectedFruits: [],
+        
+        openA:false,
+        checkFinalReview:false,
+        findPlaceInfo:false,
+
+        searchPlaceName:'',
+
+    dataSource1: ds.cloneWithRows([
+      {ff:'1',name:'آرش آقاجانی',score:'120'},
+      {ff:'2',name:'آنا لاوا',score:'100'},
+      {ff:'3',name:'کسرا وفایی',score:'80'},
+      {ff:'4',name:'لنا وفایی',score:'60'},
+      {ff:'5',name:' میدوس آرش',score:'40'},
+      {ff:'6',name:'اوادا کاداورا',score:'20'}
+
+    ]),
 
     }
     this.updateIndex = this.updateIndex.bind(this)
@@ -86,7 +120,7 @@ export default class App extends Component<Props> {
     this.delphotogs = this.delphotogs.bind(this);
 
     this.addcontents = this.addcontents.bind(this);
-    this.delphotogs = this.delphotogs.bind(this);
+    this.delcontents = this.delcontents.bind(this);
 
     this.onSelectedSearchName=this.onSelectedSearchName.bind(this)
     this.onSelectedSearchSkills=this.onSelectedSearchSkills.bind(this)
@@ -96,11 +130,129 @@ export default class App extends Component<Props> {
     this.setdata=this.setdata.bind(this)
 
 
+
     this.logFruitsFull=this.logFruitsFull.bind(this)
+    this.RegisterRequest=this.RegisterRequest.bind(this)
+    this.sendToServer=this.sendToServer.bind(this)
+    this.searchPlaceChange=this.searchPlaceChange.bind(this);
+    this.callBackPlaceInfo=this.callBackPlaceInfo.bind(this)
   }
+
+  RegisterRequest=()=>{
+    //alert('now must have detains show');
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});    
+    let tmp=[];
+    for (let index = 0; index < this.state.authors.length; index++) {
+      const element = this.state.authors[index];
+      tmp.push({role:'نویسنده',username:element.props.name,pic:element.props.pic})
+      
+    }
+    for (let index = 0; index < this.state.contents_.length; index++) {
+      const element = this.state.contents_[index];
+      tmp.push({role:'محتوا',username:element.props.name,pic:element.props.pic})
+      
+    }
+    for (let index = 0; index < this.state.moviems.length; index++) {
+      const element = this.state.moviems[index];
+      tmp.push({role:'فیلمبردار',username:element.props.name,pic:element.props.pic})
+      
+    }
+    for (let index = 0; index < this.state.photogs.length; index++) {
+      const element = this.state.photogs[index];
+      tmp.push({role:'عکاس',username:element.props.name,pic:element.props.pic})
+      
+    }
+    
+    
+    this.state.dataSource1= ds.cloneWithRows(tmp)
+
+    this.setState({checkFinalReview:true});
+
+  }
+  sendToServer=()=>{
+    alert('//TODO Task');
+    try {
+
+
+      let authorTMP=[]
+      let videoTMP=[]
+      let photoTMP=[]
+      //console.log(this.state.authors[0].props.did)
+
+
+      for (let index = 0; index < this.state.authors.length; index++)
+        authorTMP.push(this.state.authors[index].props.did);
+
+      for (let index = 0; index < this.state.moviems.length; index++) 
+        videoTMP.push( this.state.moviems[index].props.did);
+
+      for (let index = 0; index < this.state.photogs.length; index++)
+      photoTMP.push(this.state.photogs[index].props.did);
+      
+
+      //console.log('photo tmp',photoTMP)
+
+
+      
+      fetch(
+        'https://peeyade.com/api/pch/v1/request/',{  
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization':'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI1YTg2ZDQ5ZGZhOTA2OTYyMDA5NWM2N2QiLCJ1c2VyIjoi2KLYsdi02YXbjNiv2LMifQ.dJloyq--dABpkcwRhw6OSBwH59z30ZKoLD6356Kozbk'
+          },
+          body: JSON.stringify({
+            title:this.state.ReportName,
+            description:this.state.ReportHint,
+            deadline:this.state.selectedDead,
+            reportTime:this.state.selectedStartDate,
+            price:this.state.MaxMoney,
+            maxPoint:this.state.Points,
+            photographerCount:2,
+            photographerNeeded:true,
+            videographerCount:2,
+            videographerNeeded:true,
+            postType:'place',
+            author:authorTMP,
+            videographer:videoTMP,
+            photographer:photoTMP,
+            setPlaceRequest:'true',
+            placeName:this.state.PlaceName,
+            placeDescription:this.state.ReportHint,
+
+          })
+        
+        }).then((response) => response.json())
+          .then((res)=>{
+          console.log(res);
+          //console.log('https://peeyade.com'+res.data.user.bestPhoto.prefix+res.data.user.bestPhoto.suffix)
+          if(res.success)
+          {
+            alert(res.message)
+            console.log(res)
+          }
+          else           alert('somthing wrong');
+          //this.state.bons= res.data.points
+    
+        
+        }).catch((err)=>{console.error(err)});
+
+     
+    } catch (error) {console.log("Arash ::: "+error);}
+
+
+
+  }
+
 
   onSelectionsChange = (selectedFruits,item) => {
     this.setState({ selectedFruits })
+  }
+  onFindPlaceChange=(selectedFindPlaces,item)=>{
+    //this.state.selectedFindPlaces=[item]
+    this.setState({selectedFindPlaces})
+    //this.setState({selectedFindPlaces:item})
   }
   chkunchk=()=>{
     this.setState({checked:!this.state.checked})
@@ -187,7 +339,7 @@ export default class App extends Component<Props> {
           for (let index = 0; index < tmp.length; index++) 
           {
             const el = tmp[index];
-            this.state.contents.push(
+            this.state.contents_.push(
             <TokenBox 
               name={el.profile.firstName} 
               key ={this.state.contentsIndex} 
@@ -221,9 +373,46 @@ export default class App extends Component<Props> {
           //console.log(tmp)
       this.setState({fruits:[]})
   }
+  callBackPlaceInfo=()=>
+  {
+    for (let index = 0; index < placesFullInfo.length; index++) {
+      const element = placesFullInfo[index];
+      if(el.name==this.state.selectedFindPlaces[0].name)
+      {
+        this.setState({placeName:el.name})
+        this.setState({placeDescription:el.summary.address.fullAddress})
+        this.setState({_latitude:el.summary.address.geo.coordinates[0]})
+        this.setState({_longitude:el.summary.address.geo.coordinates[0]})
+      }
+    }
+    this.setState({findPlaceInfo:false});
+  }
   onSelectedSearchName = (selectedSearchName) => {this.setState({ name:selectedSearchName })}
-  //onSelectedSearchMainRole = (changedText) => {this.setState({ mainRole:changedText })}
-  //onSelectedSearchMainCatogry = (changedText) => {this.setState({ mainActivity:changedText })}
+  searchPlaceChange=(scp)=>{
+    this.setState({searchPlaceName:scp})
+    try {
+     
+      fetch(
+        'https://peeyade.com/api/pch/v1/search/places?name='+scp+'&limit=20&offset=0',{  
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization':'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI1YTg2ZDQ5ZGZhOTA2OTYyMDA5NWM2N2QiLCJ1c2VyIjoi2KLYsdi02YXbjNiv2LMifQ.dJloyq--dABpkcwRhw6OSBwH59z30ZKoLD6356Kozbk'
+          }
+        }).then((response) => response.json())
+          .then((res)=>{
+            this.state.findPlaces=[]
+            Object.keys(res.data).forEach((key)=>{
+                    this.state.findPlaces.push(res.data[key].name)
+                  });
+            this.setState({placesFullInfo:res.data});
+        }).catch((err)=>{console.error(err)});
+    } catch (error) {
+      console.log("Arash ::: "+error);
+    }
+  }
+  
   onSelectedSearchSkills = (changedText) => {this.setState({ mainActivity:changedText })}
   addOne=()=> {
     try {
@@ -233,9 +422,7 @@ export default class App extends Component<Props> {
           'خطا',
           'لطفا حداقل یکی از موارد جستجو را پر کنید',
           [
-            /* {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')}, */
-/*             {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
- */            {text: 'باشه', onPress: () => console.log('OK Pressed')},
+           {text: 'باشه', onPress: () => console.log('OK Pressed')},
           ],
           { cancelable: false }
         );
@@ -261,7 +448,7 @@ export default class App extends Component<Props> {
         
         }).then((response) => response.json())
           .then((res)=>{
-          console.log(res);
+         // console.log(res);
           //console.log('https://peeyade.com'+res.data.user.bestPhoto.prefix+res.data.user.bestPhoto.suffix)
           this.setdata(res)
           //this.state.bons= res.data.points
@@ -311,7 +498,7 @@ export default class App extends Component<Props> {
   }
   addcontents()
   {
-    this.state.contents.push(
+    this.state.contents_.push(
     <TokenBox 
       name={this.state.contentsIndex} 
       key={this.state.contentsIndex} 
@@ -361,15 +548,15 @@ export default class App extends Component<Props> {
   delcontents(k)//aka key
   {
     alert('با موفقیت حذف شد')
-    let tmp=this.state.contents.slice()
+    console.log('key',this.state.contents_);
+    let tmp=this.state.contents_.slice()
     for (let index = 0; index < tmp.length; index++) {
           if(tmp[index].props.did==k)
           {
             tmp.splice(index,1);
           }
     }
-    console.log('key',tmp);
-    this.setState({contents:tmp   })
+    this.setState({contents_:tmp   })
   }
   onDateChange(date) {
     this.setState({
@@ -412,13 +599,16 @@ export default class App extends Component<Props> {
             </Right>
           </Header>
 
-        <MyScrollView>
+        <MyScrollView 
+        onRegisterClick={this.RegisterRequest}
+        >
             <View style = { {justifyContent:'space-around',backgroundColor:'#F5FCFF',width:device_width} }>
               <View style = { {flex:1} }>{/*main compoenent*/}
               <Text style={{alignSelf:'flex-end'}}>
                 نام گزارش
               </Text>
               <TextInput
+               onChangeText={(ReportName) => this.setState({ReportName})}
               style={{
               
               alignSelf: 'stretch',
@@ -455,6 +645,7 @@ export default class App extends Component<Props> {
                 </Text>
 
                 <TextInput
+                    onChangeText={(Points) => this.setState({Points})}
                     style={{
                     alignSelf: 'stretch',
                     flexDirection:'row',
@@ -472,6 +663,7 @@ export default class App extends Component<Props> {
                   </Text>
 
                   <TextInput
+                     onChangeText={(MaxMoney) => this.setState({MaxMoney})}
                     style={{
                     alignSelf: 'stretch',
                     flexDirection:'row',
@@ -638,62 +830,67 @@ export default class App extends Component<Props> {
             </View>
 
             <View style = {  {justifyContent:'space-around',backgroundColor:'green',flex:1,width:device_width}}>
-            <View style={styles.container}>
-                  <Text style={{flex:1,marginTop:10}}>
-                   نام مکان
-                  </Text>
-                  <TextInput
-                    style={{
-                    flex:1,
-                    alignSelf: 'stretch',
-                    flexDirection:'row',
-                  //  height: 30,
-                    borderColor: 'gray',
-                    borderWidth: 1,
-                    marginHorizontal:10
-                  }}/>
-                
-
-                  <Text style={{flex:1,marginTop:10}}>
-                   آدرس مکان
-                  </Text>
-                  <TextInput
+              <View style={styles.container}>
+                    <Text style={{flex:1,marginTop:10}}>
+                    نام مکان
+                    </Text>
+                    <TextInput
+                     //onChangeText={(PlaceName) => this.setState({PlaceName})}
+                      onFocus={()=>{ this.setState({findPlaceInfo:true})}}
+                     
                       style={{
                       flex:1,
                       alignSelf: 'stretch',
                       flexDirection:'row',
-                     // height: 30,
                       borderColor: 'gray',
                       borderWidth: 1,
                       marginHorizontal:10
-                    }}
-                  />
-                  <MapView style={{margin:10,flex:8,width:Dimensions.get('window').width,}}
-                      initialRegion={{
-                      latitude: 35.704981,
-                      longitude: 51.416007,
-                      latitudeDelta: 0.0022,
-                      longitudeDelta: 0.0021,
-                    }}
-                   />
+                    }}/>
+                  
 
-                  <Text style={{flex:1}}>
-                  راهنمای تهیه گزارش
-                  </Text> 
-                  <TextInput
-                  style={{
-                    flex:3,
-                    alignSelf: 'stretch',
-                    flexDirection:'row',
-                    //height: 150,
-                    borderColor: 'gray',
-                    borderWidth: 1,
-                    marginHorizontal:10,
-                    marginBottom:10
-                  }}
-                  />
-                </View>
-            </View>
+                    <Text style={{flex:1,marginTop:10}}>
+                    آدرس مکان
+                    </Text>
+                    <TextInput
+                        onChangeText={(PlaceAddress) => this.setState({PlaceAddress})}
+                        style={{
+                        flex:1,
+                        alignSelf: 'stretch',
+                        flexDirection:'row',
+                      // height: 30,
+                        borderColor: 'gray',
+                        borderWidth: 1,
+                        marginHorizontal:10
+                      }}
+                    />
+                    <MapView style={{margin:10,flex:8,width:Dimensions.get('window').width,}}
+                        initialRegion={{
+                        latitude: this.state._latitude,
+                        longitude: this.state._longitude,
+                        latitudeDelta: 0.0022,
+                        longitudeDelta: 0.0021,
+                      }}
+                      showsUserLocation
+                    />
+
+                    <Text style={{flex:1}}>
+                    راهنمای تهیه گزارش
+                    </Text> 
+                    <TextInput
+                     onChangeText={(ReportHint) => this.setState({ReportHint})}
+                    style={{
+                      flex:3,
+                      alignSelf: 'stretch',
+                      flexDirection:'row',
+                      //height: 150,
+                      borderColor: 'gray',
+                      borderWidth: 1,
+                      marginHorizontal:10,
+                      marginBottom:10
+                    }}
+                    />
+                  </View>
+              </View>
 
             <View style = {  {justifyContent:'space-around',backgroundColor:'yellow',flex:1,width:device_width} }>
            
@@ -731,7 +928,7 @@ export default class App extends Component<Props> {
                           </Left>
                           <Body>
                             <View style={{justifyContent:'flex-start',alignItems:'center',flexDirection:'row'}}>
-                            <Text>666</Text>
+                            <Text>انتخاب افراد</Text>
                           </View>
                           </Body>
                           <Right>
@@ -875,7 +1072,7 @@ export default class App extends Component<Props> {
                     اضافه کردن سرپرست محتوا
                   </Text>
                   <View style={{flexDirection:'row',alignItems:'center',flexWrap:'wrap'}}>
-                    {this.state.contents}
+                    {this.state.contents_}
                   </View>
 
                   <TouchableHighlight
@@ -911,6 +1108,181 @@ export default class App extends Component<Props> {
 
 
             </View>
+            <MM
+                    animationType="fade"
+                    transparent={false}
+                    visible={this.state.checkFinalReview}
+                    onRequestClose={() => {
+                      alert('Modal has been closed.');
+                    }}>
+                     <View style={{backgroundColor:'#F5FCFF'}}>
+
+                        <Header>
+                          <Left>
+                            <Button transparent    >
+                              <Icon name="close" onPress={() => this.setState({checkFinalReview:false})}/>
+                            </Button>
+                          </Left>
+                          <Body>
+                            <View style={{justifyContent:'flex-start',alignItems:'center',flexDirection:'row'}}>
+                            <Text>بازبینی نهایی</Text>
+                          </View>
+                          </Body>
+                          <Right>
+                          <Button transparent    >
+                              {/* <Icon name="close" onPress={() => this.setState({checkFinalReview:false})}/> */}
+                              <Text>ویرایش</Text>
+                            </Button>
+                          </Right>
+                        </Header>
+                        <View style={{height:Dimensions.get('window').height-90}}>
+                          <Text style={styles.title}>
+                            {this.state.ReportName}
+                          </Text>
+                          <Text style={styles.subtitle}>
+                            {this.state.ReportHint}
+                          </Text>
+
+                          <Text style={styles.rtl}>
+                            آیتم‌های مورد نیاز
+                          </Text>
+                          <Text style={styles.log}>
+                              ۱ فیلم بردار
+                          </Text>
+                          <Text style={styles.log}>
+                            ۱ عکاس
+                          </Text>
+
+
+
+                          <Text style={styles.rtl}>
+                            روز و ساعت تهیه گزارش
+                          </Text>
+                          <Text style={styles.log}>
+                            {this.state.selectedStartDate==null?'----/--/--':this.state.selectedStartDate.format('jYYYY/jM/jD')+ 'دقیقه '+selectedHours+':'+selectedMinutes}
+                          </Text>
+
+                        <Text style={styles.rtl}>
+                        آدرس 
+                        </Text>
+                        <Text style={styles.log}>
+                            {this.state.PlaceAddress}
+                        </Text>
+
+                        <Text style={styles.rtl}>
+                        اعضای ویژه 
+                        </Text>
+
+
+                        <ListView
+                          style={styles.listview}
+                          dataSource={this.state.dataSource1}
+                          renderRow={(data) => 
+                            <View style={{
+                              flex: 1,
+                              flexDirection: 'row',
+                              justifyContent: 'center',
+                              backgroundColor: '#F5FCFF',
+                              justifyContent: 'space-between',
+                              alignItems: 'center',
+                              borderColor:'black',
+                              borderRadius:1,
+                              borderBottomWidth:2,
+                              padding:20
+                            }}>
+                          
+
+                              <View>
+                                <Text>{data.role}</Text>
+                              </View>
+                            <View style={{flexDirection:'row',alignItems:'center'}}>
+                              <View>
+                                <Text>{data.username}</Text>
+                              </View>
+
+                            <Image
+                              style={styles.photo}
+                              resizeMode={'stretch'}
+                              source={String(data.pic).length>5?{uri:data.pic}:require('./image/testlogo.png')}
+                            />
+                            </View>
+
+                              
+                          </View>}
+                        />
+                      </View>
+                      <View style={{height:30}}>
+                        <TouchableOpacity 
+                          activeOpacity = { 0.8 } 
+                          onPress = {this.sendToServer} 
+                          style = {{width:'100%',alignSelf: 'stretch',position:'absolute',
+                          bottom:0,margin:0,justifyContent:'center',backgroundColor:'gray',height:50} }>
+                          <Text style = { {textAlign:'center'}}>ارسال به سرور</Text>
+                        </TouchableOpacity>
+                      </View>
+
+                     </View>
+            </MM>
+        
+            <MM
+                    animationType="slide"
+                    transparent={false}
+                    visible={this.state.findPlaceInfo}
+                    onRequestClose={() => {
+                      alert('Modal has been closed.');
+                    }}>
+                     <View style={{backgroundColor:'#F5FCFF'}}>
+
+                        <Header>
+                          <Left>
+                            <Button transparent    >
+                              <Icon name="close" onPress={() => this.setState({findPlaceInfo:false})}/>
+                            </Button>
+                          </Left>
+                          <Body>
+                            <View style={{justifyContent:'flex-start',alignItems:'center',flexDirection:'row'}}>
+                            <Text>جستجوی مکان </Text>
+                          </View>
+                          </Body>
+                          <Right>
+                          </Right>
+                        </Header>
+                        <View style={{height:Dimensions.get('window').height-90}}>
+                          
+                        <SearchBar
+                          icon={{ type: 'font-awesome', name: 'search' }}
+                          round
+                          lightTheme={true}
+                          onChangeText={this.searchPlaceChange}
+                          onClearText={()=>{}}
+                          inputStyle={{textAlign:'center'}}
+                          containerStyle={{direction:'rtl'}}
+                          placeholder='جستجو' /> 
+                          
+                          <SelectMultiple
+                            style={{direction:'rtl',height:300}}
+                            items={this.state.findPlaces}
+                            selectedItems={this.state.selectedFindPlaces}
+                            selectedLabelStyle={{color:'white'}}
+                            selectedRowStyle={{backgroundColor:'gray'}}
+                            onSelectionsChange={this.onFindPlaceChange} />
+
+                        
+                      </View>
+                      <View style={{height:30}}>
+                        <TouchableOpacity 
+                            activeOpacity = { 0.8 } 
+                            onPress = {this.callBackPlaceInfo} 
+                            style = {{width:'100%',alignSelf: 'stretch',position:'absolute',
+                            bottom:0,margin:0,justifyContent:'center',backgroundColor:'gray',height:50} }>
+                          <Text style = {{textAlign:'center'}}>تایید</Text>
+                        </TouchableOpacity>
+                      </View>
+
+                     </View>
+            </MM>
+        
+        
         </MyScrollView>
       </Container>
     );
@@ -924,7 +1296,44 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  
+  rtl:{
+    //flex: 1,
+    //justifyContent: 'flex-end',
+   // alignItems: 'flex-end',
+   //alignSelf: 'flex-end',
+   textAlign:'right',
+   /// backgroundColor: '#F5FCFF',
+  },
+  log:{
+    textAlign:'right',
+   // alignSelf:'flex-end',
+    backgroundColor:'#ddd'
+  }
+  ,
+  listview: {
+    backgroundColor:'#f2f2f2',
+    //flex: 1,
+    backgroundColor: '#F5FCFF',
+    marginTop: 0,
+
+  },
+  photo: {
+    height: 40,
+    width: 40,
+    borderRadius: 20,
+  },
+  title: {
+    fontSize: 20,
+    //alignSelf:'flex-start',
+    textAlign: 'center',
+    margin: 10,
+  },
+  subtitle: {
+    fontSize: 10,
+   // alignSelf:'flex-end',
+    textAlign: 'center',
+    margin: 10,
+  },
   buttonStyle:{
     backgroundColor: '#333333',
     alignSelf: 'stretch',

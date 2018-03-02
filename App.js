@@ -48,7 +48,7 @@ import Message from './Message'
 import RadiusButton from './RadiusButton'             
 import SplashPage from './SplashPage'             
 import suggest2Wall from './suggest2Wall'             
-
+console.disableYellowBox = true;
 const App = DrawerNavigator({
     // ScreenZero: { screen: ScreenZero},
     Reqaddplace: {screen: Reqaddplace},
