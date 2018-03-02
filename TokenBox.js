@@ -12,6 +12,7 @@ import {
 //TODO override tokenbox del button
 export class TokenBox extends Component {
   render() {
+   //console.log('hey i am here',this.props.pic);
     return (
         <View style={{flexDirection:'row',
             backgroundColor:'#999999',
@@ -25,7 +26,8 @@ export class TokenBox extends Component {
                 <Image
                     style={styles.photo}
                     resizeMode={'stretch'}
-                    source={require('./image/testlogo.png')}
+                    source={this.props.pic!=""?{uri:this.props.pic}:require('./image/testlogo.png')}
+                    //source={{uri:this.props.pic}}
                   />
                 
                 <Button

@@ -29,8 +29,12 @@ export default class App extends Component<Props> {
   constructor () {
     super()
     this.state = {
-      fruits : ['honda','kotlin','آرش توکلی', 'ساتوشی', 'ناکامورا','استیو وزنیاک', 'جابز امپرالیست', 'بیل گیتس'],
+     // fruits : ['honda','kotlin','آرش توکلی', 'ساتوشی', 'ناکامورا','استیو وزنیاک', 'جابز امپرالیست', 'بیل گیتس'],
+      fruits : [],
       fruitsFull : [],
+      catogryType:0,
+
+
         selectedIndex: 2,
         selectedHours: 0,
         selectedMinutes: 0,
@@ -131,7 +135,91 @@ export default class App extends Component<Props> {
  
    }
   logFruitsFull=()=>{
-      console.log(this.state.fruitsFull)
+      //console.log('selected ----------',this.state.selectedFruits)
+      let tmp=[]
+      this.state.fruitsFull.forEach((el1)=>{
+        this.state.selectedFruits.forEach((el2)=>{
+            if(el2.label==el1.profile.firstName)
+            {
+              tmp.push(el1);
+
+            }
+                                                })     
+                                        })  
+      // console.log(tmp)                   
+      switch (this.state.catogryType) 
+      {
+        case 1:
+          for (let index = 0; index < tmp.length; index++) 
+          {
+            const el = tmp[index];
+            this.state.authors.push(
+            <TokenBox 
+              name={el.profile.firstName} 
+              key ={this.state.authorsIndex} 
+              pic={String(el.bestPhoto.prefix).length<5?'':'https://peeyade.com'+el.bestPhoto.prefix+el.bestPhoto.suffix}
+              did ={el._id}
+              kk  ={this.delAuthors}/>);
+            //console.log(el.bestPhoto.prefix)  
+            this.setState({authorsIndex:this.state.authorsIndex+1})
+          }
+          this.setState({openA:false})
+
+          break;
+        case 2:
+          for (let index = 0; index < tmp.length; index++) 
+          {
+            const el = tmp[index];
+            this.state.moviems.push(
+            <TokenBox 
+              name={el.profile.firstName} 
+              key ={this.state.moviemsIndex} 
+              pic={String(el.bestPhoto.prefix).length<5?'':'https://peeyade.com'+el.bestPhoto.prefix+el.bestPhoto.suffix}
+              did ={el._id}
+              kk  ={this.delmoviems}/>);
+            //console.log(el.bestPhoto.prefix)  
+            this.setState({moviemsIndex:this.state.moviemsIndex+1})
+          }
+          this.setState({openA:false})
+          break;
+        case 3:
+        
+          for (let index = 0; index < tmp.length; index++) 
+          {
+            const el = tmp[index];
+            this.state.contents.push(
+            <TokenBox 
+              name={el.profile.firstName} 
+              key ={this.state.contentsIndex} 
+              pic={String(el.bestPhoto.prefix).length<5?'':'https://peeyade.com'+el.bestPhoto.prefix+el.bestPhoto.suffix}
+              did ={el._id}
+              kk  ={this.delcontents}/>);
+            //console.log(el.bestPhoto.prefix)  
+            this.setState({contentsIndex:this.state.contentsIndex+1})
+          }
+          this.setState({openA:false})
+
+          break;
+        case 4:
+            for (let index = 0; index < tmp.length; index++) 
+            {
+              const el = tmp[index];
+              this.state.photogs.push(
+              <TokenBox 
+                name={el.profile.firstName} 
+                key ={this.state.moviemsIndex} 
+                pic={String(el.bestPhoto.prefix).length<5?'':'https://peeyade.com'+el.bestPhoto.prefix+el.bestPhoto.suffix}
+                did ={el._id}
+                kk  ={this.delphotogs}/>);
+              this.setState({photogsIndex:this.state.photogsIndex+1})
+            }
+            this.setState({openA:false})
+          break;
+        default:
+          break;
+      }
+          //console.log(tmp)
+      this.setState({fruits:[]})
   }
   onSelectedSearchName = (selectedSearchName) => {this.setState({ name:selectedSearchName })}
   //onSelectedSearchMainRole = (changedText) => {this.setState({ mainRole:changedText })}
@@ -195,6 +283,7 @@ export default class App extends Component<Props> {
     <TokenBox 
       name={this.state.authorsIndex} 
       key ={this.state.authorsIndex} 
+      pic={''}
       did ={this.state.authorsIndex}
       kk  ={this.delAuthors}/>);
     this.setState({authorsIndex:this.state.authorsIndex+1})
@@ -204,7 +293,8 @@ export default class App extends Component<Props> {
     this.state.moviems.push(
     <TokenBox 
       name={this.state.moviemsIndex} 
-      key={this.state.moviemsIndex} 
+      key={this.state.moviemsIndex}
+      pic={''} 
       did={this.state.moviemsIndex}
       kk={this.delmoviems}/>);
     this.setState({moviemsIndex:this.state.moviemsIndex+1})
@@ -617,7 +707,7 @@ export default class App extends Component<Props> {
                      {this.state.authors}
                   </View>
                   <TouchableHighlight
-                        onPress={()=>{this.setState({openA: true}) }   }
+                        onPress={()=>{this.state.catogryType=1;this.setState({openA: true}) }   }
                         
                         style={{alignItems:'center',
                                 backgroundColor:'black',
@@ -753,8 +843,8 @@ export default class App extends Component<Props> {
                           activeOpacity = { 0.8 } 
                           onPress = {this.logFruitsFull} 
                           style = {{width:'100%',alignSelf: 'stretch',position:'absolute',
-                          bottom:0,margin:0,justifyContent:'center',backgroundColor:'gray',height:50} }>
-                          <Text style = { {textAlign:'center'}}>بعدی</Text>
+                          bottom:-30,margin:0,justifyContent:'center',backgroundColor:'gray',height:50} }>
+                          <Text style = { {textAlign:'center'}}>ثبت و بستن</Text>
                         </TouchableOpacity>
 
 
@@ -772,7 +862,7 @@ export default class App extends Component<Props> {
                   </View>
 
                   <TouchableHighlight
-                        onPress={this.addmoviems}
+                        onPress={()=>{this.state.catogryType=2;this.setState({openA: true}) } }
                         style={{alignItems:'center',
                                 backgroundColor:'black',
                                 marginHorizontal:10}}>
@@ -789,7 +879,7 @@ export default class App extends Component<Props> {
                   </View>
 
                   <TouchableHighlight
-                        onPress={this.addcontents}
+                        onPress={()=>{this.state.catogryType=3;this.setState({openA: true}) } }
                         style={{alignItems:'center',
                                 backgroundColor:'black',
                                 marginHorizontal:10}}>
@@ -806,7 +896,7 @@ export default class App extends Component<Props> {
                     </View>
 
                     <TouchableHighlight
-                        onPress={this.addphotogs}
+                        onPress={()=>{this.state.catogryType=4;this.setState({openA: true}) } }
                         style={{alignItems:'center',
                                 backgroundColor:'black',
                                 marginHorizontal:10}}>
