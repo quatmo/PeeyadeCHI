@@ -51,6 +51,7 @@ import suggest2Wall from './suggest2Wall'
 
 const App = DrawerNavigator({
     // ScreenZero: { screen: ScreenZero},
+    Reqaddplace: {screen: Reqaddplace},
     login: {screen: login},
     Login_confirm: {screen: Login_confirm},
     ScreenOne: { screen: ScreenOne},
@@ -63,7 +64,6 @@ const App = DrawerNavigator({
     imagevideo: {screen: imagevideo},
     Wall: {screen: Wall},
     details: {screen: details},
-    Reqaddplace: {screen: Reqaddplace},
     Project: {screen: Project},
     Requests_RS: {screen: Requests_RS},
     ChatList: {screen: ChatList},

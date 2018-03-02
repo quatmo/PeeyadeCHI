@@ -4,7 +4,7 @@ import JalaliCalendarPicker from 'react-native-jalali-calendar-picker';
 import { Container, Content,Title, Icon,Button, Footer,Header, Left, Body, Right } from 'native-base';
 import MyScrollView from './AddPlacescrolview'
 import MapView from 'react-native-maps';
-import { Modal  as MM} from "react-native";
+import { Modal  as MM,CheckBox as CC} from "react-native";
 import TimePicker from 'react-native-simple-time-picker';
 import {
   Platform,Dimensions,
@@ -13,12 +13,14 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  TouchableHighlight
+  TouchableHighlight,
+  ScrollView
 } from 'react-native';
 import TokenBox from './TokenBox';
 import Modal from 'react-native-simple-modal';
-import {Button as Btn ,SearchBar } from 'react-native-elements';
+import {Button as Btn ,SearchBar, CheckBox } from 'react-native-elements';
 import SelectMultiple from 'react-native-select-multiple'
+
 
 
 var device_width = Dimensions.get('window').width;
@@ -28,17 +30,32 @@ export default class App extends Component<Props> {
     super()
     this.state = {
       fruits : ['honda','kotlin','آرش توکلی', 'ساتوشی', 'ناکامورا','استیو وزنیاک', 'جابز امپرالیست', 'بیل گیتس'],
+      fruitsFull : [],
         selectedIndex: 2,
         selectedHours: 0,
         selectedMinutes: 0,
         selectedDead:null,
         selectedStartDate: null,
+
+        selectedIndex: 2,
+        name:'',
+        desiredRole: 'author',
+        mainRole: 'admin',
+        mainCatogry:'',
+        skills:'',
+        checked:false,
+
+
         pubDay: null,
         pubDate: null,
         openTime:false,
         openDate:false,
         openDead:false,
         detOrLib:true,
+        
+        
+        
+        
         authors:[],
         authorsIndex:0,
         moviems:[],
@@ -48,6 +65,7 @@ export default class App extends Component<Props> {
         contents:[],
         contentsIndex:0,
         openA:false,
+        selectedFruits: [],
 
     }
     this.updateIndex = this.updateIndex.bind(this)
@@ -66,10 +84,111 @@ export default class App extends Component<Props> {
     this.addcontents = this.addcontents.bind(this);
     this.delphotogs = this.delphotogs.bind(this);
 
+    this.onSelectedSearchName=this.onSelectedSearchName.bind(this)
+    this.onSelectedSearchSkills=this.onSelectedSearchSkills.bind(this)
 
 
+    this.addOne = this.addOne.bind(this)
+    this.setdata=this.setdata.bind(this)
 
+
+    this.logFruitsFull=this.logFruitsFull.bind(this)
   }
+
+  onSelectionsChange = (selectedFruits,item) => {
+    this.setState({ selectedFruits })
+  }
+  chkunchk=()=>{
+    this.setState({checked:!this.state.checked})
+     if(!this.state.checked)
+     {
+       this.setState({selectedFruits:this.state.fruits})
+     } else
+     {
+       this.setState({selectedFruits:[]})
+       
+     }
+  }
+
+  setdata=(res)=>{
+    // this.setState({bons:res.data.user.bons})
+    // this.setState({pic:'https://peeyade.com'+res.data.user.bestPhoto.prefix+res.data.user.bestPhoto.suffix})
+    // this.setState({username:res.data.user.username})
+    //fruits=res.data.profile.firstName;
+    let temps=[]
+    this.state.fruitsFull=[]
+      Object.keys(res.data).forEach((key)=>{
+      temps.push(res.data[key].profile.firstName)
+      
+      this.state.fruitsFull.push(res.data[key])
+    });
+    this.setState({fruits : temps})
+    
+    //const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    //this.setState({dataSource:ds.cloneWithRows(res.data)});
+    //this.setState({pic:'peeyade.com/'+res.data.prefix+res.data.possix})
+     //this.setState({pic:'peeyade.com/'+res.data.prefix+res.data.possix})
+ 
+   }
+  logFruitsFull=()=>{
+      console.log(this.state.fruitsFull)
+  }
+  onSelectedSearchName = (selectedSearchName) => {this.setState({ name:selectedSearchName })}
+  //onSelectedSearchMainRole = (changedText) => {this.setState({ mainRole:changedText })}
+  //onSelectedSearchMainCatogry = (changedText) => {this.setState({ mainActivity:changedText })}
+  onSelectedSearchSkills = (changedText) => {this.setState({ mainActivity:changedText })}
+  addOne=()=> {
+    try {
+      if(this.state.name=='' && this.state.skills=='' )
+      {
+        Alert.alert(
+          'خطا',
+          'لطفا حداقل یکی از موارد جستجو را پر کنید',
+          [
+            /* {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')}, */
+/*             {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+ */            {text: 'باشه', onPress: () => console.log('OK Pressed')},
+          ],
+          { cancelable: false }
+        );
+        return;
+      }
+      let ress='xxx'
+      fetch(
+        'https://peeyade.com/api/pch/v1/users/search?limit=10,offset=0',{  
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization':'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI1YTg2ZDQ5ZGZhOTA2OTYyMDA5NWM2N2QiLCJ1c2VyIjoi2KLYsdi02YXbjNiv2LMifQ.dJloyq--dABpkcwRhw6OSBwH59z30ZKoLD6356Kozbk'
+          },
+          body: JSON.stringify({
+            activityTags: '',
+            mainActivity: this.state.mainActivity,
+            name: this.state.name,
+            desiredRole: this.state.desiredRole,
+            mainRole: this.state.mainRole,
+
+          })
+        
+        }).then((response) => response.json())
+          .then((res)=>{
+          console.log(res);
+          //console.log('https://peeyade.com'+res.data.user.bestPhoto.prefix+res.data.user.bestPhoto.suffix)
+          this.setdata(res)
+          //this.state.bons= res.data.points
+    
+        
+        }).catch((err)=>{console.error(err)});
+
+     
+    } catch (error) {
+      console.log("Arash ::: "+error);
+    }
+
+
+}
+
   addAuthors()
   {
     this.state.authors.push(
@@ -512,7 +631,7 @@ export default class App extends Component<Props> {
                     onRequestClose={() => {
                       alert('Modal has been closed.');
                     }}>
-                     <View style={{}}>
+                     <View style={{backgroundColor:'#F5FCFF'}}>
 
                         <Header>
                           <Left>
@@ -529,7 +648,7 @@ export default class App extends Component<Props> {
                           </Right>
                         </Header>
 
-
+                      
                         <SearchBar
                           icon={{ type: 'font-awesome', name: 'search' }}
                           round
@@ -565,15 +684,15 @@ export default class App extends Component<Props> {
                         <View style={{flexDirection:'row'}}>
                         <SearchBar
                         //icon={{ type: 'font-awesome', name: 'search' }}
-                        round
-                        lightTheme={true}
-                        onChangeText={()=>{}}
-                        onClearText={()=>{}}
-                        inputStyle={{textAlign:'center'}}
-                        containerStyle={{direction:'rtl',flex:10}}
-                        placeholder=' کتگوری اصلی ' />
+                          round
+                          lightTheme={true}
+                          onChangeText={()=>{}}
+                          onClearText={()=>{}}
+                          inputStyle={{textAlign:'center'}}
+                          containerStyle={{direction:'rtl',flex:10}}
+                          placeholder=' کتگوری اصلی ' />
                         <Text style={{flex:2,alignSelf:'flex-end',padding:10}}>
-                        کتگوری  
+                          کتگوری  
                         </Text>
                         </View>
 
@@ -595,42 +714,48 @@ export default class App extends Component<Props> {
                         </View>
 
                         <Btn
-                            buttonStyle={styles.buttonStyle}
+                            buttonStyle={{height:30}}
                             title="جستجو"
                             onPress={()=>this.addOne()}
                         />
 
-                        <View style={{flexDirection:'row'}}>  
-                        <Text style={{flex:2,alignSelf:'flex-start',}}>
-                        پیاده‌چی ها 
-                        </Text>
-                        <Text style={{flex:1,alignSelf:'center',}}>
-                        پیاده‌چی ها 
-                        </Text>
-                        </View>  
-                        <View style={{}}>
-                        <SelectMultiple
-                        style={{direction:'rtl',height: 300}}
-                        items={this.state.fruits}
-                        selectedItems={this.state.selectedFruits}
-                        selectedLabelStyle={{color:'white'}}
-                        selectedRowStyle={{backgroundColor:'gray'}}
-                        onSelectionsChange={this.onSelectionsChange} />
-                        </View>
+                        <View style={{flexDirection:'row'}}> 
+                            <View style={{flex:2,alignItems:'flex-start',}}>
+                                
+                              <CheckBox
+                                title='انتخاب همه'
+                                iconRight
+                                style={{width:10,backgroundColor:'#FFFcFB'}}
+                                onPress={this.chkunchk.bind(this)}
+                                checked={this.state.checked}
+                              />
+                            </View>
+                            <View style={{flex:2,alignItems:'flex-end',
+                                          justifyContent:'center',
+                                          }}>
+                              
+                              <Text>پیاده‌چی ها</Text>
+                            </View>
 
-                        <Footer>
-                        <Left>
-                        </Left>
-                        <Body>
-                            <Btn
-                            style={{}}
-                              buttonStyle={styles.buttonStyle}
-                              title="تایید"
-                              onPress={()=>{}}/>
-                        </Body>
-                        <Right>
-                        </Right>
-                        </Footer>
+                        </View>  
+
+                          <SelectMultiple
+                            style={{direction:'rtl',height:300}}
+                            items={this.state.fruits}
+                            selectedItems={this.state.selectedFruits}
+                            selectedLabelStyle={{color:'white'}}
+                            selectedRowStyle={{backgroundColor:'gray'}}
+                            onSelectionsChange={this.onSelectionsChange} />
+
+                    
+
+                        <TouchableOpacity 
+                          activeOpacity = { 0.8 } 
+                          onPress = {this.logFruitsFull} 
+                          style = {{width:'100%',alignSelf: 'stretch',position:'absolute',
+                          bottom:0,margin:0,justifyContent:'center',backgroundColor:'gray',height:50} }>
+                          <Text style = { {textAlign:'center'}}>بعدی</Text>
+                        </TouchableOpacity>
 
 
                      </View>

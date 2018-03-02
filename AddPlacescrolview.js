@@ -73,8 +73,8 @@ export  class MyScrollView extends Component
             (<View >
             <View style = {{} }>
               <TouchableOpacity activeOpacity = { 0.8 } 
-              onPress = { this.moveToPage.bind(this) } 
-              style = {{margin:0,justifyContent:'center',backgroundColor:'gray',height:50} }>
+                onPress = { this.moveToPage.bind(this) } 
+                style = {{margin:0,justifyContent:'center',backgroundColor:'gray',height:50} }>
                 <Text style = { {textAlign:'center'}}>بعدی</Text>
               </TouchableOpacity>
             </View> 
