@@ -21,6 +21,7 @@ import TokenBox from './TokenBox';
 import Modal from 'react-native-simple-modal';
 import {Button as Btn ,SearchBar, CheckBox } from 'react-native-elements';
 import SelectMultiple from 'react-native-select-multiple'
+import { Callout } from 'react-native-maps';
 
 
 
@@ -41,7 +42,12 @@ export default class App extends Component<Props> {
         placesFullInfo:[],
         _latitude:35.704981,
         _longitude:51.416007,
-
+        region:{
+          latitude: 35.704981,
+          longitude: 51.416007,
+          latitudeDelta: 0.0022,
+          longitudeDelta: 0.0021,
+        },
 
 
         catogryType:0,
@@ -136,6 +142,12 @@ export default class App extends Component<Props> {
     this.sendToServer=this.sendToServer.bind(this)
     this.searchPlaceChange=this.searchPlaceChange.bind(this);
     this.callBackPlaceInfo=this.callBackPlaceInfo.bind(this)
+    this.onRegionChange=this.onRegionChange.bind(this)
+  }
+
+
+  onRegionChange(region) {
+    this.setState({ region });
   }
 
   RegisterRequest=()=>{
@@ -375,14 +387,23 @@ export default class App extends Component<Props> {
   }
   callBackPlaceInfo=()=>
   {
-    for (let index = 0; index < placesFullInfo.length; index++) {
-      const element = placesFullInfo[index];
-      if(el.name==this.state.selectedFindPlaces[0].name)
+    for (let index = 0; index < this.state.placesFullInfo.length; index++) {
+      const el = this.state.placesFullInfo[index];
+      if(el.name==this.state.selectedFindPlaces[0].label)
       {
-        this.setState({placeName:el.name})
-        this.setState({placeDescription:el.summary.address.fullAddress})
-        this.setState({_latitude:el.summary.address.geo.coordinates[0]})
-        this.setState({_longitude:el.summary.address.geo.coordinates[0]})
+        
+        console.log('logfromplace',this.state.selectedFindPlaces[0].label,el.summary.address.geo.coordinates[0])
+        this.setState({PlaceName:el.name})
+        this.setState({PlaceAddress:el.summary.address.fullAddress})
+        //this.setState({_latitude:el.summary.address.geo.coordinates[1]})
+        //this.setState({_longitude:el.summary.address.geo.coordinates[0]})
+        this.setState({region:{
+          latitude: el.summary.address.geo.coordinates[1],
+          longitude: el.summary.address.geo.coordinates[0],
+          latitudeDelta: 0.0022,
+          longitudeDelta: 0.0021,
+        }})
+        //alert('find palce')
       }
     }
     this.setState({findPlaceInfo:false});
@@ -393,7 +414,7 @@ export default class App extends Component<Props> {
     try {
      
       fetch(
-        'https://peeyade.com/api/pch/v1/search/places?name='+scp+'&limit=20&offset=0',{  
+        'https://peeyade.com/api/pch/v1/search/places?name='+scp+'&limit=5&offset=0',{  
           method: 'GET',
           headers: {
             'Accept': 'application/json',
@@ -837,7 +858,7 @@ export default class App extends Component<Props> {
                     <TextInput
                      //onChangeText={(PlaceName) => this.setState({PlaceName})}
                       onFocus={()=>{ this.setState({findPlaceInfo:true})}}
-                     
+                      value={this.state.PlaceName}
                       style={{
                       flex:1,
                       alignSelf: 'stretch',
@@ -853,6 +874,7 @@ export default class App extends Component<Props> {
                     </Text>
                     <TextInput
                         onChangeText={(PlaceAddress) => this.setState({PlaceAddress})}
+                        value={this.state.PlaceAddress}
                         style={{
                         flex:1,
                         alignSelf: 'stretch',
@@ -870,11 +892,21 @@ export default class App extends Component<Props> {
                         latitudeDelta: 0.0022,
                         longitudeDelta: 0.0021,
                       }}
-                      showsUserLocation
-                    />
+                      
+                      region={this.state.region}
+                      onRegionChange={this.onRegionChange}
+
+                        showsUserLocation={true}
+                        followUserLocation={true}>
+                     <MapView.Marker coordinate={{latitude:this.state._latitude,longitude: this.state._longitude }}>
+                        <MapView.Callout style={{width:250}}>
+                          <View><Text>+</Text></View>
+                        </MapView.Callout>
+                      </MapView.Marker>
+                    </MapView>
 
                     <Text style={{flex:1}}>
-                    راهنمای تهیه گزارش
+                      راهنمای تهیه گزارش
                     </Text> 
                     <TextInput
                      onChangeText={(ReportHint) => this.setState({ReportHint})}

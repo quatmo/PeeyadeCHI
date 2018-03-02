@@ -1,12 +1,12 @@
 import React from "react";
-import { StyleSheet,AppRegistry,TouchableHighlight, Image,View,Text,Dimensions, TouchableOpacity } from "react-native";
+import {AsyncStorage, StyleSheet,AppRegistry,TouchableHighlight, Image,View,Text,Dimensions, TouchableOpacity } from "react-native";
 import {
   Button,
   Container,
   List,
   ListItem,
   Content,
-  Icon
+  Icon,
 } from "native-base";
 const routes = ["Home", "BlankPage2"];
 type Props = {};
@@ -46,7 +46,10 @@ export default class Drawer extends React.Component<Props> {
 <TouchableHighlight onPress={() => this.props.navigation.navigate("Profile")}><Text style={styles.RightButton}>پروفایل </Text></TouchableHighlight>
             </View>
             <View>
-<TouchableHighlight onPress={() => {}}><Text style={styles.RightButton}>تنظیمات </Text></TouchableHighlight>
+<TouchableHighlight onPress={() => {
+    AsyncStorage.setItem('@PeeyadeCHI_!@#:key','');
+    this.props.navigation.navigate("Login");
+    }}><Text style={styles.RightButton}>خروج </Text></TouchableHighlight>
             </View>
 
 

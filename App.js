@@ -51,9 +51,9 @@ import suggest2Wall from './suggest2Wall'
 console.disableYellowBox = true;
 const App = DrawerNavigator({
     // ScreenZero: { screen: ScreenZero},
-    Reqaddplace: {screen: Reqaddplace},
     login: {screen: login},
     Login_confirm: {screen: Login_confirm},
+    Reqaddplace: {screen: Reqaddplace},
     ScreenOne: { screen: ScreenOne},
     ScreenTwo: { screen: ScreenTwo},
     ScreenThree: {screen: ScreenThree},
