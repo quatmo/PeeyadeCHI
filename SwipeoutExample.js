@@ -265,42 +265,38 @@ edIt=(id)=>
             </Button>
           </Right>
         </Header>
-        <ScrollView>
-         <View>
+        {/* <ScrollView>        */}
+         
+        
             <ListView
               //Pinned
               //style={{flex:10}}
               scrollEnabled
               dataSource={this.state.dataSourcePinned}
               renderRow={this._renderRow.bind(this)}/>
-          </View>    
-          <View>
-            <Text>امروز</Text>
+          
+              <Text>امروز</Text>
+                <ListView
+                  //Today list view
+                  //style={{flex:10}}
+                  scrollEnabled
+                  dataSource={this.state.dataSourceToday}
+                  renderRow={this._renderRow.bind(this)}/>
+              <Text>سایر پیام‌ها</Text>
 
-            <ListView
-              //Today list view
-              //style={{flex:10}}
-              scrollEnabled
-              dataSource={this.state.dataSourceToday}
-              renderRow={this._renderRow.bind(this)}/>
-          </View>
-          <View>
-            <Text>سایر پیام‌ها</Text>
-
-            <ListView
-              //Today list view
-              //style={{flex:1}}
-              //style={{flex:10}}
-              scrollEnabled
-              dataSource={this.state.dataSourceOtherMessages}
-              //onScroll={(e)=>{alert('ssss');this._onScroll(e)}}
-              onEndReached={this._loadMore.bind(this)}
-              //onEndReached={() => alert('Ok, I\'m @ the bottom')}
-              //refreshing={this.state.refreshing}
-              //onRefresh={this._onRefresh.bind(this)}
-              renderRow={this._renderRow.bind(this)}/>
-          </View>
-          </ScrollView>
+              <ListView
+                //Today list view
+                //style={{flex:1}}
+                //style={{flex:10}}
+                scrollEnabled
+                dataSource={this.state.dataSourceOtherMessages}
+                //onScroll={(e)=>{alert('ssss');this._onScroll(e)}}
+                onEndReached={this._loadMore.bind(this)}
+                //onEndReached={() => alert('Ok, I\'m @ the bottom')}
+                //refreshing={this.state.refreshing}
+                //onRefresh={this._onRefresh.bind(this)}
+                renderRow={this._renderRow.bind(this)}/>
+        {/* </ScrollView> */}
           
 
           <View style={{ backgroundColor: '#f3f3f3'}}>

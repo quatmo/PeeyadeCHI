@@ -109,7 +109,7 @@ componentDidMount()
           onPress={() => navigate("webview", {screen: "webview"})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
-            style={styles.buttonText}>webview </Text>
+            style={styles.buttonText}>webview 🎃</Text>
         </TouchableHighlight>
         <TouchableHighlight
           onPress={() => navigate("Requests_RS", {screen: "Requests_RS"})}

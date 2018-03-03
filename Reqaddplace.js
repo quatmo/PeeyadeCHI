@@ -242,7 +242,7 @@ export default class App extends Component<Props> {
           if(res.success)
           {
             alert(res.message)
-            console.log(res)
+            console.log('Project review',res)
           }
           else           alert('somthing wrong');
           //this.state.bons= res.data.points
@@ -392,18 +392,21 @@ export default class App extends Component<Props> {
       if(el.name==this.state.selectedFindPlaces[0].label)
       {
         
-        console.log('logfromplace',this.state.selectedFindPlaces[0].label,el.summary.address.geo.coordinates[0])
+        console.log('logfromplace',this.state.selectedFindPlaces[0].label,
+        el.summary.address.geo.coordinates[0],
+        el.summary.address.geo.coordinates[1],
+        )
         this.setState({PlaceName:el.name})
         this.setState({PlaceAddress:el.summary.address.fullAddress})
-        //this.setState({_latitude:el.summary.address.geo.coordinates[1]})
-        //this.setState({_longitude:el.summary.address.geo.coordinates[0]})
         this.setState({region:{
           latitude: el.summary.address.geo.coordinates[1],
           longitude: el.summary.address.geo.coordinates[0],
           latitudeDelta: 0.0022,
           longitudeDelta: 0.0021,
         }})
-        //alert('find palce')
+        this.setState({_latitude:el.summary.address.geo.coordinates[1]});
+        this.setState({_longitude:el.summary.address.geo.coordinates[0]});
+        console.log('Mapview :::: ',this.state.region);
       }
     }
     this.setState({findPlaceInfo:false});
@@ -870,7 +873,7 @@ export default class App extends Component<Props> {
                   
 
                     <Text style={{flex:1,marginTop:10}}>
-                    آدرس مکان
+                      آدرس مکان
                     </Text>
                     <TextInput
                         onChangeText={(PlaceAddress) => this.setState({PlaceAddress})}
@@ -893,12 +896,19 @@ export default class App extends Component<Props> {
                         longitudeDelta: 0.0021,
                       }}
                       
+                      showsUserLocation
                       region={this.state.region}
-                      onRegionChange={this.onRegionChange}
+                      //onRegionChange={this.onRegionChange}
+                      >
 
-                        showsUserLocation={true}
-                        followUserLocation={true}>
-                     <MapView.Marker coordinate={{latitude:this.state._latitude,longitude: this.state._longitude }}>
+                     <MapView.Marker 
+                     coordinate={{
+                       latitude:this.state._latitude,
+                       longitude: this.state._longitude,
+                       latitudeDelta: 0.0022,
+                       longitudeDelta: 0.0021,
+                       
+                       }}>
                         <MapView.Callout style={{width:250}}>
                           <View><Text>+</Text></View>
                         </MapView.Callout>
