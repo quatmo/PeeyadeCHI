@@ -1313,13 +1313,19 @@ export default class App extends Component<Props> {
                           placeholder='جستجو' /> 
                           
                           <SelectMultiple
-                            style={{direction:'rtl',height:300}}
+                            style={{direction:'rtl',flex:8}}
                             items={this.state.findPlaces}
                             selectedItems={this.state.selectedFindPlaces}
                             selectedLabelStyle={{color:'white'}}
                             selectedRowStyle={{backgroundColor:'gray'}}
                             onSelectionsChange={this.onFindPlaceChange} />
-
+                          <View style={{flex:1,flexDirection:'column'}}>
+                            <Text>درخواست مکان</Text>
+                            <View style={{flexDirection:'row'}}>
+                                <Btn  buttonStyle={{flex:1}}  title="درخواست ثبت مکان جدید"  onPress={() => {}}/>
+                                <Btn  buttonStyle={{flex:1}}  title="استفاده از اطاعات درخواست فعلی"  onPress={() => {}}/>
+                            </View>
+                          </View>
                         
                       </View>
                       <View style={{height:30}}>
