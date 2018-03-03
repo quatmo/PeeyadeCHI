@@ -28,11 +28,12 @@ export default class App extends Component<Props> {
 
   constructor(props) {
         super(props);
-
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
           dataSource: ds.cloneWithRows([]),
+          selectedIndex:0,
         };
+        this.updateIndex=this.updateIndex.bind(this)
       }
 
 setdata=(res)=>{
@@ -78,6 +79,10 @@ loadData=()=>{
         }
     }
 
+    updateIndex (selectedIndex) {
+      this.setState({selectedIndex})
+    }
+    
 
       render() {
         return (
@@ -110,8 +115,8 @@ loadData=()=>{
               </Right>
             </Header>
             <ButtonGroup
-              //onPress={}
-              selectedIndex={0}
+              onPress={this.updateIndex}
+              selectedIndex={this.state.selectedIndex}
               style={{borderRadius:50}}
               buttons={[{ element: () => <Text> دریافتی</Text> },
                  { element: () => 

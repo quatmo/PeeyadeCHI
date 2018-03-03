@@ -54,6 +54,7 @@ export default class Login extends Component<Props> {
   checkCode()
   {
     alert(this.props.navigate.phone);
+    console.log(this.props.navigation.state.params);
     fetch(
       'https://peeyade.com/api/pch/v1/users/recieveVerification',{  
         method: 'POST',
@@ -62,7 +63,7 @@ export default class Login extends Component<Props> {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          phone: '989120617453',
+          phone:this.props.navigation.state.params.phoneNumber ,
           code:this.state.code,
         })
       }).then((resj)=>{return resj.json()})

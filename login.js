@@ -65,7 +65,7 @@ export default class Login extends Component<Props> {
               alert(res.message);
               if(res.success)
               {
-                this.props.navigation.navigate('Login_confirm');
+            this.props.navigation.navigate('Login_confirm',{phoneNumber:this.state.phone});
 
               }
               else
