@@ -14,6 +14,7 @@ import {
   TextInput,
   Button,
   Alert,
+  ScrollView,
   TouchableHighlight,
 } from 'react-native';
 
@@ -48,6 +49,7 @@ export default class wall extends Component<Props> {
   
     const { state, navigate } = this.props.navigation;
     return (
+      
       <View style={{
         flex: 1,
         flexDirection: 'column',

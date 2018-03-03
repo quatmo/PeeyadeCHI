@@ -39,7 +39,7 @@ export default class Login extends Component<Props> {
         //  const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
           bg:'gray',
-          phone:'0909',
+          phone:'0912XXXXXXX',
           };
         }
   

@@ -15,6 +15,7 @@ import {
   Alert,
   TouchableHighlight
 } from 'react-native';
+import { Container, Content,Title, Icon, Footer,Button,Header, Left, Body, Right } from 'native-base';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -119,6 +120,23 @@ render() {
     
     return (
       <View style={{flex: 1}}>
+      <Header>
+          <Left>
+            <Button transparent    >
+              <Icon name="arrow-back" onPress={() => this.props.navigation.goBack()}/>
+            </Button>
+          </Left>
+          <Body>
+            <View style={{justifyContent:'flex-start',alignItems:'center',flexDirection:'row'}}>
+           <Text>دیوار</Text>
+          </View>
+          </Body>
+          <Right>
+            <Button transparent onPress={() => this.props.navigation.navigate("DrawerOpen")}>
+              <Icon name="menu" />
+            </Button>
+          </Right>
+        </Header>
         <View style={{width: Dimensions.get('window').width, height: Dimensions.get('window').height-100}}>
         <Text 
        // onChangeText={(title) => this.setState({title})}

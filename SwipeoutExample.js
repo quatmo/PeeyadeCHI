@@ -6,7 +6,7 @@ import rows from './data';
 import styles from './styles';
 import ActionButton from './ActionButton';
 import React, {Component} from 'react';
-import {Dimensions,AppRegistry, StyleSheet,Image , ListView, Text,Alert, View, TouchableWithoutFeedback} from 'react-native';
+import {ScrollView,Dimensions,AppRegistry, StyleSheet,Image , ListView, Text,Alert, View, TouchableWithoutFeedback} from 'react-native';
 import { Container, Content,Title, Icon, Footer,Button,Header, Left, Body, Right } from 'native-base';
 
 //  example swipout app
@@ -90,8 +90,8 @@ deleteNote=(rowID)=>
   //console.log('$$$$$$$$$');
   //console.log(this.state.todayMessages);
   const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => true });
-  this.state.todayMessages.splice(rowID,1);
-  this.setState({dataSourceToday:ds.cloneWithRows(this.state.todayMessages)});
+  this.state.otherMessages.splice(rowID,1);
+  this.setState({dataSourceOtherMessages:ds.cloneWithRows(this.state.otherMessages)});
 }
 pinIt=(rowID,id)=>
 {
@@ -99,14 +99,14 @@ pinIt=(rowID,id)=>
 
 
   const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => true });
-  let tmp =this.state.todayMessages.splice(rowID,1);
+  let tmp =this.state.otherMessages.splice(rowID,1);
   console.log('......');
   console.log(tmp);
   tmp[0].ispinned=true;
   this.state.pinnedMessages.push(tmp[0]);
 
   this.setState({dataSourcePinned:ds.cloneWithRows(this.state.pinnedMessages)});
-  this.setState({dataSourceToday:ds.cloneWithRows(this.state.todayMessages)});
+  this.setState({dataSourceOtherMessages:ds.cloneWithRows(this.state.otherMessages)});
 
   //Alert.alert('dddd','dddd',[{text:'dfdsf'}],{cancelable:false});
   //console.log('$$$$$$$$$');
@@ -246,9 +246,9 @@ edIt=(id)=>
     //const { navigatio } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <View style={styles.statusbar}/>
         
-      <Header>
+        
+        <Header>
           <Left>
             <Button transparent    >
               <Icon name="arrow-back" onPress={() => this.props.navigation.goBack()}/>
@@ -256,7 +256,7 @@ edIt=(id)=>
           </Left>
           <Body>
             <View style={{justifyContent:'flex-start',alignItems:'center',flexDirection:'row'}}>
-           <Text>666</Text>
+           <Text>دیوار</Text>
           </View>
           </Body>
           <Right>
@@ -265,67 +265,79 @@ edIt=(id)=>
             </Button>
           </Right>
         </Header>
+        <ScrollView>
+         <View>
+            <ListView
+              //Pinned
+              //style={{flex:10}}
+              scrollEnabled
+              dataSource={this.state.dataSourcePinned}
+              renderRow={this._renderRow.bind(this)}/>
+          </View>    
+          <View>
+            <Text>امروز</Text>
 
-        <ListView
-          //Pinned
-          scrollEnabled
-          dataSource={this.state.dataSourcePinned}
-          renderRow={this._renderRow.bind(this)}/>
-          <Text>امروز</Text>
-        <ListView
-          //Today list view
-          scrollEnabled
-          dataSource={this.state.dataSourceToday}
-          renderRow={this._renderRow.bind(this)}/>
-        <Text>سایر پیام‌ها</Text>
-        <ListView
-          //Today list view
-          //style={{flex:1}}
-          scrollEnabled
-          dataSource={this.state.dataSourceOtherMessages}
-          //onScroll={(e)=>{alert('ssss');this._onScroll(e)}}
-          onEndReached={this._loadMore.bind(this)}
-          //onEndReached={() => alert('Ok, I\'m @ the bottom')}
-          //refreshing={this.state.refreshing}
-          //onRefresh={this._onRefresh.bind(this)}
+            <ListView
+              //Today list view
+              //style={{flex:10}}
+              scrollEnabled
+              dataSource={this.state.dataSourceToday}
+              renderRow={this._renderRow.bind(this)}/>
+          </View>
+          <View>
+            <Text>سایر پیام‌ها</Text>
+
+            <ListView
+              //Today list view
+              //style={{flex:1}}
+              //style={{flex:10}}
+              scrollEnabled
+              dataSource={this.state.dataSourceOtherMessages}
+              //onScroll={(e)=>{alert('ssss');this._onScroll(e)}}
+              onEndReached={this._loadMore.bind(this)}
+              //onEndReached={() => alert('Ok, I\'m @ the bottom')}
+              //refreshing={this.state.refreshing}
+              //onRefresh={this._onRefresh.bind(this)}
+              renderRow={this._renderRow.bind(this)}/>
+          </View>
+          </ScrollView>
+          
+
+          <View style={{ backgroundColor: '#f3f3f3'}}>
+            <ActionButton  
+              style={{flex:1}}
+              buttonColor="rgba(231,76,60,1)">
+              
+              <ActionButton.Item buttonColor='#9b59b6' title="New Task" onPress={() => console.log("notes tapped!")}>
+                <Text>مکان</Text>
+              </ActionButton.Item>
+              
+              <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => {}}>
+                <Text>خبر</Text>
+              </ActionButton.Item>
+
+              
+              <ActionButton.Item buttonColor='#3498db' title="Notifications"  
+                onPress={() => this.props.navigation.navigate("ReqNews")}>
+                <Text>رویداد</Text>
+              </ActionButton.Item>
+
+      
+              <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => {}}>
+                <Text>پیام</Text>
+              </ActionButton.Item>
 
 
-          renderRow={this._renderRow.bind(this)}/>
+              <ActionButton.Item buttonColor='#3498db' radius={100} title="Notifications" onPress={() => {}}>
+                <Text style={{fontSize:10}}>پیشنهاد</Text> 
+                {/* <Icon name='home' /> */}
 
-        <View style={{ backgroundColor: '#f3f3f3'}}>
-          <ActionButton  
-            style={{flex:1}}
-            buttonColor="rgba(231,76,60,1)">
-            
-            <ActionButton.Item buttonColor='#9b59b6' title="New Task" onPress={() => console.log("notes tapped!")}>
-              <Text>مکان</Text>
-            </ActionButton.Item>
-            
-            <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => {}}>
-              <Text>خبر</Text>
-            </ActionButton.Item>
-
-            
-            <ActionButton.Item buttonColor='#3498db' title="Notifications"  
-              onPress={() => this.props.navigation.navigate("ReqNews")}>
-              <Text>رویداد</Text>
-            </ActionButton.Item>
-
-    
-            <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => {}}>
-              <Text>پیام</Text>
-            </ActionButton.Item>
+              </ActionButton.Item>
 
 
-            <ActionButton.Item buttonColor='#3498db' radius={100} title="Notifications" onPress={() => {}}>
-              <Text style={{fontSize:10}}>پیشنهاد</Text> 
-              {/* <Icon name='home' /> */}
-
-            </ActionButton.Item>
-
-
-          </ActionButton>
-        </View>
+            </ActionButton>
+          </View>
+        
       </View>
     );
   }

@@ -53,7 +53,6 @@ export default class Login extends Component<Props> {
   }
   checkCode()
   {
-    alert(this.props.navigate.phone);
     console.log(this.props.navigation.state.params);
     fetch(
       'https://peeyade.com/api/pch/v1/users/recieveVerification',{  

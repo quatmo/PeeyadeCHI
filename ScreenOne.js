@@ -121,7 +121,7 @@ componentDidMount()
           onPress={() => navigate("SwipeoutExample", {screen: "SwipeoutExample"})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
-            style={styles.buttonText}>wall  </Text>
+            style={styles.buttonText}>wall☠️</Text>
         </TouchableHighlight>
         <TouchableHighlight
           onPress={() => navigate("details", {screen: "details  "})}
