@@ -189,6 +189,7 @@ export default class App extends Component<Props> {
       let authorTMP=[]
       let videoTMP=[]
       let photoTMP=[]
+      let adminTMP=[]
       //console.log(this.state.authors[0].props.did)
 
 
@@ -201,7 +202,8 @@ export default class App extends Component<Props> {
       for (let index = 0; index < this.state.photogs.length; index++)
       photoTMP.push(this.state.photogs[index].props.did);
       
-
+      for (let index = 0; index < this.state.contents_.length; index++)
+      adminTMP.push(this.state.contents_[index].props.did);
       //console.log('photo tmp',photoTMP)
 
 
@@ -225,10 +227,11 @@ export default class App extends Component<Props> {
             photographerNeeded:true,
             videographerCount:2,
             videographerNeeded:true,
-            postType:'place',
+            postType:'place',//news,event
             author:authorTMP,
             videographer:videoTMP,
             photographer:photoTMP,
+            admin:adminTMP,
             setPlaceRequest:'true',
             placeName:this.state.PlaceName,
             placeDescription:this.state.ReportHint,
@@ -626,234 +629,241 @@ export default class App extends Component<Props> {
         <MyScrollView 
         onRegisterClick={this.RegisterRequest}
         >
-            <View style = { {justifyContent:'space-around',backgroundColor:'#F5FCFF',width:device_width} }>
-              <View style = { {flex:1} }>{/*main compoenent*/}
-              <Text style={{alignSelf:'flex-end'}}>
-                نام گزارش
-              </Text>
-              <TextInput
-               onChangeText={(ReportName) => this.setState({ReportName})}
-              style={{
-              
-              alignSelf: 'stretch',
-              flexDirection:'row',
-              height: 30,
-              textAlign:'right',
-              borderColor: 'gray',
-              borderWidth: 1,
-              margin:10,
-              }}
-             />
-          
-        
-              <Text style={{alignSelf:'flex-end'}}>
-                  تاریخ تحویل 
-              </Text>
-              <TextInput
-                  onFocus={() => this.setState({openDead: true})}
-                  value={this.state.selectedDead}
-                  style={{
-                  alignSelf: 'stretch',
-                  flexDirection:'row',
-                  height: 30,
-                  textAlign:'right',
-                  borderColor: 'gray',
-                  borderWidth: 1,
-                  margin:10,
-                }}/>
-              <View style={{flexDirection:'row'}}>
-                
-              <View style={{flex:1}}>
-                <Text style={styles.instructions}>
-                 بیشترین امتیاز
-                </Text>
 
+            <View style = {  {justifyContent:'space-around',backgroundColor:'green',flex:1,width:device_width}}>
+              {/*PCH info*/}
+              <View style = { {flex:1} }>{/*main compoenent report info */}
+                <Text style={{alignSelf:'flex-end'}}>
+                  نام گزارش
+                </Text>
                 <TextInput
-                    onChangeText={(Points) => this.setState({Points})}
+                onChangeText={(ReportName) => this.setState({ReportName})}
+                style={{
+                
+                alignSelf: 'stretch',
+                flexDirection:'row',
+                height: 30,
+                textAlign:'right',
+                borderColor: 'gray',
+                borderWidth: 1,
+                margin:10,
+                }}
+               />
+            
+          
+                <Text style={{alignSelf:'flex-end'}}>
+                    تاریخ تحویل 
+                </Text>
+                <TextInput
+                    onFocus={() => this.setState({openDead: true})}
+                    value={this.state.selectedDead}
                     style={{
                     alignSelf: 'stretch',
                     flexDirection:'row',
-                    textAlign:'center',
                     height: 30,
+                    textAlign:'right',
                     borderColor: 'gray',
                     borderWidth: 1,
-                    margin:10
+                    margin:10,
                   }}/>
-              </View>
-            
+                <View style={{flexDirection:'row'}}>
+                  
                 <View style={{flex:1}}>
                   <Text style={styles.instructions}>
-                    مبلغ
+                  بیشترین امتیاز
                   </Text>
 
                   <TextInput
-                     onChangeText={(MaxMoney) => this.setState({MaxMoney})}
-                    style={{
-                    alignSelf: 'stretch',
-                    flexDirection:'row',
-                    height: 30,
-                    textAlign:'center',
-                    borderColor: 'gray',
-                    borderWidth: 1,
-                    margin:10
-                  }}/>
+                      onChangeText={(Points) => this.setState({Points})}
+                      style={{
+                      alignSelf: 'stretch',
+                      flexDirection:'row',
+                      textAlign:'center',
+                      height: 30,
+                      borderColor: 'gray',
+                      borderWidth: 1,
+                      margin:10
+                    }}/>
                 </View>
-             </View>
-
-
-
-             <View style={{flex:1,flexDirection:'row'}}>
-              <View style={{flex:1}}>
-                <Dropdown 
-                  label='انتخاب عکاس'
-                  labelTextStyle={{alignItems:'center',textAlign:'center',justifyContent:'center'}}
-                style={{textAlign:'center'}}
-                data={[{value:"1"},{value:"2"},{value:"3"},{value:"4"},{value:"+4"}]}
-                    />
-                
-              </View>
-          
-              <View style={{flex:1}}>
-                 <Dropdown 
-                  label='انتخاب فیلمبردار'
-                  labelTextStyle={{alignItems:'center',textAlign:'center',justifyContent:'center'}}
-                style={{textAlign:'center'}}
-                data={[{value:"1"},{value:"2"},{value:"3"},{value:"4"},{value:"+4"}]}
-                    />
-              </View>
-              </View>
-
-
-
-
-
-
-              <Text style={{justifyContent:'flex-end',alignItems:'flex-end'}}>
-                          روز و ساعت تهیه گزارش 
-              </Text>
-
-              <View style={{flexDirection:'row',}}>
-                <View style={{flex:1}}>
-                  <Text style={styles.instructions}>
-                    تاریخ 
-                  </Text>
-
-                <TouchableOpacity 
-                  style={{alignItems:'center',backgroundColor:'gray',borderRadius:30}}
-                  onPress={() => this.setState({openDate: true})}>
-                  <Text>تنظیم تاریخ</Text>
-                </TouchableOpacity>
-                <Text>{selectedStartDate?selectedStartDate.format('jYYYY/jM/jD'):''}</Text>
-                </View>
-            
-                <View style={{flex:1}}>
-                  <Text style={styles.instructions}>
-                    ساعت
-                  </Text>
-                  <TouchableOpacity 
-                      style={{alignItems:'center',backgroundColor:'gray',borderRadius:30}}
-                      onPress={() => this.setState({openTime: true})}>
-                    <Text style={{alignItems:'center'}}>تنظیم ساعت</Text>
-                  </TouchableOpacity>
-                  <Text>{String(this.state.selectedHours)+':'+String(this.state.selectedMinutes)}</Text>
-                </View>
-              </View>
-
-
-                    
               
-              <View style={{flexDirection:'row'}}>
+                  <View style={{flex:1}}>
+                    <Text style={styles.instructions}>
+                      مبلغ
+                    </Text>
+
+                    <TextInput
+                      onChangeText={(MaxMoney) => this.setState({MaxMoney})}
+                      style={{
+                      alignSelf: 'stretch',
+                      flexDirection:'row',
+                      height: 30,
+                      textAlign:'center',
+                      borderColor: 'gray',
+                      borderWidth: 1,
+                      margin:10
+                    }}/>
+                  </View>
+               </View>
+
+
+
+               <View style={{flex:1,flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                  <TouchableOpacity 
-                    style={{alignItems:'center',
-                    backgroundColor:this.state.detOrLib?'gray':'white'
-                    }}
-                    onPress={() => {
-                      this.setState({detOrLib:true})
-                    }}>
-                    <Text>معین</Text>
-                  </TouchableOpacity>
-                </View>
-            
-                <View style={{flex:1}}>
-                  <TouchableOpacity 
-                    style={{alignItems:'center',
-                    backgroundColor:this.state.detOrLib?'white':'gray',
-                    }}
-                    onPress={() => {
-                      this.setState({detOrLib:false})
-                    }}>
-                  <Text>اختیاری</Text>
-                </TouchableOpacity>
-                </View>
-              </View>
-              
-              <Modal
-                  offset={this.state.offset}
-                  open={this.state.openDate}
-                  modalDidOpen={() => console.log('modal did open')}
-                  modalDidClose={() => this.setState({openDate: false})}
-                  style={{alignItems: 'center'}}>
-                  <View style={{alignItems:'center'}}>
-                    <Text style={{alignItems:'center',fontSize: 20, marginBottom: 10}}>انتخاب تاریخ</Text>
+                  <Dropdown 
+                    label='انتخاب عکاس'
+                    labelTextStyle={{alignItems:'center',textAlign:'center',justifyContent:'center'}}
+                  style={{textAlign:'center'}}
+                  data={[{value:"1"},{value:"2"},{value:"3"},{value:"4"},{value:"+4"}]}
+                      />
                   
-                  <JalaliCalendarPicker
-                  onDateChange={this.onDateChange}
-                  />
-            
-                <TouchableOpacity
-                  style={{margin: 5,alignItems:'center'}}
-                  onPress={() => this.setState({openDate: false})}>
-                  <Text>X</Text>
-                </TouchableOpacity>
                 </View>
-              </Modal>
-              <Modal
-                  offset={this.state.offset}
-                  open={this.state.openDead}
-                  modalDidOpen={() => console.log('modal did open')}
-                  modalDidClose={() => this.setState({openDead: false})}
-                  style={{alignItems: 'center'}}>
-                  <View style={{alignItems:'center'}}>
-                    <Text style={{alignItems:'center',fontSize: 20, marginBottom: 10}}>انتخاب تاریخ</Text>
-                    
-                  <JalaliCalendarPicker
-                  onDateChange={this.onDeadChange}
-                  />
             
-                <TouchableOpacity
-                  style={{margin: 5,alignItems:'center'}}
-                  onPress={() => this.setState({openDead: false})}>
-                  <Text>X</Text>
-                </TouchableOpacity>
+                <View style={{flex:1}}>
+                  <Dropdown 
+                    label='انتخاب فیلمبردار'
+                    labelTextStyle={{alignItems:'center',textAlign:'center',justifyContent:'center'}}
+                  style={{textAlign:'center'}}
+                  data={[{value:"1"},{value:"2"},{value:"3"},{value:"4"},{value:"+4"}]}
+                      />
                 </View>
-              </Modal>
+                </View>
 
-              <Modal
-                offset={this.state.offset}
-                open={this.state.openTime}
-                modalDidOpen={() => console.log('modal did open')}
-                modalDidClose={() => this.setState({openTime: false})}
-                style={{alignItems: 'center'}}>
-                <View>
-                  <Text style={{alignItems:'center',fontSize: 20, marginBottom: 10}}>انتخاب ساعت</Text>
-                  <TimePicker
-                      selectedHours={selectedHours}
-                      selectedMinutes={selectedMinutes}
-                      onChange={(hours, minutes) => this.setState({ selectedHours: hours, selectedMinutes: minutes })}
+
+
+
+
+
+                <Text style={{justifyContent:'flex-end',alignItems:'flex-end'}}>
+                            روز و ساعت تهیه گزارش 
+                </Text>
+
+                <View style={{flexDirection:'row',}}>
+                  <View style={{flex:1}}>
+                    <Text style={styles.instructions}>
+                      تاریخ 
+                    </Text>
+
+                  <TouchableOpacity 
+                    style={{alignItems:'center',backgroundColor:'gray',borderRadius:30}}
+                    onPress={() => this.setState({openDate: true})}>
+                    <Text>تنظیم تاریخ</Text>
+                  </TouchableOpacity>
+                  <Text>{selectedStartDate?selectedStartDate.format('jYYYY/jM/jD'):''}</Text>
+                  </View>
+              
+                  <View style={{flex:1}}>
+                    <Text style={styles.instructions}>
+                      ساعت
+                    </Text>
+                    <TouchableOpacity 
+                        style={{alignItems:'center',backgroundColor:'gray',borderRadius:30}}
+                        onPress={() => this.setState({openTime: true})}>
+                      <Text style={{alignItems:'center'}}>تنظیم ساعت</Text>
+                    </TouchableOpacity>
+                    <Text>{String(this.state.selectedHours)+':'+String(this.state.selectedMinutes)}</Text>
+                  </View>
+                </View>
+
+
+                      
+                
+                <View style={{flexDirection:'row'}}>
+                  <View style={{flex:1}}>
+                    <TouchableOpacity 
+                      style={{alignItems:'center',
+                      backgroundColor:this.state.detOrLib?'gray':'white'
+                      }}
+                      onPress={() => {
+                        this.setState({detOrLib:true})
+                      }}>
+                      <Text>معین</Text>
+                    </TouchableOpacity>
+                  </View>
+              
+                  <View style={{flex:1}}>
+                    <TouchableOpacity 
+                      style={{alignItems:'center',
+                      backgroundColor:this.state.detOrLib?'white':'gray',
+                      }}
+                      onPress={() => {
+                        this.setState({detOrLib:false})
+                      }}>
+                    <Text>اختیاری</Text>
+                  </TouchableOpacity>
+                  </View>
+                </View>
+                
+                <Modal
+                    offset={this.state.offset}
+                    open={this.state.openDate}
+                    modalDidOpen={() => console.log('modal did open')}
+                    modalDidClose={() => this.setState({openDate: false})}
+                    style={{alignItems: 'center'}}>
+                    <View style={{alignItems:'center'}}>
+                      <Text style={{alignItems:'center',fontSize: 20, marginBottom: 10}}>انتخاب تاریخ</Text>
+                    
+                    <JalaliCalendarPicker
+                    onDateChange={this.onDateChange}
                     />
+              
                   <TouchableOpacity
                     style={{margin: 5,alignItems:'center'}}
-                    onPress={() => this.setState({openTime: false})}>
+                    onPress={() => this.setState({openDate: false})}>
                     <Text>X</Text>
                   </TouchableOpacity>
-                </View>
-              </Modal>
+                  </View>
+                </Modal>
+                <Modal
+                    offset={this.state.offset}
+                    open={this.state.openDead}
+                    modalDidOpen={() => console.log('modal did open')}
+                    modalDidClose={() => this.setState({openDead: false})}
+                    style={{alignItems: 'center'}}>
+                    <View style={{alignItems:'center'}}>
+                      <Text style={{alignItems:'center',fontSize: 20, marginBottom: 10}}>انتخاب تاریخ</Text>
+                      
+                    <JalaliCalendarPicker
+                    onDateChange={this.onDeadChange}
+                    />
+              
+                  <TouchableOpacity
+                    style={{margin: 5,alignItems:'center'}}
+                    onPress={() => this.setState({openDead: false})}>
+                    <Text>X</Text>
+                  </TouchableOpacity>
+                  </View>
+                </Modal>
 
-                </View>
+                <Modal
+                  offset={this.state.offset}
+                  open={this.state.openTime}
+                  modalDidOpen={() => console.log('modal did open')}
+                  modalDidClose={() => this.setState({openTime: false})}
+                  style={{alignItems: 'center'}}>
+                  <View>
+                    <Text style={{alignItems:'center',fontSize: 20, marginBottom: 10}}>انتخاب ساعت</Text>
+                    <TimePicker
+                        selectedHours={selectedHours}
+                        selectedMinutes={selectedMinutes}
+                        onChange={(hours, minutes) => this.setState({ selectedHours: hours, selectedMinutes: minutes })}
+                      />
+                    <TouchableOpacity
+                      style={{margin: 5,alignItems:'center'}}
+                      onPress={() => this.setState({openTime: false})}>
+                      <Text>X</Text>
+                    </TouchableOpacity>
+                  </View>
+                </Modal>
+
+              </View>
+
+
+
             </View>
 
-            <View style = {  {justifyContent:'space-around',backgroundColor:'green',flex:1,width:device_width}}>
+            
+            <View style = {  {justifyContent:'space-around',backgroundColor:'yellow',flex:1,width:device_width} }>
+                {/*place info*/}
               <View style={styles.container}>
                     <Text style={{flex:1,marginTop:10}}>
                     نام مکان
@@ -931,13 +941,17 @@ export default class App extends Component<Props> {
                       marginBottom:10
                     }}
                     />
-                  </View>
               </View>
-
-            <View style = {  {justifyContent:'space-around',backgroundColor:'yellow',flex:1,width:device_width} }>
-           
-
             
+
+
+
+
+            </View>
+
+
+            <View style = { {justifyContent:'space-around',backgroundColor:'#F5FCFF',width:device_width} }>
+              
               <View style={{}}>
                   <Text style={{alignSelf:'flex-end',marginRight:20}}>
                     اضافه کردن نویسنده
@@ -1144,12 +1158,9 @@ export default class App extends Component<Props> {
                    
               </View>
 
-
-
-
-
-
             </View>
+
+
             <MM
                     animationType="fade"
                     transparent={false}

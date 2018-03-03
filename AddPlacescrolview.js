@@ -35,14 +35,15 @@ export  class MyScrollView extends Component
   
   render()
   {
-    const component1 = () => <Text>اطالاعات پیاده‌چی</Text>
-    const component2 = () => <Text>اطلاعات مکان</Text>
-    const component3 = () => <Text>اطلاعات گزارش</Text>
+    const pchinfo = () => <Text>اطالاعات پیاده‌چی</Text>
+    const places_ = () => <Text>اطلاعات مکان</Text>
+    const reportinfo = () => <Text>اطلاعات گزارش</Text>
 
     const headersButton = [
-      { element: component3 }, 
-      { element: component2 }, 
-      { element: component1 }]
+      { element: reportinfo }, 
+      { element: places_ }, 
+      { element: pchinfo },
+    ]
 
     return(
       <View style = { styles.container }>

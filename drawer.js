@@ -48,7 +48,7 @@ export default class Drawer extends React.Component<Props> {
             <View>
 <TouchableHighlight onPress={() => {
     AsyncStorage.setItem('@PeeyadeCHI_!@#:key','');
-    this.props.navigation.navigate("Login");
+    this.props.navigation.navigate("login");
     }}><Text style={styles.RightButton}>خروج </Text></TouchableHighlight>
             </View>
 

@@ -31,7 +31,7 @@ export default class App extends Component<Props> {
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
           dataSource: ds.cloneWithRows([]),
-          selectedIndex:0,
+          selectedIndex:1,
         };
         this.updateIndex=this.updateIndex.bind(this)
       }
@@ -74,14 +74,41 @@ loadData=()=>{
             }).catch((err)=>{console.error(err)});
     
          
-        } catch (error) {
-          console.log("Arash ::: "+error);
-        }
+        } catch (error) {console.log("Arash ::: "+error);}
     }
 
     updateIndex (selectedIndex) {
       this.setState({selectedIndex})
+      console.log('update Index is :',this.state.selectedIndex)
+      try {
+        let ress='xxx'
+        fetch(
+          this.state.selectedIndex==0?
+          'https://peeyade.com/api/pch/v1/request':
+          'https://peeyade.com/api/pch/v1/request/host',{  
+            method: 'GET',
+            headers: {
+             // 'Accept': 'application/json',
+              'Content-Type': 'application/json',
+              'Authorization':'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI1ODkxYmMyZTU0NjgxODQ5ZDAyZGZmZDYiLCJ1c2VyIjoi2YXYrdmF2K_Ysdi22Kcg2LHYrduM2YXbjNin2YYg2q_ZhNiu2YbYr9in2YbbjCJ9.-a5T7RyCp25GIwVrf3j9JoDA8lwUtLbmIvzcA3Ad-pI'
+            },
+          
+          }).then((response) => response.json())
+          .then((res)=>{
+            console.log(res);
+            //console.log('https://peeyade.com'+res.data.user.bestPhoto.prefix+res.data.user.bestPhoto.suffix)
+            this.setdata(res);
+            //this.state.bons= res.data.points
+      
+          
+          }).catch((err)=>{console.error(err)});
+  
+       
+      } catch (error) {console.log("Arash ::: "+error);}
+    
+    
     }
+
     
 
       render() {
@@ -118,12 +145,10 @@ loadData=()=>{
               onPress={this.updateIndex}
               selectedIndex={this.state.selectedIndex}
               style={{borderRadius:50}}
-              buttons={[{ element: () => <Text> دریافتی</Text> },
-                 { element: () => 
-                <View style={{flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
+              buttons={[{ element: () =><View style={{flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
                   <Text style={{color:'red',marginRight:10}}>*</Text>
                  <Text>       ارسالی</Text>
-                </View> }]}
+                </View> },{ element: () => <Text> دریافتی</Text> }]}
               innerBorderStyle={{borderRadius:300,color:'white'}}
               buttonStyle={{borderRadius:50}}
               containerBorderRadius={1}
@@ -150,7 +175,7 @@ loadData=()=>{
              
                <View>
                <Text style={{textAlign:'center',alignItems:'stretch',justifyContent:'center',fontSize:10}}>{'بیشترین امتیاز : '+data.project.maxPoint}</Text>
-                  <Text>{'تاریخ انتشار'+String(data.project.deadline).substring(0,8)}</Text>
+                  <Text>{'تاریخ انتشار'+String(data.project.deadline).substring(0,10)}</Text>
                 </View>
 
 
