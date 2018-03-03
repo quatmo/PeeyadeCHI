@@ -1311,14 +1311,15 @@ export default class App extends Component<Props> {
                           inputStyle={{textAlign:'center'}}
                           containerStyle={{direction:'rtl'}}
                           placeholder='جستجو' /> 
-                          
-                          <SelectMultiple
-                            style={{direction:'rtl',flex:8}}
-                            items={this.state.findPlaces}
-                            selectedItems={this.state.selectedFindPlaces}
-                            selectedLabelStyle={{color:'white'}}
-                            selectedRowStyle={{backgroundColor:'gray'}}
-                            onSelectionsChange={this.onFindPlaceChange} />
+                          <View style={{flex:3}}>
+                            <SelectMultiple
+                              style={{direction:'rtl',flex:8}}
+                              items={this.state.findPlaces}
+                              selectedItems={this.state.selectedFindPlaces}
+                              selectedLabelStyle={{color:'white'}}
+                              selectedRowStyle={{backgroundColor:'gray'}}
+                              onSelectionsChange={this.onFindPlaceChange} />
+                          </View>
                           <View style={{flex:1,flexDirection:'column'}}>
                             <Text>درخواست مکان</Text>
                             <View style={{flexDirection:'row'}}>

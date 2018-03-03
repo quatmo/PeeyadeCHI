@@ -15,7 +15,7 @@ import {
   Alert,
   TouchableHighlight
 } from 'react-native';
-import { Container, Content,Title, Icon, Footer,Button,Header, Left, Body, Right } from 'native-base';
+import { Container,CheckBox, Content,Title, Icon, Footer,Button,Header, Left, Body, Right } from 'native-base';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -39,6 +39,7 @@ export default class App extends Component<Props> {
     this.state = {
       title_:"-------",
       text_:"----",
+      checkcheck:false,
     };
     this.send2wall=this.send2wall.bind(this);
     this.checkit=this.checkit.bind(this);
@@ -160,8 +161,14 @@ render() {
           margin:10
         }}
         />
-
-
+        <View style={{ margin:10,justifyContent:'flex-end',flexDirection:'row'}}>
+          <TouchableHighlight onPress={()=>{this.setState({checkcheck:!this.state.checkcheck})}}>  
+            <View style={{flexDirection:'row',alignItems:'flex-end'}}>  
+              <Text>پین شود</Text>
+              <CheckBox color={'gray'} checked={this.state.checkcheck} />
+            </View>
+          </TouchableHighlight>
+        </View>
         </View>
         <View style={{justifyContent:'center',backgroundColor:'gray',alignItems:'center',width: Dimensions.get('window').width, height: 50}}>
           <TouchableHighlight
