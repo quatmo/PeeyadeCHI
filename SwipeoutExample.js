@@ -28,14 +28,20 @@ class SwipeoutExample extends Component {
       otherMessages:[],
       isLoading:true,
       refreshing: false,
+      scrollEnabled:true,
+      LoadMoreMutex:true,
     };
     
     this.loadData=this.loadData.bind(this);
     this.setdata=this.setdata.bind(this);
-   // this._onScroll = this._onScroll.bind(this)
+    this._loadMore=this._loadMore.bind(this);
+
+    this._allowScroll = this._allowScroll.bind(this)
     
   }
-
+  _allowScroll=(scrollEnabled)=> {
+    this.setState({ scrollEnabled: scrollEnabled })
+  }
 setdata=(res)=>{
     // this.setState({bons:res.data.user.bons})
     // this.setState({pic:'https://peeyade.com'+res.data.user.bestPhoto.prefix+res.data.user.bestPhoto.suffix})
@@ -60,7 +66,7 @@ loadData=()=>{
     try {
       let ress='xxx'
       fetch(
-        'https://peeyade.com/api/pch/v1/wall/global?limit=3&offset=0',{  
+        'https://peeyade.com/api/pch/v1/wall/global?limit=5&offset=0',{  
           method: 'GET',
           headers: {
             'Accept': 'application/json',
@@ -154,7 +160,7 @@ edIt=(id)=>
         right={swipeBtns}
         rowID={rowID}
         sectionID={sectionID}
-        //autoClose={rowData.autoClose}
+        scroll={(event) => {this._allowScroll(event)}}
         backgroundColor={rowData.backgroundColor}
         onOpen={(sectionID, rowID) => {
           this.setState({
@@ -196,8 +202,10 @@ edIt=(id)=>
   }
   _loadMore()
   {
-   // alert('load_more')
-    try {
+    //alert('load_more')
+   
+   
+   try {
       let ress='xxx'
       fetch(
         'https://peeyade.com/api/pch/v1/wall/global?limit=10&offset=0',{  
@@ -265,13 +273,24 @@ edIt=(id)=>
             </Button>
           </Right>
         </Header>
-        {/* <ScrollView>        */}
+        <ScrollView
+          scrollEventThrottle={0}
+          onScroll={(e) => {
+            let paddingToBottom = Dimensions.get('window').height;
+            paddingToBottom += e.nativeEvent.layoutMeasurement.height;
+            if(e.nativeEvent.contentOffset.y >= e.nativeEvent.contentSize.height - paddingToBottom) {
+              this._loadMore()
+              console.log('------------------')
+            }
+          }}
+        
+        >       
          
         
             <ListView
               //Pinned
               //style={{flex:10}}
-              scrollEnabled
+             // scrollEnabled={this.state.scrollEnabled}
               dataSource={this.state.dataSourcePinned}
               renderRow={this._renderRow.bind(this)}/>
           
@@ -279,24 +298,25 @@ edIt=(id)=>
                 <ListView
                   //Today list view
                   //style={{flex:10}}
-                  scrollEnabled
+                 // scrollEnabled={this.state.scrollEnabled}
                   dataSource={this.state.dataSourceToday}
                   renderRow={this._renderRow.bind(this)}/>
               <Text>سایر پیام‌ها</Text>
 
               <ListView
-                //Today list view
+                //other Message list view
                 //style={{flex:1}}
                 //style={{flex:10}}
-                scrollEnabled
+                //scrollEnabled={this.state.scrollEnabled}
                 dataSource={this.state.dataSourceOtherMessages}
                 //onScroll={(e)=>{alert('ssss');this._onScroll(e)}}
-                onEndReached={this._loadMore.bind(this)}
+                //onEndReachedThreshold={-20}
+                //onEndReached={this._loadMore.bind(this)}
                 //onEndReached={() => alert('Ok, I\'m @ the bottom')}
                 //refreshing={this.state.refreshing}
                 //onRefresh={this._onRefresh.bind(this)}
                 renderRow={this._renderRow.bind(this)}/>
-        {/* </ScrollView> */}
+         </ScrollView> 
           
 
           <View style={{ backgroundColor: '#f3f3f3'}}>
