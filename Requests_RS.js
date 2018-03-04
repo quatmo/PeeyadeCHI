@@ -11,7 +11,7 @@ import {
   Text,
   View,
   ListView,
-  Image,Dimensions
+  Image,Dimensions,TouchableHighlight
 } from 'react-native';
 
 const instructions = Platform.select({
@@ -32,6 +32,7 @@ export default class App extends Component<Props> {
         this.state = {
           dataSource: ds.cloneWithRows([]),
           selectedIndex:1,
+          Pdrpdwn:false,
         };
         this.updateIndex=this.updateIndex.bind(this)
       }
@@ -47,11 +48,11 @@ setdata=(res)=>{
       
       
       }
-componentDidMount()
+    componentDidMount()
        {
          this.loadData();
        }
-loadData=()=>{
+    loadData=()=>{
         try {
           let ress='xxx'
           fetch(
@@ -171,7 +172,12 @@ loadData=()=>{
                 borderBottomWidth:2,
                 padding:20
               }}>
-              <Text style={{fontSize:20}}>{'بیشتر'}</Text>
+              <TouchableHighlight
+                onPress={() => this.props.navigation.navigate("AcceptRecjectRequest", {_rid:data._id})}>
+                
+                <Text
+                  style={{fontSize:20}}>بیشتر</Text>
+              </TouchableHighlight>
              
                <View>
                <Text style={{textAlign:'center',alignItems:'stretch',justifyContent:'center',fontSize:10}}>{'بیشترین امتیاز : '+data.project.maxPoint}</Text>
@@ -187,16 +193,17 @@ loadData=()=>{
           }
           />
             <Footer>
-                <View style={{flexDirection:'row'}}>
-                  <Icon name='arrow-up' />
+                <View style={{alignItems:'center',flexDirection:'row'}}>
+                  <Icon name={this.state.Pdrpdwn?'arrow-down':'arrow-up'} style={{marginRight:10}}/>
                   <ModalDropdown 
                     defaultValue={'درخواست خبر'}
-                    style={{justifyContent:'center',backgroundColor:'yellow'}} 
+                    style={{justifyContent:'center'}} 
                     dropdownStyle={{alignItems:'center',
                     width:Dimensions.get('window').width+30,
                     marginLeft:-Dimensions.get('window').width/2,
-                    //padding:30 ,
                   }}
+                  onDropdownWillShow={()=>{this.setState({Pdrpdwn:true})}}
+                  onDropdownWillHide={()=>{this.setState({Pdrpdwn:false})}}
                     options={['درخواست خبر', 'درخواست رویداد ','درخواست مکان']}/>
 
                   </View>

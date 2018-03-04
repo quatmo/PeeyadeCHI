@@ -218,6 +218,7 @@ export default class App extends Component<Props> {
             'Authorization':'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI1YTg2ZDQ5ZGZhOTA2OTYyMDA5NWM2N2QiLCJ1c2VyIjoi2KLYsdi02YXbjNiv2LMifQ.dJloyq--dABpkcwRhw6OSBwH59z30ZKoLD6356Kozbk'
           },
           body: JSON.stringify({
+            place:this.state.placeID,
             title:this.state.ReportName,
             description:this.state.ReportHint,
             deadline:this.state.selectedDead,
@@ -233,9 +234,11 @@ export default class App extends Component<Props> {
             videographer:videoTMP,
             photographer:photoTMP,
             admin:adminTMP,
-            setPlaceRequest:'true',
+            setPlaceRequest:'false',
             placeName:this.state.PlaceName,
             placeDescription:this.state.ReportHint,
+            lat:'',
+            lon:'',
 
           })
         
@@ -412,6 +415,7 @@ export default class App extends Component<Props> {
         }})
         this.setState({_latitude:el.summary.address.geo.coordinates[1]});
         this.setState({_longitude:el.summary.address.geo.coordinates[0]});
+        this.setState({placeID:el._id});
         console.log('Mapview :::: ',this.state.region);
       }
     }
