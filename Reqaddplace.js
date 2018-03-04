@@ -31,9 +31,9 @@ export default class App extends Component<Props> {
   constructor () {
     super()
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});    
-    
+   // alert(this.props.navigation.state.params.postType)
     this.state = {
-     // fruits : ['honda','kotlin','آرش توکلی', 'ساتوشی', 'ناکامورا','استیو وزنیاک', 'جابز امپرالیست', 'بیل گیتس'],
+      // fruits : ['honda','kotlin','آرش توکلی', 'ساتوشی', 'ناکامورا','استیو وزنیاک', 'جابز امپرالیست', 'بیل گیتس'],
         fruits : [],
         fruitsFull : [],
 
@@ -42,7 +42,8 @@ export default class App extends Component<Props> {
         placesFullInfo:[],
         _latitude:35.704981,
         _longitude:51.416007,
-        region:{
+        region:
+        {
           latitude: 35.704981,
           longitude: 51.416007,
           latitudeDelta: 0.0022,
@@ -207,7 +208,7 @@ export default class App extends Component<Props> {
       //console.log('photo tmp',photoTMP)
 
 
-      
+      alert(this.props.navigation.state.params.postType)
       fetch(
         'https://peeyade.com/api/pch/v1/request/',{  
           method: 'POST',
@@ -227,7 +228,7 @@ export default class App extends Component<Props> {
             photographerNeeded:true,
             videographerCount:2,
             videographerNeeded:true,
-            postType:'place',//news,event
+            postType:this.props.navigation.state.params.postType,//news,event
             author:authorTMP,
             videographer:videoTMP,
             photographer:photoTMP,

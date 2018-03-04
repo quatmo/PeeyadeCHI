@@ -35,6 +35,7 @@ class SwipeoutExample extends Component {
     this.loadData=this.loadData.bind(this);
     this.setdata=this.setdata.bind(this);
     this._loadMore=this._loadMore.bind(this);
+    this.gotoreq=this.gotoreq.bind(this);
 
     this._allowScroll = this._allowScroll.bind(this)
     
@@ -249,9 +250,12 @@ edIt=(id)=>
     //this.setState({isLoading:!this.state.isLoading});
    
   }
-
+gotoreq(i)
+{
+    navigate("Reqaddplace",{postType:'place'})
+}
   render() {
-    //const { navigatio } = this.props.navigation;
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
         
@@ -324,17 +328,20 @@ edIt=(id)=>
               style={{flex:1}}
               buttonColor="rgba(231,76,60,1)">
               
-              <ActionButton.Item buttonColor='#9b59b6' title="New Task" onPress={() => console.log("notes tapped!")}>
+              <ActionButton.Item buttonColor='#9b59b6' title="New Task" 
+                 onPress={()=>{ this.props.navigation.navigate("Reqaddplace",{postType:'place'}) } }>
+                
                 <Text>مکان</Text>
               </ActionButton.Item>
               
-              <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => {}}>
+              <ActionButton.Item buttonColor='#3498db' title="Notifications" 
+                 onPress={()=>{ this.props.navigation.navigate("Reqaddplace",{postType:'news'}) } }>
                 <Text>خبر</Text>
               </ActionButton.Item>
 
               
               <ActionButton.Item buttonColor='#3498db' title="Notifications"  
-                onPress={() => this.props.navigation.navigate("ReqNews")}>
+                onPress={()=>{ this.props.navigation.navigate("Reqaddplace",{postType:'event'}) } }>
                 <Text>رویداد</Text>
               </ActionButton.Item>
 
