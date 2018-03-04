@@ -183,7 +183,7 @@ export default class App extends Component<Props> {
 
   }
   sendToServer=()=>{
-    alert('//TODO Task');
+   // alert('//TODO Task');
     try {
 
 
@@ -208,7 +208,7 @@ export default class App extends Component<Props> {
       //console.log('photo tmp',photoTMP)
 
 
-      alert(this.props.navigation.state.params.postType)
+      //alert(this.props.navigation.state.params.postType)
       fetch(
         'https://peeyade.com/api/pch/v1/request/',{  
           method: 'POST',
@@ -241,14 +241,16 @@ export default class App extends Component<Props> {
         
         }).then((response) => response.json())
           .then((res)=>{
-          console.log(res);
+          //console.log(res);
           //console.log('https://peeyade.com'+res.data.user.bestPhoto.prefix+res.data.user.bestPhoto.suffix)
           if(res.success)
           {
             alert(res.message)
+            alert(this.props.navigation.state.params.postType)
             console.log('Project review',res)
           }
-          else           alert('somthing wrong');
+          else           
+            alert('somthing wrong');
           //this.state.bons= res.data.points
     
         
