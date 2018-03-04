@@ -14,12 +14,6 @@ import {
   Image,Dimensions,TouchableHighlight
 } from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
 import {ButtonGroup} from 'react-native-elements'
 import { Container, Content, Icon,FooterTab, Footer,Button,Header, Left, Body, Right } from 'native-base';
 import ModalDropdown from 'react-native-modal-dropdown';
@@ -33,10 +27,60 @@ export default class App extends Component<Props> {
           dataSource: ds.cloneWithRows([]),
           selectedIndex:1,
           Pdrpdwn:false,
+          filterType: "AllRequests"//Outcome,Active,Published,Submitted,AllRequests
         };
+        let qtype=''
         this.updateIndex=this.updateIndex.bind(this)
+        this._dropdownmenuselect=this._dropdownmenuselect.bind(this)
+        this._dropdownmenuselectHeader=this._dropdownmenuselectHeader.bind(this)
+        this.renderRowIncome=this.renderRowIncome.bind(this)
       }
-
+_dropdownmenuselect(idx,value)
+{
+  //alert(idx);
+  switch (idx) {
+    case "0":
+      this.props.navigation.navigate("Reqaddplace",{postType:'news'})  
+      break;
+    case "1":
+      this.props.navigation.navigate("Reqaddplace",{postType:'event'})  
+      break;
+    case "2":
+      this.props.navigation.navigate("Reqaddplace",{postType:'place'})  
+      break;
+    default:
+      alert('no one selected')
+      break;
+  }
+}
+_dropdownmenuselectHeader(idx,value)
+{
+  //alert(idx);
+  //filterType:"Income",//Outcome,Active,Published,Submitted
+  switch (idx) {
+    case "0":
+      this.state.filterType='Active'
+      this.loadData()
+      //this.props.navigation.navigate("Reqaddplace",{postType:'news'})  
+      break;
+    case "1":
+      //this.props.navigation.navigate("Reqaddplace",{postType:'event'})  
+      this.state.filterType='Submitted'      
+      break;
+    case "2":
+      //this.props.navigation.navigate("Reqaddplace",{postType:'place'})  
+      this.state.filterType='Published'
+      break;
+    case "3":
+      //this.props.navigation.navigate("Reqaddplace",{postType:'place'})  
+      this.state.filterType='AllRequests'
+      this.loadData()
+      break;
+    default:
+        alert('no one selected')
+      break;
+  }
+}
 setdata=(res)=>{
         // this.setState({bons:res.data.user.bons})
         // this.setState({pic:'https://peeyade.com'+res.data.user.bestPhoto.prefix+res.data.user.bestPhoto.suffix})
@@ -48,15 +92,42 @@ setdata=(res)=>{
       
       
       }
-    componentDidMount()
-       {
-         this.loadData();
-       }
-    loadData=()=>{
+componentDidMount()
+    {
+      this.loadData();
+    }
+loadData=()=>{
+
+
+            let qtype=''
+            //alert(this.state.filterType)
+            console.log(this.state.filterType)
+            switch (this.state.filterType) 
+                {
+
+                    case 'Active':
+                       qtype='https://peeyade.com/api/pch/v1/project/status/active?limit=10&offset=0'
+                    break;
+                    case 'Submitted':
+                      
+                    break;
+                    case 'Published':
+                      
+                    break;
+                    case 'AllRequests':
+                      qtype='https://peeyade.com/api/pch/v1/request'
+
+                    
+                    break;
+                  default:
+                    alert('ss')
+                    break; 
+                }
+               // alert(this.state.filterType)
         try {
           let ress='xxx'
           fetch(
-            'https://peeyade.com/api/pch/v1/request',{  
+            qtype,{  
               method: 'GET',
               headers: {
                // 'Accept': 'application/json',
@@ -109,7 +180,110 @@ setdata=(res)=>{
     
     
     }
+renderRowIncome=(data)=>
+{
+  switch (this.state.filterType) 
+                {
 
+                    case 'Active':
+                        let userImages=[]
+                        for (let index = 0; index < data.members.length; index++) {
+                          if(index<4)
+                          {
+                            const element = data.members[index];
+                            userImages.push(<Image
+                                          style={styles.photo}
+                                          resizeMode={'stretch'}
+                                          source={{uri:'https://peeyade.com'+element.user.bestPhoto.prefix+element.user.bestPhoto.suffix}}
+                                        />)
+                          }
+                        
+                        }
+                        return (<View style={{
+                          flex: 1,
+                          flexDirection: 'row',
+                          justifyContent: 'center',
+                          backgroundColor: 'gray',
+                          justifyContent: 'space-between',
+                          alignItems: 'center',
+                          borderColor:'black',
+                          borderRadius:1,
+                          borderBottomWidth:2,
+                          padding:20
+                        }}>
+                         <TouchableHighlight
+                          onPress={() => this.props.navigation.navigate("AcceptRecjectRequest", {_rid:data._id})}>
+                          
+                          <Text
+                            style={{fontSize:20}}>بیشتر</Text>
+                        </TouchableHighlight>
+                       
+                       
+                         <View>
+                         <Text style={{textAlign:'center',alignItems:'stretch',justifyContent:'center',fontSize:20}}>{'امتیاز'+data.maxPoint}</Text>
+                            <Text>{'تاریخ انتشار'+String(data.reportTime).substring(0,8)}</Text>
+                          </View>
+          
+          
+                          <View style={{justifyContent:'center',alignItems:'center'}}>
+                            <Text style={{textAlign:'center',alignItems:'stretch',justifyContent:'center',fontSize:20}}>{'کاربران'}</Text>
+                            <View style={{flexDirection:'row'}}>
+                              {userImages}
+                              
+                               
+                            </View>
+                           
+                         
+                          </View>
+          
+                          <Text style={{fontSize:10}}>{data.title}</Text>
+                         
+                      </View>
+                      )
+                    break;
+                    case 'Submitted':
+                      
+                    break;
+                    case 'Published':
+                      
+                    break;
+                    case 'AllRequests':
+                        return (<View style={{
+                          flex: 1,
+                          flexDirection: 'row',
+                          justifyContent: 'center',
+                          backgroundColor: 'gray',
+                          justifyContent: 'space-between',
+                          alignItems: 'center',
+                          borderColor:'black',
+                          borderRadius:1,
+                          borderBottomWidth:2,
+                          padding:20
+                        }}>
+                        <TouchableHighlight
+                          onPress={() => this.props.navigation.navigate("AcceptRecjectRequest", {_rid:data._id})}>
+                          
+                          <Text
+                            style={{fontSize:20}}>بیشتر</Text>
+                        </TouchableHighlight>
+                      
+                        <View>
+                        <Text style={{textAlign:'center',alignItems:'stretch',justifyContent:'center',fontSize:10}}>{'بیشترین امتیاز : '+data.project.maxPoint}</Text>
+                            <Text>{'تاریخ انتشار'+String(data.project.deadline).substring(0,10)}</Text>
+                          </View>
+                      
+                      
+                          <View>
+                            <Text style={{fontSize:10,fontWeight:'900',backgroundColor:'gray',borderRadius:1}}>{data.project.title}</Text>
+                          </View>
+                      </View>)
+                    
+                    break;
+                  default:
+                    break; 
+                }
+   
+}
     
 
       render() {
@@ -128,12 +302,13 @@ setdata=(res)=>{
                     <ModalDropdown 
                     defaultValue={'درخواست‌ها'}
                     style={{}} 
+                    onSelect={(idx, value) => {this._dropdownmenuselectHeader(idx, value)}  }
                     dropdownStyle={{alignItems:'center',
                     width:Dimensions.get('window').width+30,
                     marginLeft:-Dimensions.get('window').width/2,
                     //padding:30 ,
                   }}
-                    options={['فعال‌ها', ' در انتظار انتشار','منتشر شده ']}/>
+                    options={['فعال‌ها', ' در انتظار انتشار','منتشر شده ','درخواست‌ها']}/>
                 </View>
               </Body>
               <Right>
@@ -142,54 +317,26 @@ setdata=(res)=>{
                 </Button>
               </Right>
             </Header>
-            <ButtonGroup
-              onPress={this.updateIndex}
-              selectedIndex={this.state.selectedIndex}
-              style={{borderRadius:50}}
-              buttons={[{ element: () =><View style={{flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
-                  <Text style={{color:'red',marginRight:10}}>*</Text>
-                 <Text>       ارسالی</Text>
-                </View> },{ element: () => <Text> دریافتی</Text> }]}
-              innerBorderStyle={{borderRadius:300,color:'white'}}
-              buttonStyle={{borderRadius:50}}
-              containerBorderRadius={1}
-              selectedButtonStyle={{borderRadius:50,backgroundColor:'gray'}}
-              containerStyle={{borderRadius:300,backgroundColor:'white'}}
-            />
+            {this.state.filterType!='AllRequests'?null:(<ButtonGroup
+                                                        onPress={this.updateIndex}
+                                                        selectedIndex={this.state.selectedIndex}
+                                                        style={{borderRadius:50}}
+                                                        buttons={[{ element: () =><View style={{flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
+                                                            <Text style={{color:'red',marginRight:10}}>*</Text>
+                                                          <Text>       ارسالی</Text>
+                                                          </View> },{ element: () => <Text> دریافتی</Text> }]}
+                                                        innerBorderStyle={{borderRadius:300,color:'white'}}
+                                                        buttonStyle={{borderRadius:50}}
+                                                        containerBorderRadius={1}
+                                                        selectedButtonStyle={{borderRadius:50,backgroundColor:'gray'}}
+                                                        containerStyle={{borderRadius:300,backgroundColor:'white'}}
+                                                      />)}
           <ListView
             style={styles.listview}
             dataSource={this.state.dataSource}
-            renderRow={(data) => 
-              <View style={{
-                flex: 1,
-                flexDirection: 'row',
-                justifyContent: 'center',
-                backgroundColor: 'gray',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                borderColor:'black',
-                borderRadius:1,
-                borderBottomWidth:2,
-                padding:20
-              }}>
-              <TouchableHighlight
-                onPress={() => this.props.navigation.navigate("AcceptRecjectRequest", {_rid:data._id})}>
-                
-                <Text
-                  style={{fontSize:20}}>بیشتر</Text>
-              </TouchableHighlight>
-             
-               <View>
-               <Text style={{textAlign:'center',alignItems:'stretch',justifyContent:'center',fontSize:10}}>{'بیشترین امتیاز : '+data.project.maxPoint}</Text>
-                  <Text>{'تاریخ انتشار'+String(data.project.deadline).substring(0,10)}</Text>
-                </View>
-
-
-                <View>
-                  <Text style={{fontSize:10,fontWeight:'900',backgroundColor:'gray',borderRadius:1}}>{data.project.title}</Text>
-                </View>
-            </View>
-            
+            renderRow=
+            {
+             this.renderRowIncome
           }
           />
             <Footer>
@@ -202,6 +349,7 @@ setdata=(res)=>{
                     width:Dimensions.get('window').width+30,
                     marginLeft:-Dimensions.get('window').width/2,
                   }}
+                  onSelect={(idx, value) => this._dropdownmenuselect(idx, value)}
                   onDropdownWillShow={()=>{this.setState({Pdrpdwn:true})}}
                   onDropdownWillHide={()=>{this.setState({Pdrpdwn:false})}}
                     options={['درخواست خبر', 'درخواست رویداد ','درخواست مکان']}/>

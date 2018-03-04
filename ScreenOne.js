@@ -131,12 +131,12 @@ componentDidMount()
         </TouchableHighlight>
 
 
-         <TouchableHighlight
+         {/* <TouchableHighlight
           onPress={() => navigate("scrolview", {screen: "scrolview"})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>scrolview 🙅 </Text>
-        </TouchableHighlight>
+        </TouchableHighlight> */}
 
         <TouchableHighlight
           onPress={() => navigate("Project", {screen: "Project  "})}
@@ -181,14 +181,14 @@ componentDidMount()
             style={styles.buttonText}>AddingPCH </Text>
         </TouchableHighlight>
 
-        <TouchableHighlight
+        {/* <TouchableHighlight
           onPress={() => navigate("Profile", {screen: "Profile  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>Profile(Instagram) </Text>
-        </TouchableHighlight>
+        </TouchableHighlight> */}
 
-         <TouchableHighlight
+         {/* <TouchableHighlight
           onPress={() => navigate("Login_confirm", {screen: "Login_confirm"})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
@@ -200,8 +200,8 @@ componentDidMount()
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>login </Text>
-        </TouchableHighlight>
-        <TouchableHighlight
+        </TouchableHighlight> */}
+        {/* <TouchableHighlight
           onPress={() => navigate("RadiusButton", {screen: "RadiusButton  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
@@ -212,33 +212,33 @@ componentDidMount()
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>Send/Recv Buttons </Text>
-        </TouchableHighlight>
-        <TouchableHighlight
+        </TouchableHighlight> */}
+        {/* <TouchableHighlight
           onPress={() => navigate("Aicons", {screen: "Aicons"})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>Aicons </Text>
-        </TouchableHighlight>
+        </TouchableHighlight> */}
         <TouchableHighlight
           onPress={() => navigate("imagevideo", {screen: "imagevideo"})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>Image Video </Text>
         </TouchableHighlight>
-        <TouchableHighlight
+        {/* <TouchableHighlight
           onPress={() => navigate("drawer", {screen: "drawer  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>Drawer </Text>
-        </TouchableHighlight>
+        </TouchableHighlight> */}
 
         
-        <TouchableHighlight
+        {/* <TouchableHighlight
           onPress={() => navigate("Date_Time_Persian", {screen: "Date_Time_Persian"})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>Date_Time_Persian </Text>
-        </TouchableHighlight>
+        </TouchableHighlight> */}
         <TouchableHighlight
           onPress={() => navigate("ReqActive", {screen: "ReqActive"})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
