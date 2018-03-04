@@ -50,7 +50,7 @@ export default class App extends Component<Props> {
           longitudeDelta: 0.0021,
         },
 
-
+        setPlaceRequest:false,
         catogryType:0,
 
         ReportName:'',
@@ -234,11 +234,11 @@ export default class App extends Component<Props> {
             videographer:videoTMP,
             photographer:photoTMP,
             admin:adminTMP,
-            setPlaceRequest:'false',
+            setPlaceRequest:this.state.setPlaceRequest,
             placeName:this.state.PlaceName,
             placeDescription:this.state.ReportHint,
-            lat:'',
-            lon:'',
+            lat:this.state._latitude,
+            lon:this.state._longitude,
 
           })
         
@@ -1328,10 +1328,12 @@ export default class App extends Component<Props> {
                               onSelectionsChange={this.onFindPlaceChange} />
                           </View>
                           <View style={{flex:1,flexDirection:'column'}}>
-                            <Text>درخواست مکان</Text>
-                            <View style={{flexDirection:'row'}}>
-                                <Btn  buttonStyle={{flex:1}}  title="درخواست ثبت مکان جدید"  onPress={() => {}}/>
-                                <Btn  buttonStyle={{flex:1}}  title="استفاده از اطاعات درخواست فعلی"  onPress={() => {}}/>
+                            <View style={{justifyContent:'flex-end',alignItems:'flex-end'}}>
+                              <Text >درخواست مکان</Text>
+                            </View>
+                            <View style={{justifyContent:'space-between',alignItems:'center',flexDirection:'row'}}>
+                                <Btn  buttonStyle={{marginHorizontal:10,flex:1,backgroundColor:this.state.setPlaceRequest?'black':'gray'}}  title=" ثبت مکان جدید"  onPress={()=>this.setState({setPlaceRequest:true})}/>
+                                <Btn  buttonStyle={{marginHorizontal:10,flex:1,backgroundColor:this.state.setPlaceRequest?'gray':'black'}}  title="استفاده از درخواست فعلی" onPress={()=>this.setState({setPlaceRequest:false})}/>
                             </View>
                           </View>
                         

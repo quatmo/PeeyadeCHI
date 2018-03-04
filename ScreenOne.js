@@ -93,11 +93,11 @@ componentDidMount()
       
       
 
-        <TouchableHighlight
+       {/*  <TouchableHighlight
             onPress={() => {this.props.navigation.navigate("DrawerOpen")}}
             style={[styles.button, {backgroundColor: '#C56EE0'}]}>
             <Text style={styles.buttonText}>Go Back</Text>
-        </TouchableHighlight>
+        </TouchableHighlight> */}
         <TouchableHighlight
           onPress={() => navigate("Reqaddplace", {screen: "Reqaddplace  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
@@ -105,12 +105,12 @@ componentDidMount()
             style={styles.buttonText}>Reqaddplace 🤓</Text>
         </TouchableHighlight>
 
-        <TouchableHighlight
+        {/* <TouchableHighlight
           onPress={() => navigate("webview", {screen: "webview"})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>webview 🎃</Text>
-        </TouchableHighlight>
+        </TouchableHighlight> */}
         <TouchableHighlight
           onPress={() => navigate("Requests_RS", {screen: "Requests_RS"})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
@@ -123,12 +123,12 @@ componentDidMount()
           <Text
             style={styles.buttonText}>wall☠️</Text>
         </TouchableHighlight>
-        <TouchableHighlight
+        {/* <TouchableHighlight
           onPress={() => navigate("details", {screen: "details  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>details👀 </Text>
-        </TouchableHighlight>
+        </TouchableHighlight> */}
 
 
          {/* <TouchableHighlight
@@ -166,22 +166,22 @@ componentDidMount()
             style={styles.buttonText}>message2Wall </Text>
         </TouchableHighlight>
 
-        <TouchableHighlight
+        {/* <TouchableHighlight
           onPress={() => navigate("suggest2Wall", {screen: "suggest2Wall  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>suggest2Wall </Text>
-        </TouchableHighlight>
+        </TouchableHighlight> */}
        
         
-        <TouchableHighlight
+       {/*  <TouchableHighlight
           onPress={() => navigate("AddingPCH", {screen: "AddingPCH  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>AddingPCH </Text>
         </TouchableHighlight>
 
-        {/* <TouchableHighlight
+        <TouchableHighlight
           onPress={() => navigate("Profile", {screen: "Profile  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
@@ -238,7 +238,7 @@ componentDidMount()
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>Date_Time_Persian </Text>
-        </TouchableHighlight> */}
+        </TouchableHighlight> 
         <TouchableHighlight
           onPress={() => navigate("ReqActive", {screen: "ReqActive"})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
@@ -251,7 +251,7 @@ componentDidMount()
           <Text
             style={styles.buttonText}>TokenBox </Text>
         </TouchableHighlight>
-       
+     
       
 
         <TouchableHighlight
@@ -259,7 +259,7 @@ componentDidMount()
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>ReqReport </Text>
-        </TouchableHighlight>
+        </TouchableHighlight>  
         <TouchableHighlight
           onPress={() => navigate("ReqNews", {screen: "ReqNews  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
@@ -271,7 +271,7 @@ componentDidMount()
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>Req_AddPCH </Text>
-        </TouchableHighlight>
+        </TouchableHighlight>*/}
         <TouchableHighlight
           onPress={() => navigate("FilterMenu", {screen: "FilterMenu"})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
@@ -288,31 +288,31 @@ componentDidMount()
         </TouchableHighlight>
        
        
-        <TouchableHighlight
+        {/* <TouchableHighlight
           onPress={() => navigate("ScreenThree", {screen: "ScreenThree  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>ButtonTypes </Text>
-        </TouchableHighlight>
+        </TouchableHighlight> */}
         <TouchableHighlight
           onPress={() => navigate("ScreenTwo", {screen: "ScreenTwo  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>Map </Text>
         </TouchableHighlight>
-        <TouchableHighlight
+        {/* <TouchableHighlight
           onPress={() => navigate("MainPage", {screen: "MainPage  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>MainPage </Text>
-        </TouchableHighlight>
+        </TouchableHighlight> */}
         
-        <TouchableHighlight
+       {/*  <TouchableHighlight
           onPress={() => navigate("Details", {screen: "Details  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>Details </Text>
-        </TouchableHighlight>
+        </TouchableHighlight> */}
         <TouchableHighlight
           onPress={() => navigate("Message", {screen: "Message  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
@@ -320,12 +320,12 @@ componentDidMount()
             style={styles.buttonText}>Message </Text>
         </TouchableHighlight>
        
-        <TouchableHighlight
+       {/*  <TouchableHighlight
           onPress={() => navigate("SplashPage", {screen: "SplashPage  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>SplashPage </Text>
-        </TouchableHighlight>
+        </TouchableHighlight> */}
        
      
         </ScrollView>

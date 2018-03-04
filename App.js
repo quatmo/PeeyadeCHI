@@ -51,6 +51,7 @@ import suggest2Wall from './suggest2Wall'
 console.disableYellowBox = true;
 const App = DrawerNavigator({
     // ScreenZero: { screen: ScreenZero},
+    SplashPage: {screen: SplashPage},
     login: {screen: login},
     Login_confirm: {screen: Login_confirm},
     Reqaddplace: {screen: Reqaddplace},
@@ -92,7 +93,6 @@ const App = DrawerNavigator({
     Details: {screen: Details},
     Message: {screen: Message},
     RadiusButton: {screen: RadiusButton},
-    SplashPage: {screen: SplashPage},
     suggest2Wall: {screen: suggest2Wall},
     webview: {screen: webview},
     
