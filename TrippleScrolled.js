@@ -24,7 +24,8 @@ export default class App_1 extends Component<Props> {
         
           //const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
-            pic_temps:[<Pic_template key={1} did={1} kk={this.delmoviems}/>,],
+            pic_temps:[],
+            pic_temps_index:1,
         };
 
         this.delmoviems=this.delmoviems.bind(this)
@@ -36,15 +37,17 @@ export default class App_1 extends Component<Props> {
 
   addTemplate()
   {
-      this.state.pic_temps.push(<Pic_template key={1} did={1} kk={this.delmoviems}/>)
-      this.state.pic_temps.push(<Pic_template key={2} did={2} kk={this.delmoviems}/>)
-      this.state.pic_temps.push(<Pic_template key={3} did={3} kk={this.delmoviems}/>)
-      console.log(this.state.pic_temps)
+    //this.state.pic_temps.push(<Pic_template key={this.state.pic_temps_index} did={this.state.pic_temps_index} kk={this.delmoviems}/>)
+    let tmp=[]
+    tmp.push(<Pic_template key={this.state.pic_temps_index} did={this.state.pic_temps_index} kk={this.delmoviems}/>)
+    this.setState({pic_temps:this.state.pic_temps.concat(tmp)})
+    this.setState({pic_temps_index:this.state.pic_temps_index+1})
+    console.log(this.state.pic_temps)
   }    
   delmoviems(k)//aka key
   {
-      //alert(k)
-      
+      alert(k)
+
       let tmp=this.state.pic_temps.slice()
       //alert(tmp[1].props.key)
       for (let index = 0; index < tmp.length; index++) {
@@ -231,17 +234,17 @@ export default class App_1 extends Component<Props> {
                         
                     </View>
                     <View style = {  {backgroundColor:'gray',flex:1,width:device_width} }>
-                        <ScrollView>
+                         <ScrollView> 
                             <Text>Pic_templte</Text>
                             
                                 {this.state.pic_temps}
 
                             <TouchableHighlight
-                                onPress={this.addTemplate}
+                                onPress={this.addTemplate.bind(this)}
                                 style={[styles.button,]}>
                                 <Text style={styles.buttonText}>+</Text>
                             </TouchableHighlight>   
-                        </ScrollView>
+                         </ScrollView> 
                     </View>
                     <View style = {  {backgroundColor:'red',flex:1,width:device_width} }>
                         <Text style = { {} }>
