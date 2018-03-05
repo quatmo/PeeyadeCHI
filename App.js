@@ -48,12 +48,14 @@ import Message from './Message'
 import RadiusButton from './RadiusButton'             
 import SplashPage from './SplashPage'             
 import suggest2Wall from './suggest2Wall'             
+import TrippleScrolled from './TrippleScrolled'             
 console.disableYellowBox = true;
 const App = DrawerNavigator({
     // ScreenZero: { screen: ScreenZero},
     SplashPage: {screen: SplashPage},
     login: {screen: login},
     Login_confirm: {screen: Login_confirm},
+    TrippleScrolled: {screen: TrippleScrolled},
     Reqaddplace: {screen: Reqaddplace},
     ScreenOne: { screen: ScreenOne},
     ScreenTwo: { screen: ScreenTwo},

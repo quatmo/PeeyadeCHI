@@ -10,7 +10,19 @@ export default class App extends React.Component {
     this.setState({ messages:  [
       {
         _id: Math.round(Math.random() * 1000000),
-        text: '#awesome',
+        text: '',
+        createdAt: new Date(),
+        user: {
+          _id: 2,
+          name: 'React Native',
+        },
+        image: "https://github.com/airbnb/lottie-android/raw/master/gifs/Example1.gif",
+        sent: true,
+        received: true,
+      },
+      {
+        _id: Math.round(Math.random() * 1000000),
+        text: 'خخخخخ راستی برو تو www.peeyade.com',
         createdAt: new Date(),
         user: {
           _id: 1,

@@ -14,7 +14,8 @@ import {
   import { Container, Content,Title,Tab,Tabs,TabHeading, Icon, Footer,Button,Header, Left, Body, Right } from 'native-base';
  import M3ssage from './Message';  
  import MyScrollView from './scrolview'; 
- 
+ import Details from './Details'
+ import ReqActive from './ReqActive'
 type Props = {};
 export default class App extends Component<Props> {
 
@@ -42,11 +43,13 @@ export default class App extends Component<Props> {
         <Tabs>
         <Tab heading={ <TabHeading><Icon name="help" /></TabHeading>}>
             <View style={{}}>
+              <Details/>
             </View>
           </Tab>
 
         <Tab heading={ <TabHeading><Icon name="alarm" /></TabHeading>}>
-            <View style={{}}>
+            <View style={{flex:1}}>
+              <ReqActive/>
             </View>
         </Tab>
           

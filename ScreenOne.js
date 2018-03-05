@@ -98,6 +98,12 @@ componentDidMount()
             style={[styles.button, {backgroundColor: '#C56EE0'}]}>
             <Text style={styles.buttonText}>Go Back</Text>
         </TouchableHighlight> */}
+         <TouchableHighlight
+          onPress={() => navigate("TrippleScrolled", {screen: "TrippleScrolled  "})}
+          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
+          <Text
+            style={styles.buttonText}>TrippleScrolled 🎃</Text>
+        </TouchableHighlight>
         <TouchableHighlight
           onPress={() => navigate("Reqaddplace", {screen: "Reqaddplace  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
