@@ -6,11 +6,15 @@ import {
   Text,
   View,
   ListView,
-  Image,Dimensions,TextInput,WebView
+  Image,Dimensions,TextInput,WebView,ScrollView
 } from 'react-native';
+
 import { Dropdown } from 'react-native-material-dropdown';
 import { Container, Content,Title,Tab,Tabs,TabHeading, Icon, Footer,Button,Header, Left, Body, Right } from 'native-base';
-import MyScrollView from './scrolview'; 
+import MyScrollView from './scrolview'
+import Pic_template from './Pic_template'
+
+
 var device_width = Dimensions.get('window').width;
 type Props = {};
 export default class App_1 extends Component<Props> {
@@ -20,13 +24,31 @@ export default class App_1 extends Component<Props> {
 
           //const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
-          //dataSource: ds.cloneWithRows([]),
+         
         };
+
+
+
+
       }
-  
+  componentDidMount()
+  {
+    
+
+  }
   
 
       render() {
+
+        let pt=[]
+        pt.push(<Pic_template/>)
+        pt.push(<Pic_template/>)
+        pt.push(<Pic_template/>)
+        pt.push(<Pic_template/>)
+        pt.push(<Pic_template/>)
+
+
+
         return (
           <View style={{flex:1}}>
                 <Header>
@@ -192,17 +214,18 @@ export default class App_1 extends Component<Props> {
                         
                         
                     </View>
-                    <View style = {  {backgroundColor:'blue',flex:1,width:device_width} }>
-                        <Text style = { {} }>
-                            View #4
-                        </Text>
+                    <View style = {  {backgroundColor:'gray',flex:1,width:device_width} }>
+                        <ScrollView>
+                            <Text>Pic_templte</Text>
+                            {pt}
+                        </ScrollView>
                     </View>
-                    <View style = {  {backgroundColor:'blue',flex:1,width:device_width} }>
+                    <View style = {  {backgroundColor:'red',flex:1,width:device_width} }>
                         <Text style = { {} }>
                             View #5
                         </Text>
                     </View>
-                    <View style = {  {backgroundColor:'blue',flex:1,width:device_width} }>
+                    <View style = {  {backgroundColor:'yellow',flex:1,width:device_width} }>
                         <Text style = { {} }>
                             View #6
                         </Text>

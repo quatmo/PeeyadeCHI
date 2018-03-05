@@ -13,17 +13,19 @@ import {
   View,
   ListView,
   Image,
-  TextInput
+  TextInput,
+  TouchableHighlight,
+  NativeModules,
 } from 'react-native';
 import { Container, Header, Title, Content, Button, Right, Body, Left, Picker, Form, H3, Item as FormItem } from "native-base";
+import Video from 'react-native-video';
+var ImagePicker = NativeModules.ImageCropPicker;
+
+
+
 const Item = Picker.Item;
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -32,27 +34,69 @@ export default class App extends Component<Props> {
   {
         super(props);
 
-        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
-          selected1: "key1",
-          dataSource: ds.cloneWithRows([
-            {ff:'1',name:'آرش آقاجانی',score:'120'},
-            {ff:'2',name:'آنا لاوا',score:'100'},
-            {ff:'3',name:'کسرا وفایی',score:'80'},
-            {ff:'4',name:'لنا وفایی',score:'60'},
-            {ff:'5',name:' میدوس آرش',score:'40'},
-            {ff:'6',name:'اوادا کاداورا',score:'20'}
-
-          ]),
-  };
+            selected1: "key1",
+            image: null,
+          };
 
   }
-
-  onValueChange(value: string) {
-    this.setState({
-      selected1: value
+  pickSingle(cropit, circular=false) {
+    ImagePicker.openPicker({
+      width: 300,
+      height: 300,
+      cropping: cropit,
+      cropperCircleOverlay: circular,
+      compressImageMaxWidth: 640,
+      compressImageMaxHeight: 480,
+      compressImageQuality: 0.5,
+      compressVideoPreset: 'MediumQuality',
+      includeExif: true,
+    }).then(image => {
+      console.log('received image', image);
+      this.setState({
+        image: {uri: image.path, width: image.width, height: image.height, mime: image.mime},
+        images: null
+      });
+    }).catch(e => {
+      console.log(e);
+      Alert.alert(e.message ? e.message : e);
     });
   }
+
+  renderVideo(video) {
+    return (<View style={{height: 300, width: 300}}>
+      <Video source={{uri: video.uri, type: video.mime}}
+         style={{position: 'absolute',
+            top: 0,
+            left: 0,
+            bottom: 0,
+            right: 0
+          }}
+         rate={1}
+         paused={false}
+         volume={1}
+         muted={false}
+         resizeMode={'cover'}
+         onError={e => console.log(e)}
+         onLoad={load => console.log(load)}
+         repeat={true} />
+     </View>);
+  }
+
+  renderImage(image) {
+    return <Image style={{width: 100, height: 100,borderRadius:20, resizeMode: 'stretch'}} source={image} />
+  }
+
+  renderAsset(image) {
+    if (image.mime && image.mime.toLowerCase().indexOf('video/') !== -1) {
+      return this.renderVideo(image);
+    }
+
+    return this.renderImage(image);
+  }
+
+
+
 
       render() {
         let data = [{
@@ -64,59 +108,67 @@ export default class App extends Component<Props> {
         }];
 
         return (
-          <View style={{backgroundColor:'red',padding:10}}>
+
+            <View style={{backgroundColor:'blue',padding:20}}>
+
+              <View style={{alignItems:'flex-end',marginTop:-10}}>
+                <TouchableHighlight
+                  onPress={() => alert('close Option')}
+                  style={[styles.button,]}>
+                  <Text style={styles.buttonText}>X</Text>
+                </TouchableHighlight>
+              </View>
               <Text style={{alignSelf:'flex-end'}}>
                 نوشته اصلی
               </Text>
-              <View style={{flexDirection:'column',justifyContent:'center'}}> 
+              <View style={{backgroundColor:'red',padding:10}}>
+                <View style={{flexDirection:'column',justifyContent:'center'}}> 
 
-                <View style={{flexDirection:'row-reverse'}}>
-                  <Image
+                  <View style={{flexDirection:'row-reverse'}}>
+                    
+                    <TouchableHighlight
+                      style={{flex:1,marginRight:20}}
+                      onPress={() => this.pickSingle(false)}>
+                      {this.state.image ? this.renderAsset(this.state.image) : 
+                      <Image
                       style={styles.photo}
                       resizeMode={'stretch'}
-                      source={require('./image/testlogo.png')}/>
+                      source={require('./image/testlogo.png')}/>}
+                     {/* <Text>1</Text> */}
+                    </TouchableHighlight>
 
-                  <View style={{flex:1,flexDirection:'column'}}>
-                    <Text style={[styles.title,{}]}>
-                      عکاس
-                    </Text>
-                    <Dropdown style={{marginTop:0,backgroundColor:'yellow',textAlign:'center'}}
-                    //  label='کتگوری اصلی'
-                      data={data}
-                    />
-                   {/* <View style={{backgroundColor: '#f3f3f3'}}>
-                     
-                      <ActionButton buttonColor="rgba(231,76,60,1)">
-                        <ActionButton.Item buttonColor='#9b59b6' title="New Task" onPress={() => console.log("notes tapped!")}>
-                          <Icon name="android-create" style={styles.actionButtonIcon} />
-                        </ActionButton.Item>
-                        <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => {}}>
-                          <Icon name="android-notifications-none" style={styles.actionButtonIcon} />
-                        </ActionButton.Item>
-                        <ActionButton.Item buttonColor='#1abc9c' title="All Tasks" onPress={() => {}}>
-                          <Icon name="android-done-all" style={styles.actionButtonIcon} />
-                        </ActionButton.Item>
-                      </ActionButton>
-        </View>*/}
-
-           
-                  </View >  
-
-                </View>  
-                <View style={{flexDirection:'column'}}>
-                    <Text style={{alignSelf:'flex-end'}}>
-                      نوشته
-                    </Text>
-
-                  <View style={{flexDirection:'column',backgroundColor:'gray'}}>
-                    <TextInput style={{height:80,backgroundColor:'green'}}/>
-
+                    <View style={{flex:1}}></View>
                     
-                  </View >  
+                    
+                    <View style={{flex:2,flexDirection:'column'}}>
+                      <View style={{alignItems:'flex-end'}}>
+                        <Text >
+                          عکاس
+                        </Text>
+                      </View>
+                      <Dropdown style={{marginTop:0,backgroundColor:'yellow',textAlign:'center'}}
+                      //  label='کتگوری اصلی'
+                        data={data}
+                      />           
+                    </View >  
 
-                </View> 
+                  </View>  
+                  <View style={{flexDirection:'column'}}>
+                      <Text style={{alignSelf:'flex-end'}}>
+                        نوشته
+                      </Text>
+
+                    <View style={{flexDirection:'column',backgroundColor:'gray'}}>
+                      <TextInput style={{height:80,backgroundColor:'green'}}/>
+
+                      
+                    </View >  
+
+                  </View> 
+                </View>
               </View>
-          </View>
+            </View>  
+
           
         );
       }

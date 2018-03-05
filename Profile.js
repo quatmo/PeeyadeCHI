@@ -124,8 +124,23 @@ export default class App extends Component<Props> {
 
       render() {
         return (
-<View style={styles.container}>  
-              <View style={{alignItems:'center',marginTop:10}}>
+          <View style={styles.container}> 
+
+            <Header>
+              <Left>
+                <Button transparent    >
+                  <Icon name="close" onPress={()=>{this.props.navigation.navigate("Requests_RS")}}/>
+                </Button>
+              </Left>
+              <Body>
+                <View style={{justifyContent:'flex-start',alignItems:'center',flexDirection:'row'}}>
+                <Text>جزییات</Text>
+              </View>
+              </Body>
+              <Right>
+              </Right>
+            </Header> 
+            <View style={{alignItems:'center',marginTop:10}}>
                 <Image
                   style={styles.photo}
                   resizeMode={'stretch'}
@@ -137,7 +152,7 @@ export default class App extends Component<Props> {
             </View>
 
               <Text style={{marginHorizontal: 40,fontSize:10,alignItems:'center',padding:10,textAlign:'center'}}>
-      {this.state.bio}
+                {this.state.bio}
               </Text>
 
 
@@ -158,18 +173,17 @@ export default class App extends Component<Props> {
 
               </View>
 
- <TabViewAnimated
-        style={{flex:1}}
-        navigationState={this.state}
-        renderScene={this._renderScene}
-        renderHeader={this._renderHeader}
-        onIndexChange={this._handleIndexChange}
-        initialLayout={initialLayout}
-      />
+              <TabViewAnimated
+                style={{flex:1}}
+                navigationState={this.state}
+                renderScene={this._renderScene}
+                renderHeader={this._renderHeader}
+                onIndexChange={this._handleIndexChange}
+                initialLayout={initialLayout}/>
 
 
 
-</View>
+          </View>
 
 
 

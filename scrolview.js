@@ -25,16 +25,16 @@ export  class MyScrollView extends Component
     {
       alert('Don\'t leave blank');
     }
-    else if(( this.state.getTextInput > React.Children.count( this.props.children )) || ( this.state.getTextInput <= 0 ))
+    /* else if(( this.state.getTextInput > React.Children.count( this.props.children )) || ( this.state.getTextInput <= 0 ))
     {
      alert('View not found...'+this.state.getTextInput);
-    }
+    } */
     else
     {
-        let cc= (this.state.getTextInput+1) % 6+1;
+        let cc= (this.state.getTextInput+1) % 7;
         this.setState({getTextInput: cc });
         this.setState({progress:this.state.progress+10})
-        this.refs.scrollView.scrollTo({ x: (( (this.state.getTextInput) - 1 ) * device_width ), y: 0, animated: true });
+        this.refs.scrollView.scrollTo({ x: (( (this.state.getTextInput) ) * device_width ), y: 0, animated: true });
         
     }  
   }

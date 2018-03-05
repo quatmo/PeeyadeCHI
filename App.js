@@ -52,12 +52,13 @@ import TrippleScrolled from './TrippleScrolled'
 console.disableYellowBox = true;
 const App = DrawerNavigator({
     // ScreenZero: { screen: ScreenZero},
+    ScreenOne: { screen: ScreenOne},
     SplashPage: {screen: SplashPage},
     login: {screen: login},
     Login_confirm: {screen: Login_confirm},
     TrippleScrolled: {screen: TrippleScrolled},
     Reqaddplace: {screen: Reqaddplace},
-    ScreenOne: { screen: ScreenOne},
+    Pic_template: {screen: Pic_template},
     ScreenTwo: { screen: ScreenTwo},
     ScreenThree: {screen: ScreenThree},
     ActionButton: {screen: ActionButton},
@@ -84,7 +85,6 @@ const App = DrawerNavigator({
     ReqNews: {screen: ReqNews},
     Req_AddPCH: {screen: Req_AddPCH},
     FilterMenu:{screen:FilterMenu},
-    Pic_template: {screen: Pic_template},
     message2Wall: {screen: message2Wall},
     ReqActive: {screen: ReqActive},
     Profile: {screen: Profile},
