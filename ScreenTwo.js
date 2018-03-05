@@ -3,16 +3,37 @@ import {
   StyleSheet,
   View,
   Text,
-  TouchableHighlight
+  TouchableHighlight,map
 } from 'react-native';
 import MapView from 'react-native-maps';
 
+
 class ScreenTwo extends Component {
-  static navigationOptions = ({ navigation }) => {
-    return {
-      title: `Welcome ${navigation.state.params.screen}`,
+ constructor(props) {
+    super(props);
+    //const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.state = {
+      //  dataSource: ds.cloneWithRows([]),
+         marker:[],
+    };
+ }
+ 
+
+
+
+  _createMarker (markerInfo) {
+    newMarker = {
+        latlng: {
+            latitude: markerInfo.latlng.latitude+0.01,
+            longitude: markerInfo.latlng.longitude+0.01
+        }
     }
-  };
+
+    markers = this.state.markers.concat([newMarker]);
+    this.setState({markers});
+}
+
+
   render() {
     const { state, navigate } = this.props.navigation;
     return (
@@ -21,13 +42,33 @@ class ScreenTwo extends Component {
 
         <View style={{flexDirection:'column'}}>
         <MapView style={{height:365,width:365,}}
+
+mapType="standard"
+zoomEnabled={true}
+pitchEnabled={true}
+showsUserLocation={true}
+followsUserLocation={true}
+showsCompass={true}
+showsBuildings={true}
+showsTraffic={true}
+showsIndoors={true}
               initialRegion={{
               latitude: 35.704981,
               longitude: 51.416007,
               latitudeDelta: 0.0022,
               longitudeDelta: 0.0021,
-            }}
-          />
+            }}>
+           {this.state.markers.map((marker, i) => (
+  <MapView.Marker
+    key={i}
+    coordinate={marker.coordinate}
+    onPress={(e) => {e.stopPropagation(); this.onMarkerPress(i)}}
+  />
+))}
+      </MapView>
+
+
+
           <View style={{flexDirection:'row'}}>
             <TouchableHighlight
               onPress={() => this.props.navigation.goBack()}
