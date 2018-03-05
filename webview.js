@@ -36,7 +36,8 @@ export default class App extends Component<Props> {
       <WebView
         source={peeyade}
         style={{marginTop: 20,direction:'rtl'}}
-        scrollEnabled={true}
+        scrollEnabled={false}
+        scalesPageToFit={false}
       />
 
       </View>

@@ -111,17 +111,24 @@ export default class App extends Component<Props> {
 
             <View style={{backgroundColor:'blue',padding:20}}>
 
-              <View style={{alignItems:'flex-end',marginTop:-10}}>
-                <TouchableHighlight
-                  onPress={() => alert('close Option')}
-                  style={[styles.button,]}>
-                  <Text style={styles.buttonText}>X</Text>
-                </TouchableHighlight>
-              </View>
+              
               <Text style={{alignSelf:'flex-end'}}>
                 نوشته اصلی
               </Text>
               <View style={{backgroundColor:'red',padding:10}}>
+              
+              
+              <View style={{alignItems:'flex-end',marginTop:-10}}>
+                <TouchableHighlight
+                  
+                  onPress={() => alert('close Option')}
+                  style={[styles.button,]}>
+                  <Text style={styles.buttonText}>X</Text>
+                </TouchableHighlight>    
+              </View>
+
+
+
                 <View style={{flexDirection:'column',justifyContent:'center'}}> 
 
                   <View style={{flexDirection:'row-reverse'}}>

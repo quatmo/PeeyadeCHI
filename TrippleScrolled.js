@@ -144,7 +144,6 @@ export default class App_1 extends Component<Props> {
                             margin:10}}/>
 
                     </View>
-
                     <View style = {  {backgroundColor:'green',flex:1,width:device_width}}>
                         <View style={{alignItems:'flex-end'}}>    
                                 <Text style = { {} }>نوشته</Text>
@@ -152,9 +151,10 @@ export default class App_1 extends Component<Props> {
                         <WebView
                             source={require('./ckeditor/index.html')}
                             style={{flex:10,marginTop: 20,direction:'rtl'}}
-                            scrollEnabled={true}/>
+                            scrollEnabled={false}
+                            scalesPageToFit={false}
+                            />
                     </View>
-
                     <View style = {  {backgroundColor:'magenta',flex:1,width:device_width} }>
                         
                         <View style={{flexDirection:'row'}}>
@@ -181,6 +181,7 @@ export default class App_1 extends Component<Props> {
                         <TextInput
                             style={{
                             alignSelf: 'stretch',
+                            textAlign:'right',
                             flexDirection:'row',
                             height: 30,
                             borderColor: 'gray',

@@ -10,6 +10,7 @@ import {
     Dimensions,
     scrollView,Text
   } from 'react-native';
+  
   var device_width = Dimensions.get('window').width;
   import { Container, Content,Title,Tab,Tabs,TabHeading, Icon, Footer,Button,Header, Left, Body, Right } from 'native-base';
  import M3ssage from './Message';  
