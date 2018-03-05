@@ -644,18 +644,16 @@ export default class App extends Component<Props> {
                   نام گزارش
                 </Text>
                 <TextInput
-                onChangeText={(ReportName) => this.setState({ReportName})}
-                style={{
-                
-                alignSelf: 'stretch',
-                flexDirection:'row',
-                height: 30,
-                textAlign:'right',
-                borderColor: 'gray',
-                borderWidth: 1,
-                margin:10,
-                }}
-               />
+                  onChangeText={(ReportName) => this.setState({ReportName})}
+                  style={{
+                    alignSelf: 'stretch',
+                    flexDirection:'row',
+                    height: 30,
+                    textAlign:'right',
+                    borderColor: 'gray',
+                    borderWidth: 1,
+                    margin:10,
+                    }}/>
             
           
                 <Text style={{alignSelf:'flex-end'}}>

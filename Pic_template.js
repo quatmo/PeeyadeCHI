@@ -121,7 +121,7 @@ export default class App extends Component<Props> {
               <View style={{alignItems:'flex-end',marginTop:-10}}>
                 <TouchableHighlight
                   
-                  onPress={() => alert('close Option')}
+                  onPress={()=>{this.props.kk(this.props.did)}}
                   style={[styles.button,]}>
                   <Text style={styles.buttonText}>X</Text>
                 </TouchableHighlight>    

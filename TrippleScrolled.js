@@ -6,7 +6,7 @@ import {
   Text,
   View,
   ListView,
-  Image,Dimensions,TextInput,WebView,ScrollView
+  Image,Dimensions,TextInput,WebView,ScrollView,TouchableHighlight
 } from 'react-native';
 
 import { Dropdown } from 'react-native-material-dropdown';
@@ -21,31 +21,46 @@ export default class App_1 extends Component<Props> {
 
   constructor(props) {
         super(props);
-
+        
           //const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
-         
+            pic_temps:[<Pic_template key={1} did={1} kk={this.delmoviems}/>,],
         };
 
-
+        this.delmoviems=this.delmoviems.bind(this)
+        this.addTemplate=this.addTemplate.bind(this)
 
 
       }
-  componentDidMount()
-  {
-    
 
+
+  addTemplate()
+  {
+      this.state.pic_temps.push(<Pic_template key={1} did={1} kk={this.delmoviems}/>)
+      this.state.pic_temps.push(<Pic_template key={2} did={2} kk={this.delmoviems}/>)
+      this.state.pic_temps.push(<Pic_template key={3} did={3} kk={this.delmoviems}/>)
+      console.log(this.state.pic_temps)
+  }    
+  delmoviems(k)//aka key
+  {
+      //alert(k)
+      
+      let tmp=this.state.pic_temps.slice()
+      //alert(tmp[1].props.key)
+      for (let index = 0; index < tmp.length; index++) {
+          if(tmp[index].props.did==k)
+          {
+              tmp.splice(index,1);
+          }
+        }
+        console.log('key',tmp);
+        //alert('با موفقیت حذف شد')
+    this.setState({pic_temps:tmp})
   }
-  
 
       render() {
-
-        let pt=[]
-        pt.push(<Pic_template/>)
-        pt.push(<Pic_template/>)
-        pt.push(<Pic_template/>)
-        pt.push(<Pic_template/>)
-        pt.push(<Pic_template/>)
+        
+       
 
 
 
@@ -218,7 +233,14 @@ export default class App_1 extends Component<Props> {
                     <View style = {  {backgroundColor:'gray',flex:1,width:device_width} }>
                         <ScrollView>
                             <Text>Pic_templte</Text>
-                            {pt}
+                            
+                                {this.state.pic_temps}
+
+                            <TouchableHighlight
+                                onPress={this.addTemplate}
+                                style={[styles.button,]}>
+                                <Text style={styles.buttonText}>+</Text>
+                            </TouchableHighlight>   
                         </ScrollView>
                     </View>
                     <View style = {  {backgroundColor:'red',flex:1,width:device_width} }>
@@ -227,9 +249,68 @@ export default class App_1 extends Component<Props> {
                         </Text>
                     </View>
                     <View style = {  {backgroundColor:'yellow',flex:1,width:device_width} }>
-                        <Text style = { {} }>
-                            View #6
-                        </Text>
+                        
+                        <View style={{alignItems:'flex-end'}}>    
+                            <Text style = { {} }>ساعت</Text>
+                        </View>
+                        <TextInput
+                            style={{
+                            alignSelf: 'stretch',
+                            textAlign:'right',
+                            flexDirection:'row',
+                            height: 30,
+                            borderColor: 'gray',
+                            borderWidth: 1,
+                            margin:10}}/>
+                        <View style={{alignItems:'flex-end'}}>    
+                            <Text style = { {} }>ساعت</Text>
+                        </View>
+                        <TextInput
+                            style={{
+                            alignSelf: 'stretch',
+                            textAlign:'right',
+                            flexDirection:'row',
+                            height: 30,
+                            borderColor: 'gray',
+                            borderWidth: 1,
+                            margin:10}}/>
+                        <View style={{alignItems:'flex-end'}}>    
+                            <Text style = { {} }>ساعت</Text>
+                        </View>
+                        <TextInput
+                            style={{
+                            alignSelf: 'stretch',
+                            textAlign:'right',
+                            flexDirection:'row',
+                            height: 30,
+                            borderColor: 'gray',
+                            borderWidth: 1,
+                            margin:10}}/>
+                        
+                        <View style={{alignItems:'flex-end'}}>    
+                        <Text style = { {} }>ساعت</Text>
+                        </View>
+                        <TextInput
+                            style={{
+                            alignSelf: 'stretch',
+                            textAlign:'right',
+                            flexDirection:'row',
+                            height: 30,
+                            borderColor: 'gray',
+                            borderWidth: 1,
+                            margin:10}}/>
+                            <View style={{alignItems:'flex-end'}}>    
+                        <Text style = { {} }>ساعت</Text>
+                        </View>
+                        <TextInput
+                            style={{
+                            alignSelf: 'stretch',
+                            textAlign:'right',
+                            flexDirection:'row',
+                            height: 30,
+                            borderColor: 'gray',
+                            borderWidth: 1,
+                            margin:10}}/>
                     </View>
                 </MyScrollView>
           </View>
