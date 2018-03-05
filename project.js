@@ -12,8 +12,9 @@ import {
   } from 'react-native';
   var device_width = Dimensions.get('window').width;
   import { Container, Content,Title,Tab,Tabs,TabHeading, Icon, Footer,Button,Header, Left, Body, Right } from 'native-base';
-    
+ import M3ssage from './Message';  
  import MyScrollView from './scrolview'; 
+ 
 type Props = {};
 export default class App extends Component<Props> {
 
@@ -50,18 +51,8 @@ export default class App extends Component<Props> {
         </Tab>
           
           <Tab heading={ <TabHeading><Icon name="reorder" /></TabHeading>}>
-            <View style={{}}>
-            </View>
-          </Tab>
-
-          <Tab heading={ <TabHeading><Icon name="chatboxes" /></TabHeading>}>
-            <View style={{}}>
-            </View>
-          </Tab>
-          
-          <Tab heading={ <TabHeading><Icon name="add" /></TabHeading>}>
             <View style={{flex:1}}>
-                <MyScrollView>
+              <MyScrollView>
                     <View style = { {backgroundColor:'red',flex:1,width:device_width} }>
                     <Text style = { {} }>
                         View #1
@@ -80,6 +71,19 @@ export default class App extends Component<Props> {
                     </Text>
                     </View>
                 </MyScrollView>
+            </View>
+          </Tab>
+
+          <Tab heading={ <TabHeading><Icon name="chatboxes" /></TabHeading>}>
+            <View style={{flex:1}}>
+              <M3ssage/>
+           
+            </View>
+          </Tab>
+          
+          <Tab heading={ <TabHeading><Icon name="add" /></TabHeading>}>
+            <View style={{flex:1}}>
+               
             </View>
           </Tab>
         </Tabs>

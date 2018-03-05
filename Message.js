@@ -7,51 +7,88 @@ export default class App extends React.Component {
   }
 
   componentWillMount() {
-    this.setState({
-      messages: [
-        {
+    this.setState({ messages:  [
+      {
+        _id: Math.round(Math.random() * 1000000),
+        text: '#awesome',
+        createdAt: new Date(),
+        user: {
           _id: 1,
-          text: 'Hello developer',
-          createdAt: new Date(),
-          user: {
-            _id: 2,
-            name: 'React Native',
-            avatar:  'https://facebook.github.io/react/img/logo_og.png',
-          },
-          
+          name: 'Developer',
         },
-        {
-          _id: 3,
-          text: 'Hello developer',
-          createdAt: new Date(),
-          user: {
-            _id: 4,
-            name: 'React Native',
-            avatar:  'https://facebook.github.io/react/img/logo_og.png',
-          },
+      },
+      {
+        _id: Math.round(Math.random() * 1000000),
+        text: '',
+        createdAt: new Date(),
+        user: {
+          _id: 2,
+          name: 'React Native',
         },
-        {
-          _id: 5,
-          text: 'Hello developer',
-          createdAt: new Date(),
-          user: {
-            _id: 6,
-            name: 'React Native',
-            avatar:  'https://facebook.github.io/react/img/logo_og.png',
-          },
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdt-GuXf2fpzfFgKoreDDC8njOnKw-5fKw1qUjEYQgd-vO0Lo_',
+        sent: true,
+        received: true,
+      },
+      {
+        _id: Math.round(Math.random() * 1000000),
+        text: 'الان چی ....?',
+        createdAt: new Date(),
+        user: {
+          _id: 1,
+          name: 'Developer',
         },
-        {
-          _id: 7,
-          text: 'Hello developer',
-          createdAt: new Date(),
-          user: {
-            _id: 8,
-            name: 'React Native',
-            avatar:  'https://facebook.github.io/react/img/logo_og.png',
-          },
+      },
+      {
+        _id: Math.round(Math.random() * 1000000),
+        text: 'چاکرم :)((:',
+        createdAt: new Date(),
+        user: {
+          _id: 2,
+          name: 'React Native',
         },
-      ],
-    })
+        sent: true,
+        received: true,
+        location: {
+          latitude: 48.864601,
+          longitude: 2.398704
+        },
+      },
+      {
+        _id: Math.round(Math.random() * 1000000),
+        text: 'عه چه جالب !!',
+        createdAt: new Date(),
+        user: {
+          _id: 1,
+          name: 'Developer',
+        },
+      },
+      {
+        _id: Math.round(Math.random() * 1000000),
+        text: 'بنده ؟من یه تایپیست ساده عستم ',
+        createdAt: new Date(),
+        user: {
+          _id: 2,
+          name: 'React Native',
+        },
+        sent: true,
+        received: true
+      },
+      {
+        _id: Math.round(Math.random() * 1000000),
+        text: 'شما چه کاره هستید؟',
+        createdAt: new Date(),
+        user: {
+          _id: 1,
+          name: 'Developer',
+        },
+      },
+      {
+        _id: Math.round(Math.random() * 1000000),
+        text: "سلام به طوفان مغزی پروژه خوش آمدید",
+        createdAt: new Date(),
+        system: true,
+      },
+    ]});
   }
 
   onSend(messages = []) {
