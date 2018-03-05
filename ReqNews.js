@@ -52,8 +52,7 @@ export default class App extends Component<Props> {
             borderColor: 'gray',
             borderWidth: 1,
             margin:10
-          }}
-        />
+          }}/>
        
 
         <Text style={styles.instructions}>

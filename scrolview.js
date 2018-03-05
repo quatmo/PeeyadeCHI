@@ -31,7 +31,7 @@ export  class MyScrollView extends Component
     }
     else
     {
-        let cc= (this.state.getTextInput+1) % 3+1;
+        let cc= (this.state.getTextInput+1) % 6+1;
         this.setState({getTextInput: cc });
         this.setState({progress:this.state.progress+10})
         this.refs.scrollView.scrollTo({ x: (( (this.state.getTextInput) - 1 ) * device_width ), y: 0, animated: true });
@@ -54,6 +54,29 @@ export  class MyScrollView extends Component
         </View>)
         :
          ( <View style={{flexDirection:'row'}}>
+
+
+
+              <TouchableOpacity activeOpacity = { 0.8 } 
+              onPress = { this.moveToPage.bind(this) } 
+              style = {{flex:1,margin:0,justifyContent:'center',backgroundColor:'gray',height:50} }>
+                <Text style = { {textAlign:'center'}}>مرحله ششم</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity activeOpacity = { 0.8 } 
+              onPress = { this.moveToPage.bind(this) } 
+              style = {{flex:1,margin:0,justifyContent:'center',backgroundColor:'gray',height:50} }>
+                <Text style = { {textAlign:'center'}}>مرحله پنجم</Text>
+              </TouchableOpacity>
+
+
+
+             <TouchableOpacity activeOpacity = { 0.8 } 
+              onPress = { this.moveToPage.bind(this) } 
+              style = {{flex:1,margin:0,justifyContent:'center',backgroundColor:'gray',height:50} }>
+                <Text style = { {textAlign:'center'}}>مرحله چهارم</Text>
+              </TouchableOpacity>
+
             <TouchableOpacity activeOpacity = { 0.8 } 
               onPress = { this.moveToPage.bind(this) } 
               style = {{flex:1,margin:0,justifyContent:'center',backgroundColor:'gray',height:50} }>
