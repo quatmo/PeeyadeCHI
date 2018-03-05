@@ -6,6 +6,7 @@
 
 import React, { Component } from 'react';
 import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
+import { Container, Content,Title, Icon,Button, Footer,Header, Left, Body, Right } from 'native-base';
 
 import {
   Platform,

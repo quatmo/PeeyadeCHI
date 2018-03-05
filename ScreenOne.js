@@ -177,10 +177,9 @@ componentDidMount()
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>suggest2Wall </Text>
-        </TouchableHighlight> */}
-       
+        </TouchableHighlight> 
         
-       {/*  <TouchableHighlight
+        <TouchableHighlight
           onPress={() => navigate("AddingPCH", {screen: "AddingPCH  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
@@ -191,10 +190,10 @@ componentDidMount()
           onPress={() => navigate("Profile", {screen: "Profile  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
-            style={styles.buttonText}>Profile(Instagram) </Text>
-        </TouchableHighlight> */}
-
-         {/* <TouchableHighlight
+            style={styles.buttonText}>Profile (Instagram) </Text>
+        </TouchableHighlight> 
+        
+        <TouchableHighlight
           onPress={() => navigate("Login_confirm", {screen: "Login_confirm"})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
@@ -292,47 +291,46 @@ componentDidMount()
           <Text
             style={styles.buttonText}>Pic_template </Text>
         </TouchableHighlight>
-       
+       <TouchableHighlight
+          onPress={() => navigate("ScreenTwo", {screen: "ScreenTwo  "})}
+          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
+          <Text
+            style={styles.buttonText}>Map </Text>
+        </TouchableHighlight>
        
         {/* <TouchableHighlight
           onPress={() => navigate("ScreenThree", {screen: "ScreenThree  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>ButtonTypes </Text>
-        </TouchableHighlight> */}
+        </TouchableHighlight> 
+        
         <TouchableHighlight
-          onPress={() => navigate("ScreenTwo", {screen: "ScreenTwo  "})}
-          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
-          <Text
-            style={styles.buttonText}>Map </Text>
-        </TouchableHighlight>
-        {/* <TouchableHighlight
           onPress={() => navigate("MainPage", {screen: "MainPage  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>MainPage </Text>
-        </TouchableHighlight> */}
+        </TouchableHighlight> 
         
-       {/*  <TouchableHighlight
+        <TouchableHighlight
           onPress={() => navigate("Details", {screen: "Details  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>Details </Text>
-        </TouchableHighlight> */}
+        </TouchableHighlight> 
+        
         <TouchableHighlight
-          onPress={() => navigate("Message", {screen: "Message  "})}
-          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
-          <Text
-            style={styles.buttonText}>Message </Text>
-        </TouchableHighlight>
-       
-       {/*  <TouchableHighlight
           onPress={() => navigate("SplashPage", {screen: "SplashPage  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>SplashPage </Text>
         </TouchableHighlight> */}
-       
+       <TouchableHighlight
+          onPress={() => navigate("Message", {screen: "Message  "})}
+          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
+          <Text
+            style={styles.buttonText}>Message </Text>
+        </TouchableHighlight>
      
         </ScrollView>
        </View>
