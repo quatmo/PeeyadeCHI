@@ -29,7 +29,7 @@ export default class App extends Component<Props> {
           </Left>
           <Body>
             <View style={{justifyContent:'flex-start',alignItems:'center',flexDirection:'row'}}>
-           <Text>666</Text>
+           <Text>پروژه خانه فرهنگ</Text>
           </View>
           </Body>
           <Right>
