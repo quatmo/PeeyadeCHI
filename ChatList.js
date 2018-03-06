@@ -9,7 +9,13 @@ import {
   ListView,
   Image
 } from 'react-native';
-
+import {
+  Menu,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+  MenuProvider
+} from 'react-native-popup-menu';
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
     'Cmd+D or shake for dev menu',
@@ -62,16 +68,35 @@ export default class App_1 extends Component<Props> {
                     </View>
                   </Body>
                   <Right>
-                    <Button transparent onPress={() => this.props.navigation.navigate("DrawerOpen")}>
-                      <Icon name="menu" />
-                    </Button>
+                     
+                   <MenuProvider style={{backgroundColor:'red',flexDirection: 'column', padding: 30}}>
+                       
+                      <Menu onSelect={value => alert(`Selected number: ${value}`)}>
+                        <MenuTrigger>
+                          <Button transparent>
+                            <Icon name="more-vert" />
+                          </Button>
+                        </MenuTrigger>
+                        
+
+                        <MenuOptions>
+                          <MenuOption value={1} text='One' />
+                          <MenuOption value={2}>
+                            <Text style={{color: 'red'}}>Two</Text>
+                          </MenuOption>
+                          <MenuOption value={3} disabled={true} text='Three' />
+                        </MenuOptions>
+                      </Menu>
+                   </MenuProvider>
+                    
                   </Right>
                 </Header>
 
 
 
+                    
 
-
+                  
 
                 <ListView
                   style={styles.listview}
@@ -126,7 +151,11 @@ export default class App_1 extends Component<Props> {
                     </View>
             
                     }
-                    />
+                />
+
+
+       
+         
           </View>
           
         );

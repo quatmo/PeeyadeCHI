@@ -59,7 +59,8 @@ export default class TokenTAG extends Component<Props> {
             <TouchableHighlight
                 style={{
                 backgroundColor: '#FCDE33',
-                borderRadius:50,
+                borderRadius:10,
+                marginHorizontal:2,
                 alignItems:'center',
                 justifyContent:'center',
                 }}>

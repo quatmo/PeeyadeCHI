@@ -27,6 +27,7 @@ export default class App_1 extends Component<Props> {
       render() {
         return (
           <View style={{}}>
+            
           </View>
           
         );

@@ -27,7 +27,7 @@ import Requests_RS from './Requests_RS'
 import ChatList from './ChatList'              
 import AcceptRecjectRequest from './acceptRecjectRequest'              
 import TokenTag from './TokenTag'              
-//import FilterMenu from './FilterMenu'              
+//import WS from './websocket'              
 //import FilterMenu from './FilterMenu'              
 //import FilterMenu from './FilterMenu'              
 import Req_AddPCH from './Req_AddPCH'             
@@ -73,8 +73,8 @@ const App = DrawerNavigator({
     ChatList: {screen: ChatList},
     AcceptRecjectRequest: {screen: AcceptRecjectRequest},
     TokenTag: {screen: TokenTag},
-    //NoNavigatorPage: {screen: NoNavigatorPage},
-    //NoNavigatorPage: {screen: NoNavigatorPage},
+    WebSocket: {screen: WebSocket},
+    //WS: {screen: WS},
     //NoNavigatorPage: {screen: NoNavigatorPage},
     //NoNavigatorPage: {screen: NoNavigatorPage},
     //NoNavigatorPage: {screen: NoNavigatorPage},
@@ -105,6 +105,9 @@ const App = DrawerNavigator({
     contentComponent: props => <Drawer {...props}
     />
 })
+
+
+
 
 
 

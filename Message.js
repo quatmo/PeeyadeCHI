@@ -1,10 +1,114 @@
 import React from 'react';
 import { GiftedChat } from 'react-native-gifted-chat'
+const io = require('socket.io-client');
+
+const socket = io('ws://192.168.1.12:3000/chat?conversationId=5a79b35c2b7a4607f4f75ccf&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI1ODkxYmMyZTU0NjgxODQ5ZDAyZGZmZDYiLCJ1c2VyIjoi2YXYrdmF2K_Ysdi22Kcg2LHYrduM2YXbjNin2YYg2q_ZhNiu2YbYr9in2YbbjCJ9.-a5T7RyCp25GIwVrf3j9JoDA8lwUtLbmIvzcA3Ad-pI', {
+  transports: ['websocket'] // you need to explicitly tell it to use websockets
+});
+
+socket.on('connect', () => {
+    alert('connect')
+    //console.log('connected!');
+});
+
+socket.on('disconnect', () => {
+    alert('disconnect')
+    //console.log('connected!');
+});
+
 
 export default class App extends React.Component {
-  state = {
-    messages: [],
+  constructor(props) 
+  {
+        super(props);
+        this.state={
+          messages:[],
+          messageToSend:''
+
+        }
+          //On recceive data socketIO
+          socket.on('/messages/5a79b35c2b7a4607f4f75ccf', (recvMSG) => {
+
+
+
+            console.log(recvMSG.json())
+            console.log(JSON.parse(recvMSG))
+
+
+
+
+            if (recvMSG.data.attachment == null) 
+            {
+              this.setState(previousState => ({
+                messages: GiftedChat.append(previousState.messages, {
+                    _id: Math.round(Math.random() * 1000000),
+                    text: recvMSG.data.message,
+                    createdAt: new Date(),
+                    user: {
+                      _id: 2,
+                      name: 'React Native',
+                    },
+                    sent: true,
+                    received: true
+                  }
+
+                ),
+              }))
+            }
+            else
+            {
+              //console.log('inproccess',recvMSG["data"])
+              //alert(recvMSG.data.attachment.address.prefix+recvMSG.data.attachment.address.suffix)
+              //console.log("Object ...",Object.keys(recvMSG))
+              this.setState(previousState => ({
+                messages: GiftedChat.append(previousState.messages, 
+                  {
+                    _id: Math.round(Math.random() * 1000000),
+                    text: '',
+                    createdAt: new Date(),
+                    user: {
+                      _id: 2,
+                      name: 'React Native',
+                    },
+                    //text: recvMSG.data.message, 
+                    image: recvMSG.data.attachment.address.prefix+
+                      recvMSG.data.attachment.address.suffix,
+                    sent: true,
+                    received: true,
+                  }
+                ),
+              }))
+
+            }
+            
+            /* Messages Formats 
+            "success": true,
+                "message": "مکالمات",
+                "data": {
+                    "__v": 0,
+                    "conversationId": "5a79b35c2b7a4607f4f75ccf",
+                    "message": "salam 765",
+                    "sender": "5891bc2e54681849d02dffd6",
+                    "attachment": {
+                        "_id": "5a9ea80fb0ebcf3e282305b8",
+                        "fileType": "image/jpeg",
+                        "video": null,
+                        "__v": 0,
+                        "createdAt": "139612151803",
+                        "address": {
+                            "prefix": "https://peeyade.com/cdn/photos/uploads/chats/5a79b35c2b7a4607f4f75ccf",
+                            "suffix": "1520347151247_9b64b477c989fa65b4a172318f69aea1.jpg"
+                        }
+                    },
+                    "_id": "5a9ea80fb0ebcf3e282305b9",
+                    "createdAt": "139612151803"
+                }
+            } */
+          });      
+        
+        
   }
+  
 
   componentWillMount() {
     this.setState({ messages:  [
@@ -103,10 +207,28 @@ export default class App extends React.Component {
     ]});
   }
 
-  onSend(messages = []) {
-    this.setState(previousState => ({
-      messages: GiftedChat.append(previousState.messages, messages),
-    }))
+  onSend(v = []) {
+        
+
+    //alert(v[0].text)
+    socket.emit('/messages/5a79b35c2b7a4607f4f75ccf',JSON.stringify({'message': v[0].text}))
+
+     this.setState(previousState => ({
+      messages: GiftedChat.append(previousState.messages, 
+      
+                { 
+                  _id: Math.round(Math.random() * 1000000),
+                  text: v[0].text,
+                  createdAt: new Date(),
+                  user: {
+                    _id:1,
+                    name: 'React Native',
+                  },
+                  sent: true,
+                  received: true
+                }
+      
+              ),})) 
   }
 
   render() {

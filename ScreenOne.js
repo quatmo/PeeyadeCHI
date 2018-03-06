@@ -11,125 +11,151 @@ import {
 import ModalDropdown from 'react-native-modal-dropdown';
 import { Drawer, } from 'native-base';
 import Draw from './drawer';
-import { Container, Content, Icon, Footer,Button,Header, Left, Body, Right } from 'native-base';
+import { Container, Content, Icon, Footer, Button, Header, Left, Body, Right } from 'native-base';
 
 class ScreenOne extends Component {
   static navigationOptions = { title: 'Welcome', header: null };
-  state={
-    language:'arash',
+  state = {
+    language: 'arash',
   }
   constructor(props) {
     super(props);
-        this.state = {
-        
-        };
-       
-        this.openDrawer=this.openDrawer.bind(this);
-        this.closeDrawer=this.closeDrawer.bind(this);
-    
-    
-    
-    }
+    this.state = {
 
-    closeDrawer = () => {
-      this.drawer._root.close()
-    };
-    openDrawer = () => {
-      this.drawer._root.open()
     };
 
+    this.openDrawer = this.openDrawer.bind(this);
+    this.closeDrawer = this.closeDrawer.bind(this);
 
-componentDidMount()
-{
-  //alert(PeeyadeJWT);
-  
-}
+
+
+  }
+
+  closeDrawer = () => {
+    this.drawer._root.close()
+  };
+  openDrawer = () => {
+    this.drawer._root.open()
+  };
+
+
+  componentDidMount() {
+    //alert(PeeyadeJWT);
+
+  }
   render() {
+    let js = {
+      "success": true,
+      "message": "مکالمات",
+      "data": {
+        "__v": 0,
+        "conversationId": "5a79b35c2b7a4607f4f75ccf",
+        "message": "salam 765",
+        "sender": "5891bc2e54681849d02dffd6",
+        "attachment": {
+          "_id": "5a9ea80fb0ebcf3e282305b8",
+          "fileType": "image/jpeg",
+          "video": null,
+          "__v": 0,
+          "createdAt": "139612151803",
+          "address": {
+            "prefix": "https://peeyade.com/cdn/photos/uploads/chats/5a79b35c2b7a4607f4f75ccf",
+            "suffix": "1520347151247_9b64b477c989fa65b4a172318f69aea1.jpg"
+          }
+        },
+        "_id": "5a9ea80fb0ebcf3e282305b9",
+        "createdAt": "139612151803"
+      }
+    }
+    let tt = JSON.parse('{"result":true , "count":1}')
+    console.log(tt)
+    /// delegate github haskel(reqursive quicksort) alg:qsort
 
 
-     
-    
-//TODO imp drawer
+
+
+    //TODO imp drawer
 
 
     const { navigate } = this.props.navigation;
     console.log(this.props, "props is here");
     return (
       <Drawer
-      ref={(ref) => { this.drawer = ref; }}
-      content={<Draw />}
-      side={'left'}
-      onClose={() => this.closeDrawer()} >
-      <View style={{}}>
+        ref={(ref) => { this.drawer = ref; }}
+        content={<Draw />}
+        side={'left'}
+        onClose={() => this.closeDrawer()} >
+        <View style={{}}>
 
-      <Header>
-          <Left>
+          <Header>
+            <Left>
               <Button transparent    >
-                <Icon name="camera" onPress={() => this.props.navigation.navigate("DrawerOpen")}/>
+                <Icon name="camera" onPress={() => this.props.navigation.navigate("DrawerOpen")} />
               </Button>
-          </Left>
-          
-          <Body>
-            <View style={{justifyContent:'flex-start',alignItems:'center',flexDirection:'row'}}>
-            <Icon name='arrow-down' />
-              <ModalDropdown 
-                defaultValue={'درخواست‌ها'}
-                style={{}} 
-                dropdownStyle={{alignItems:'center',
-                width:Dimensions.get('window').width+30,
-                marginLeft:-Dimensions.get('window').width/2,
-                }}
-                  options={['فعال‌ها', ' در انتظار انتشار','منتشر شده ']}/>
-            </View>
-          </Body>
-          <Right>
-              <Button transparent    >
-                <Icon name="arrow-back" onPress={() => this.props.navigation.navigate("ScreenOne")}/>
-              </Button>
-          </Right>
-        </Header>
-      <View>
-       <ScrollView contentContainerStyle={{ }}>
-      
-      
+            </Left>
 
-       {/*  <TouchableHighlight
+            <Body>
+              <View style={{ justifyContent: 'flex-start', alignItems: 'center', flexDirection: 'row' }}>
+                <Icon name='arrow-down' />
+                <ModalDropdown
+                  defaultValue={'درخواست‌ها'}
+                  style={{}}
+                  dropdownStyle={{
+                    alignItems: 'center',
+                    width: Dimensions.get('window').width + 30,
+                    marginLeft: -Dimensions.get('window').width / 2,
+                  }}
+                  options={['فعال‌ها', ' در انتظار انتشار', 'منتشر شده ']} />
+              </View>
+            </Body>
+            <Right>
+              <Button transparent    >
+                <Icon name="arrow-back" onPress={() => this.props.navigation.navigate("ScreenOne")} />
+              </Button>
+            </Right>
+          </Header>
+          <View>
+            <ScrollView contentContainerStyle={{}}>
+
+
+
+              {/*  <TouchableHighlight
             onPress={() => {this.props.navigation.navigate("DrawerOpen")}}
             style={[styles.button, {backgroundColor: '#C56EE0'}]}>
             <Text style={styles.buttonText}>Go Back</Text>
         </TouchableHighlight> */}
-         <TouchableHighlight
-          onPress={() => navigate("TrippleScrolled", {screen: "TrippleScrolled  "})}
-          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
-          <Text
-            style={styles.buttonText}>TrippleScrolled 🎃</Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-          onPress={() => navigate("Reqaddplace", {screen: "Reqaddplace  "})}
-          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
-          <Text
-            style={styles.buttonText}>Reqaddplace 🤓</Text>
-        </TouchableHighlight>
+              <TouchableHighlight
+                onPress={() => navigate("TrippleScrolled", { screen: "TrippleScrolled  " })}
+                style={[styles.button, { backgroundColor: '#FCDE33' }]}>
+                <Text
+                  style={styles.buttonText}>TrippleScrolled 🎃</Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                onPress={() => navigate("Reqaddplace", { screen: "Reqaddplace  " })}
+                style={[styles.button, { backgroundColor: '#FCDE33' }]}>
+                <Text
+                  style={styles.buttonText}>Reqaddplace 🤓</Text>
+              </TouchableHighlight>
 
-        {/* <TouchableHighlight
+              {/* <TouchableHighlight
           onPress={() => navigate("webview", {screen: "webview"})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>webview 🎃</Text>
         </TouchableHighlight> */}
-        <TouchableHighlight
-          onPress={() => navigate("Requests_RS", {screen: "Requests_RS"})}
-          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
-          <Text
-            style={styles.buttonText}>Requests_RS 😇 </Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-          onPress={() => navigate("SwipeoutExample", {screen: "SwipeoutExample"})}
-          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
-          <Text
-            style={styles.buttonText}>wall☠️</Text>
-        </TouchableHighlight>
-        {/* <TouchableHighlight
+              <TouchableHighlight
+                onPress={() => navigate("Requests_RS", { screen: "Requests_RS" })}
+                style={[styles.button, { backgroundColor: '#FCDE33' }]}>
+                <Text
+                  style={styles.buttonText}>Requests_RS 😇 </Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                onPress={() => navigate("SwipeoutExample", { screen: "SwipeoutExample" })}
+                style={[styles.button, { backgroundColor: '#FCDE33' }]}>
+                <Text
+                  style={styles.buttonText}>wall☠️</Text>
+              </TouchableHighlight>
+              {/* <TouchableHighlight
           onPress={() => navigate("details", {screen: "details  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
@@ -137,42 +163,42 @@ componentDidMount()
         </TouchableHighlight> */}
 
 
-         {/* <TouchableHighlight
+              {/* <TouchableHighlight
           onPress={() => navigate("scrolview", {screen: "scrolview"})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>scrolview 🙅 </Text>
         </TouchableHighlight> */}
 
-        <TouchableHighlight
-          onPress={() => navigate("Project", {screen: "Project  "})}
-          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
-          <Text
-            style={styles.buttonText}>project 😈 </Text>
-        </TouchableHighlight>
+              <TouchableHighlight
+                onPress={() => navigate("Project", { screen: "Project  " })}
+                style={[styles.button, { backgroundColor: '#FCDE33' }]}>
+                <Text
+                  style={styles.buttonText}>project 😈 </Text>
+              </TouchableHighlight>
 
-        <TouchableHighlight
-          onPress={() => navigate("score", {screen: "score  "})}
-          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
-          <Text
-            style={styles.buttonText}>score </Text>
-        </TouchableHighlight>
-        
-        <TouchableHighlight
-          onPress={() => navigate("ChatList", {screen: "ChatList  "})}
-          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
-          <Text
-            style={styles.buttonText}>ChatList 👻👻</Text>
-        </TouchableHighlight>
+              <TouchableHighlight
+                onPress={() => navigate("score", { screen: "score  " })}
+                style={[styles.button, { backgroundColor: '#FCDE33' }]}>
+                <Text
+                  style={styles.buttonText}>score </Text>
+              </TouchableHighlight>
 
-        <TouchableHighlight
-          onPress={() => navigate("message2Wall", {screen: "message2Wall  "})}
-          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
-          <Text
-            style={styles.buttonText}>message2Wall </Text>
-        </TouchableHighlight>
+              <TouchableHighlight
+                onPress={() => navigate("ChatList", { screen: "ChatList  " })}
+                style={[styles.button, { backgroundColor: '#FCDE33' }]}>
+                <Text
+                  style={styles.buttonText}>ChatList 👻👻</Text>
+              </TouchableHighlight>
 
-        {/* <TouchableHighlight
+              <TouchableHighlight
+                onPress={() => navigate("message2Wall", { screen: "message2Wall  " })}
+                style={[styles.button, { backgroundColor: '#FCDE33' }]}>
+                <Text
+                  style={styles.buttonText}>message2Wall </Text>
+              </TouchableHighlight>
+
+              {/* <TouchableHighlight
           onPress={() => navigate("suggest2Wall", {screen: "suggest2Wall  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
@@ -206,7 +232,7 @@ componentDidMount()
           <Text
             style={styles.buttonText}>login </Text>
         </TouchableHighlight> */}
-        {/* <TouchableHighlight
+              {/* <TouchableHighlight
           onPress={() => navigate("RadiusButton", {screen: "RadiusButton  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
@@ -218,19 +244,25 @@ componentDidMount()
           <Text
             style={styles.buttonText}>Send/Recv Buttons </Text>
         </TouchableHighlight> */}
-        {/* <TouchableHighlight
+              {/* <TouchableHighlight
           onPress={() => navigate("Aicons", {screen: "Aicons"})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
             style={styles.buttonText}>Aicons </Text>
         </TouchableHighlight> */}
-        <TouchableHighlight
-          onPress={() => navigate("imagevideo", {screen: "imagevideo"})}
-          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
-          <Text
-            style={styles.buttonText}>Image Video </Text>
-        </TouchableHighlight>
-         <TouchableHighlight
+              <TouchableHighlight
+                onPress={() => navigate("imagevideo", { screen: "imagevideo" })}
+                style={[styles.button, { backgroundColor: '#FCDE33' }]}>
+                <Text
+                  style={styles.buttonText}>Image Video </Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                onPress={() => navigate("WS")}
+                style={[styles.button, { backgroundColor: '#FCDE33' }]}>
+                <Text
+                  style={styles.buttonText}>WebSocket 🐣🐣🐣</Text>
+              </TouchableHighlight>
+              {/* <TouchableHighlight
           onPress={() => navigate("TokenTag")}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
@@ -238,7 +270,7 @@ componentDidMount()
         </TouchableHighlight> 
 
         
-        {/* <TouchableHighlight
+         <TouchableHighlight
           onPress={() => navigate("Date_Time_Persian", {screen: "Date_Time_Persian"})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
@@ -277,28 +309,28 @@ componentDidMount()
           <Text
             style={styles.buttonText}>Req_AddPCH </Text>
         </TouchableHighlight>*/}
-        <TouchableHighlight
-          onPress={() => navigate("FilterMenu", {screen: "FilterMenu"})}
-          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
-          <Text
-            style={styles.buttonText}>FilterMenu </Text>
-        </TouchableHighlight>
-       
-        
-        <TouchableHighlight
-          onPress={() => navigate("Pic_template", {screen: "Pic_template  "})}
-          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
-          <Text
-            style={styles.buttonText}>Pic_template </Text>
-        </TouchableHighlight>
-       <TouchableHighlight
-          onPress={() => navigate("ScreenTwo", {screen: "ScreenTwo  "})}
-          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
-          <Text
-            style={styles.buttonText}>Map </Text>
-        </TouchableHighlight>
-       
-        {/* <TouchableHighlight
+              <TouchableHighlight
+                onPress={() => navigate("FilterMenu", { screen: "FilterMenu" })}
+                style={[styles.button, { backgroundColor: '#FCDE33' }]}>
+                <Text
+                  style={styles.buttonText}>FilterMenu </Text>
+              </TouchableHighlight>
+
+
+              <TouchableHighlight
+                onPress={() => navigate("Pic_template", { screen: "Pic_template  " })}
+                style={[styles.button, { backgroundColor: '#FCDE33' }]}>
+                <Text
+                  style={styles.buttonText}>Pic_template </Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                onPress={() => navigate("ScreenTwo", { screen: "ScreenTwo  " })}
+                style={[styles.button, { backgroundColor: '#FCDE33' }]}>
+                <Text
+                  style={styles.buttonText}>Map </Text>
+              </TouchableHighlight>
+
+              {/* <TouchableHighlight
           onPress={() => navigate("ScreenThree", {screen: "ScreenThree  "})}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
@@ -325,17 +357,17 @@ componentDidMount()
           <Text
             style={styles.buttonText}>SplashPage </Text>
         </TouchableHighlight> */}
-       <TouchableHighlight
-          onPress={() => navigate("Message", {screen: "Message  "})}
-          style={[styles.button, {backgroundColor: '#FCDE33'}]}>
-          <Text
-            style={styles.buttonText}>Message </Text>
-        </TouchableHighlight>
-     
-        </ScrollView>
-       </View>
-  
-      </View>
+              <TouchableHighlight
+                onPress={() => navigate("Message", { screen: "Message  " })}
+                style={[styles.button, { backgroundColor: '#FCDE33' }]}>
+                <Text
+                  style={styles.buttonText}>Message </Text>
+              </TouchableHighlight>
+
+            </ScrollView>
+          </View>
+
+        </View>
       </Drawer>
     );
   }
@@ -343,15 +375,15 @@ componentDidMount()
 
 const styles = StyleSheet.create({
   container: {
-    flex:1,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
   },
   RightButton: {
-    marginBottom:10,
-    marginRight:50,
-    fontSize:20,
-    fontWeight:'300',
+    marginBottom: 10,
+    marginRight: 50,
+    fontSize: 20,
+    fontWeight: '300',
   },
   button: {
     alignSelf: 'stretch',
