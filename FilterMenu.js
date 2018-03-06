@@ -54,14 +54,12 @@ export default class App extends Component<Props> {
               
               <View style={{margin:0,flexDirection:'row-reverse',flexWrap: 'wrap',}}>
 
-                <Button  buttonStyle={styles.buttonStyle}  title="کافه"  onPress={() => {}}/>
-                <Button  buttonStyle={styles.buttonStyle}  title="رستوران"  onPress={() => {}}/>
-                <Button  buttonStyle={styles.darkbuttonStyle}  title="محله‌گردی"  onPress={() => {}}/>
-                <Button  buttonStyle={styles.buttonStyle}  title="شهرگردی"  onPress={() => {}}/>
-                <Button  buttonStyle={styles.buttonStyle}  title="کتاب"  onPress={() => {}}/>
-                <Button  buttonStyle={styles.darkbuttonStyle}  title="تکنولوژی"  onPress={() => {}}/>
-                <Button  buttonStyle={styles.buttonStyle}  title="فشن‌ و مد"  onPress={() => {}}/>
-                <Button  buttonStyle={styles.buttonStyle}  title="تیاتر"  onPress={() => {}}/>
+                <Button  buttonStyle={{ borderRadius: 50,margin:5,padding:5,minWidth:80}}  title="کافه"  onPress={() => {}}/>
+                <Button  buttonStyle={{ borderRadius: 50,margin:5,padding:5,minWidth:80}}  title="کافه"  onPress={() => {}}/>
+                <Button  buttonStyle={{ borderRadius: 50,margin:5,padding:5,minWidth:80}}  title="کافه"  onPress={() => {}}/>
+                <Button  buttonStyle={{ borderRadius: 50,margin:5,padding:5,minWidth:80}}  title="کافه"  onPress={() => {}}/>
+                <Button  buttonStyle={{ borderRadius: 50,margin:5,padding:5,minWidth:80}}  title="کافه"  onPress={() => {}}/>
+                <Button  buttonStyle={{ borderRadius: 50,margin:5,padding:5,minWidth:80}}  title="کافه"  onPress={() => {}}/>
 
 
               </View>

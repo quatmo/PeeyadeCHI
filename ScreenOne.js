@@ -230,12 +230,12 @@ componentDidMount()
           <Text
             style={styles.buttonText}>Image Video </Text>
         </TouchableHighlight>
-        {/* <TouchableHighlight
-          onPress={() => navigate("drawer", {screen: "drawer  "})}
+         <TouchableHighlight
+          onPress={() => navigate("TokenTag")}
           style={[styles.button, {backgroundColor: '#FCDE33'}]}>
           <Text
-            style={styles.buttonText}>Drawer </Text>
-        </TouchableHighlight> */}
+            style={styles.buttonText}>Token TAG 🐣🐣🐣</Text>
+        </TouchableHighlight> 
 
         
         {/* <TouchableHighlight

@@ -21,6 +21,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.ContentLangDirection = 'rtl'; 
 	config.contentsLangDirection = 'rtl';
 	//contentsLangDirection : 'rtl'
+	
 	config.language = "fa";
 	config.defaultLanguage = 'en';
 	config.contentsLangDirection = 'rtl';

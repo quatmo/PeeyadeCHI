@@ -13,7 +13,7 @@ import { Dropdown } from 'react-native-material-dropdown';
 import { Container, Content,Title,Tab,Tabs,TabHeading, Icon, Footer,Button,Header, Left, Body, Right } from 'native-base';
 import MyScrollView from './scrolview'
 import Pic_template from './Pic_template'
-
+import TokenTag from './TokenTag'
 
 var device_width = Dimensions.get('window').width;
 type Props = {};
@@ -152,14 +152,9 @@ export default class App_1 extends Component<Props> {
                         <View style={{alignItems:'flex-end'}}>    
                             <Text style = { {} }>تگ</Text>
                         </View>
-                        <TextInput
-                            style={{
-                            alignSelf: 'stretch',
-                            flexDirection:'row',
-                            height: 30,
-                            borderColor: 'gray',
-                            borderWidth: 1,
-                            margin:10}}/>
+                        <ScrollView>
+                            <TokenTag/>
+                        </ScrollView>
 
                     </View>
                     <View style = {  {backgroundColor:'green',flex:1,width:device_width}}>
@@ -242,7 +237,7 @@ export default class App_1 extends Component<Props> {
                             <TouchableHighlight
                                 onPress={this.addTemplate.bind(this)}
                                 style={[styles.button,]}>
-                                <Text style={styles.buttonText}>+</Text>
+                                <Text style={{fontSize:20,textAlign:'center'}}>+</Text>
                             </TouchableHighlight>   
                          </ScrollView> 
                     </View>

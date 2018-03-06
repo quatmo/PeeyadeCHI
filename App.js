@@ -26,7 +26,7 @@ import Project from './project'
 import Requests_RS from './Requests_RS'              
 import ChatList from './ChatList'              
 import AcceptRecjectRequest from './acceptRecjectRequest'              
-//import FilterMenu from './FilterMenu'              
+import TokenTag from './TokenTag'              
 //import FilterMenu from './FilterMenu'              
 //import FilterMenu from './FilterMenu'              
 //import FilterMenu from './FilterMenu'              
@@ -72,7 +72,7 @@ const App = DrawerNavigator({
     Requests_RS: {screen: Requests_RS},
     ChatList: {screen: ChatList},
     AcceptRecjectRequest: {screen: AcceptRecjectRequest},
-    //NoNavigatorPage: {screen: NoNavigatorPage},
+    TokenTag: {screen: TokenTag},
     //NoNavigatorPage: {screen: NoNavigatorPage},
     //NoNavigatorPage: {screen: NoNavigatorPage},
     //NoNavigatorPage: {screen: NoNavigatorPage},
