@@ -27,6 +27,10 @@ import Requests_RS from './Requests_RS'
 import ChatList from './ChatList'              
 import AcceptRecjectRequest from './acceptRecjectRequest'              
 import TokenTag from './TokenTag'              
+import Vid_template from './Vid_template'              
+//import WS from './websocket'              
+//import WS from './websocket'              
+//import WS from './websocket'              
 //import WS from './websocket'              
 //import FilterMenu from './FilterMenu'              
 //import FilterMenu from './FilterMenu'              
@@ -74,7 +78,7 @@ const App = DrawerNavigator({
     AcceptRecjectRequest: {screen: AcceptRecjectRequest},
     TokenTag: {screen: TokenTag},
     WebSocket: {screen: WebSocket},
-    //WS: {screen: WS},
+    Vid_template: {screen: Vid_template},
     //NoNavigatorPage: {screen: NoNavigatorPage},
     //NoNavigatorPage: {screen: NoNavigatorPage},
     //NoNavigatorPage: {screen: NoNavigatorPage},

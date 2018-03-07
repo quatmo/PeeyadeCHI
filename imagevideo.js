@@ -188,16 +188,16 @@ export default class App extends Component {
         {this.state.images ? this.state.images.map(i => <View key={i.uri}>{this.renderAsset(i)}</View>) : null}
       </ScrollView>
 
-     {/*  <TouchableOpacity onPress={() => this.pickSingleWithCamera(false)} style={styles.button}>
+      <TouchableOpacity onPress={() => this.pickSingleWithCamera(false)} style={styles.button}>
         <Text style={styles.text}>Select Single With Camera</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => this.pickSingleWithCamera(true)} style={styles.button}>
         <Text style={styles.text}>Select Single With Camera With Cropping</Text>
-      </TouchableOpacity> */}
+      </TouchableOpacity>
       <TouchableOpacity onPress={() => this.pickSingle(false)} style={styles.button}>
         <Text style={styles.text}>Select Single</Text>
       </TouchableOpacity>
-      {/* <TouchableOpacity onPress={() => this.cropLast()} style={styles.button}>
+      <TouchableOpacity onPress={() => this.cropLast()} style={styles.button}>
         <Text style={styles.text}>Crop Last Selected Image</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => this.pickSingleBase64(false)} style={styles.button}>
@@ -217,7 +217,7 @@ export default class App extends Component {
       </TouchableOpacity>
       <TouchableOpacity onPress={this.cleanupSingleImage.bind(this)} style={styles.button}>
         <Text style={styles.text}>Cleanup Single Image</Text>
-      </TouchableOpacity> */}
+      </TouchableOpacity>
     </View>);
   }
 }

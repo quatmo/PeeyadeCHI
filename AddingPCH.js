@@ -20,12 +20,7 @@ import { Container, Header, Item, Input } from 'native-base';
 import SelectMultiple from 'react-native-select-multiple'
 
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+
 type Props = {};
 export default class App extends Component<Props> {
   constructor(props) {

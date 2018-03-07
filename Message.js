@@ -1,5 +1,13 @@
 import React from 'react';
 import { GiftedChat } from 'react-native-gifted-chat'
+import { Container, Content, Icon, Footer, Button, Header, Left, Body, Right } from 'native-base';
+import {
+  View, Text, StyleSheet, ScrollView, Alert,
+  Image, TouchableOpacity, NativeModules, Dimensions
+} from 'react-native';
+
+
+
 const io = require('socket.io-client');
 
 const socket = io('ws://192.168.1.12:3000/chat?conversationId=5a79b35c2b7a4607f4f75ccf&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI1ODkxYmMyZTU0NjgxODQ5ZDAyZGZmZDYiLCJ1c2VyIjoi2YXYrdmF2K_Ysdi22Kcg2LHYrduM2YXbjNin2YYg2q_ZhNiu2YbYr9in2YbbjCJ9.-a5T7RyCp25GIwVrf3j9JoDA8lwUtLbmIvzcA3Ad-pI', {
@@ -29,24 +37,17 @@ export default class App extends React.Component {
           //On recceive data socketIO
           socket.on('/messages/5a79b35c2b7a4607f4f75ccf', (recvMSG) => {
 
-
-
-            console.log(recvMSG.json())
-            console.log(JSON.parse(recvMSG))
-
-
-
-
-            if (recvMSG.data.attachment == null) 
+            if ((recvMSG).data.attachment == null) 
             {
-              this.setState(previousState => ({
+                this.setState(previousState => ({
                 messages: GiftedChat.append(previousState.messages, {
                     _id: Math.round(Math.random() * 1000000),
-                    text: recvMSG.data.message,
+                    text: (recvMSG).data.message,
                     createdAt: new Date(),
                     user: {
                       _id: 2,
-                      name: 'React Native',
+                      name: recvMSG.data.sender.profile.firstName,
+                      avatar: 'https://peeyade.com'+recvMSG.data.sender.bestPhoto.prefix+recvMSG.data.sender.bestPhoto.suffix,
                     },
                     sent: true,
                     received: true
@@ -57,22 +58,23 @@ export default class App extends React.Component {
             }
             else
             {
-              //console.log('inproccess',recvMSG["data"])
+              console.log('inproccess',recvMSG["data"])
               //alert(recvMSG.data.attachment.address.prefix+recvMSG.data.attachment.address.suffix)
               //console.log("Object ...",Object.keys(recvMSG))
               this.setState(previousState => ({
                 messages: GiftedChat.append(previousState.messages, 
                   {
                     _id: Math.round(Math.random() * 1000000),
-                    text: '',
+                    text: (recvMSG).data.message,
                     createdAt: new Date(),
                     user: {
                       _id: 2,
-                      name: 'React Native',
+                      name:recvMSG.data.sender.profile.firstName,
+                      avatar: 'https://peeyade.com'+recvMSG.data.sender.bestPhoto.prefix+recvMSG.data.sender.bestPhoto.suffix,
                     },
                     //text: recvMSG.data.message, 
-                    image: recvMSG.data.attachment.address.prefix+
-                      recvMSG.data.attachment.address.suffix,
+                    image:  recvMSG.data.attachment.address.prefix+
+                            recvMSG.data.attachment.address.suffix,
                     sent: true,
                     received: true,
                   }
@@ -233,13 +235,35 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <GiftedChat
-        messages={this.state.messages}
-        onSend={messages => this.onSend(messages)}
-        user={{
-          _id: 1,
-        }}
-      />
+      <View style={{flex:1}}>
+            <Header>
+                <Left>
+                  <Button transparent    >
+                    <Icon name="arrow-back" onPress={() => this.props.navigation.navigate("ScreenOne")} />
+                  </Button>
+                </Left>
+
+                <Body>
+                  <View style={{ justifyContent: 'flex-start', alignItems: 'center', flexDirection: 'row' }}>
+                    <Icon name='logo-github' />
+                  </View>
+                </Body>
+                <Right>
+                  <Button transparent    >
+                    <Icon name="menu" onPress={() => this.props.navigation.navigate("DrawerOpen")} />
+                  </Button>
+                </Right>
+            </Header>
+          <GiftedChat
+            messages={this.state.messages}
+            onSend={messages => this.onSend(messages)}
+            user={{
+              _id: 1,
+            }}
+          />
+      </View>
+
+
     )
   }
 }
