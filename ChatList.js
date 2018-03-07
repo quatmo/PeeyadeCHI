@@ -16,13 +16,8 @@ import {
   MenuTrigger,
   MenuProvider
 } from 'react-native-popup-menu';
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
-import { Container, Content,FooterTab, Footer,Button,Header, Left, Body, Right } from 'native-base';
+import { Toolbar } from 'react-native-material-ui';
+import { Container, Content,FooterTab, Footer,Button,Header, Left, Body, Right,Picker,Item } from 'native-base';
 type Props = {};
 export default class App_1 extends Component<Props> {
 
@@ -55,7 +50,22 @@ export default class App_1 extends Component<Props> {
         return (
           <View style={{}}>
 
-                 <Header>
+
+
+
+      <View style={{flex:1}}>
+          <Toolbar
+            leftElement="menu"
+            centerElement="Searchable"
+            searchable={{
+              autoFocus: true,
+              placeholder: 'Search'
+            }}
+          />
+       </View>
+
+
+                {/*  <Header>
                   <Left>
                     <Button transparent    >
                       <Icon name="arrow-back" onPress={() => this.props.navigation.navigate("ScreenOne")}/>
@@ -68,7 +78,24 @@ export default class App_1 extends Component<Props> {
                     </View>
                   </Body>
                   <Right>
-                     
+                           
+                              <Picker
+                                style={{backgroundColor:'red'}}
+                                onValueChange={()=>{}}
+                                mode="dropdown">
+
+                                <Item label="Wallet" value="key0" />
+                                <Item label="ATM Card" value="key1" />
+                              </Picker>
+
+                        
+                              <Button transparent>
+                                  <Icon name="more-vert" />                   
+                              </Button> 
+                    
+                  </Right>
+                </Header> */}
+ {/*   
                    <MenuProvider style={{backgroundColor:'red',flexDirection: 'column', padding: 30}}>
                        
                       <Menu onSelect={value => alert(`Selected number: ${value}`)}>
@@ -87,11 +114,7 @@ export default class App_1 extends Component<Props> {
                           <MenuOption value={3} disabled={true} text='Three' />
                         </MenuOptions>
                       </Menu>
-                   </MenuProvider>
-                    
-                  </Right>
-                </Header>
-
+                   </MenuProvider> */}
 
 
                     
