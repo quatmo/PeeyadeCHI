@@ -71,15 +71,7 @@ export default class App_1 extends Component<Props> {
                   <Right>
                             
                             
-                            <Button transparent 
-                              title=":"
-                              style={{
-                                  //zIndex:-999 ,
-                                  //position:'absolute',
-                                  //right:0,
-                                  //top:0,
-                                  //backgroundColor:'yellow',
-                                  }}>
+                            <Button transparent>
                                   <View style={{}}>
                                       <Icon name="more-vert" style={{
                                         zIndex:-999 ,
