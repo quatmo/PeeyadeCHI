@@ -113,6 +113,12 @@ export default class App extends React.Component {
   
 
   componentWillMount() {
+
+
+
+
+
+
     this.setState({ messages:  [
       {
         _id: Math.round(Math.random() * 1000000),
@@ -207,30 +213,114 @@ export default class App extends React.Component {
         system: true,
       },
     ]});
+    try{
+    fetch(
+      'https://peeyade.com/api/pch/v1/chat/conversations/5a79b35c2b7a4607f4f75ccf/messages?limit=100,offset=0',{  
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization':'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI1YTg2ZDQ5ZGZhOTA2OTYyMDA5NWM2N2QiLCJ1c2VyIjoi2KLYsdi02YXbjNiv2LMifQ.dJloyq--dABpkcwRhw6OSBwH59z30ZKoLD6356Kozbk'
+        }
+      
+      }).then((response) => response.json())
+        .then((res)=>{
+        console.log('--------',res);
+        //console.log('https://peeyade.com'+res.data.user.bestPhoto.prefix+res.data.user.bestPhoto.suffix)
+        //this.setdata(res)
+        //this.state.bons= res.data.points
+        Object.keys(res.data.messages).forEach((key)=>{
+          console.log(res.data.messages[key].attachment)
+          //temps.push(res.data.messages[key].profile.firstName)
+          if (res.data.messages[key].attachment == null) 
+            {
+                this.setState(previousState => ({
+                messages: GiftedChat.append(previousState.messages, {
+                    _id: Math.round(Math.random() * 1000000),
+                    text: res.data.messages[key].message,
+                    createdAt: new Date(),
+                    user: {
+                      _id: 2,
+                      name: res.data.messages[key].sender.profile.firstName,
+                      avatar: 'https://peeyade.com'+res.data.messages[key].sender.bestPhoto.prefix+res.data.messages[key].sender.bestPhoto.suffix,
+                    },
+                    sent: true,
+                    received: true
+                  }
+
+                ),
+              }))
+            }
+            else
+            {
+              //console.log('inproccess',res.data.messages[key]["data"])
+              //alert(recvMSG.data.attachment.address.prefix+recvMSG.data.attachment.address.suffix)
+              //console.log("Object ...",Object.keys(recvMSG))
+              this.setState(previousState => ({
+                messages: GiftedChat.append(previousState.messages, 
+                  {
+                    _id: Math.round(Math.random() * 1000000),
+                    text: res.data.messages[key].message,
+                    createdAt: new Date(),
+                    user: {
+                      _id: 2,
+                      name:res.data.messages[key].sender.profile.firstName,
+                      avatar: 'https://peeyade.com'+res.data.messages[key].sender.bestPhoto.prefix+res.data.messages[key].data.sender.bestPhoto.suffix,
+                    },
+                    //text: recvMSG.data.message, 
+                    image:  res.data.messages[key].attachment.address.prefix+
+                            res.data.messages[key].attachment.address.suffix,
+                    sent: true,
+                    received: true,
+                  }
+                ),
+              }))
+
+            }
+
+
+
+        });
+      
+      }).catch((err)=>{console.error(err)});
+
+   
+  } catch (error) {
+    console.log("Arash ::: "+error);
+  }
+
+
+
   }
 
   onSend(v = []) {
         
 
     //alert(v[0].text)
-    socket.emit('/messages/5a79b35c2b7a4607f4f75ccf',JSON.stringify({'message': v[0].text}))
 
-     this.setState(previousState => ({
+    socket.emit('/messages/5a79b35c2b7a4607f4f75ccf',JSON.stringify({'message': v[0].text}))
+    
+    this.setState(previousState => ({
       messages: GiftedChat.append(previousState.messages, 
+        
+        { 
+          _id: Math.round(Math.random() * 1000000),
+          text: v[0].text,
+          createdAt: new Date(),
+          user: {
+            _id:1,
+            name: 'React Native',
+          },
+          sent: true,
+          received: true
+        }
+        
+      ),})) 
+    for (let index = 0; index < 2000; index++) {
+      //const element = array[index];
+      socket.emit('/messages/5a79b35c2b7a4607f4f75ccf',JSON.stringify({'message': v[0].text}))
       
-                { 
-                  _id: Math.round(Math.random() * 1000000),
-                  text: v[0].text,
-                  createdAt: new Date(),
-                  user: {
-                    _id:1,
-                    name: 'React Native',
-                  },
-                  sent: true,
-                  received: true
-                }
-      
-              ),})) 
+    }      
   }
 
   render() {

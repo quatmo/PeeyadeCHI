@@ -44,7 +44,42 @@ export default class App_1 extends Component<Props> {
         };
       }
   
-  
+ componentDidMount()
+ {
+  try{
+    fetch(
+      'https://peeyade.com/api/pch/v1/chat/conversations?limit=1',{  
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization':'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI1YTg2ZDQ5ZGZhOTA2OTYyMDA5NWM2N2QiLCJ1c2VyIjoi2KLYsdi02YXbjNiv2LMifQ.dJloyq--dABpkcwRhw6OSBwH59z30ZKoLD6356Kozbk'
+        }
+      
+      }).then((response) => response.json())
+        .then((res)=>{
+        
+        console.log('--------',res);
+       
+        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        this.setState({dataSource:ds.cloneWithRows(res.data)});
+
+        /* Object.keys(res.data).forEach((key)=>{
+          
+
+
+
+        }); */
+      
+      }).catch((err)=>{console.error(err)});
+
+   
+  } catch (error) {
+    console.log("Arash ::: "+error);
+  }
+
+
+ } 
 
       render() {
         return (
@@ -153,22 +188,22 @@ export default class App_1 extends Component<Props> {
 
                         <View style={{flexDirection:'column',flex:1,alignItems: 'center',}}>
                             <View>
-                              <Text>{data.dat}</Text>
-                              <Text>{data.tim}</Text>                      
+                              <Text>{String('data.lastMessage.createdAt').substring(0,8)}</Text>
+                              <Text>{String('data.lastMessage.createdAt').substring(8,12)}</Text>                      
                             </View>
                         </View>
                         
                         
                         <View style={{flexDirection:'column',flex:3}}>
                             <View style={{justifyContent:'space-between',flexDirection:'row',}}>
-                              <Text>{data.role}</Text>
-                              <Text>{data.name}</Text>
+                              <Text>{'data.role'}</Text>
+                              <Text>{'data.lastMessage.sender.profile.firstName'}</Text>
                               <View style={{paddingHorizontal:10,borderRadius:20,backgroundColor:'gray'}}>
-                                <Text >{data.msgs}</Text>
+                                <Text >{'data.msgs'}</Text>
                               </View>
                             </View>
                             <View style={{flexDirection:'row',justifyContent:'center'}}>
-                            <Text>{String(data.lstmsg).substr(0,30)+"..."}</Text>                          
+                            <Text>{String('data.lastMessage.message').substr(0,30)+"..."}</Text>                          
                             </View>
                           </View>
 
@@ -177,7 +212,7 @@ export default class App_1 extends Component<Props> {
                         <Image
                           style={{height:40,width:40,borderRadius:20}}
                           resizeMode={'stretch'}
-                          source={require('./image/testlogo.png')}/>
+                          source={{uri:'https://peeyade.com'+'data.lastMessage.sender.bestPhoto.prefix'+'data.lastMessage.sender.bestPhoto.prefix'}}/>
                           <View style={{position:'absolute',borderRadius:4,bottom:4,left:15,height:8,width:8,backgroundColor:data.onoff=='0'?'gray':'#00ff00'}}>
                           </View>
                         </View>
