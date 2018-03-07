@@ -16,7 +16,7 @@ import {
   MenuTrigger,
   MenuProvider
 } from 'react-native-popup-menu';
-import { Toolbar } from 'react-native-material-ui';
+
 import { Container, Content,FooterTab, Footer,Button,Header, Left, Body, Right,Picker,Item } from 'native-base';
 type Props = {};
 export default class App_1 extends Component<Props> {
@@ -53,19 +53,10 @@ export default class App_1 extends Component<Props> {
 
 
 
-      <View style={{flex:1}}>
-          <Toolbar
-            leftElement="menu"
-            centerElement="Searchable"
-            searchable={{
-              autoFocus: true,
-              placeholder: 'Search'
-            }}
-          />
-       </View>
+      
 
 
-                {/*  <Header>
+                <Header>
                   <Left>
                     <Button transparent    >
                       <Icon name="arrow-back" onPress={() => this.props.navigation.navigate("ScreenOne")}/>
@@ -78,23 +69,52 @@ export default class App_1 extends Component<Props> {
                     </View>
                   </Body>
                   <Right>
-                           
-                              <Picker
-                                style={{backgroundColor:'red'}}
-                                onValueChange={()=>{}}
-                                mode="dropdown">
+                            
+                            
+                            <Button transparent 
+                              title=":"
+                              style={{
+                                  //zIndex:-999 ,
+                                  //position:'absolute',
+                                  //right:0,
+                                  //top:0,
+                                  //backgroundColor:'yellow',
+                                  }}>
+                                  <View style={{}}>
+                                      <Icon name="more-vert" style={{
+                                        zIndex:-999 ,
+                                        position:'absolute',
+                                        right:0,
+                                        top:0,
 
-                                <Item label="Wallet" value="key0" />
-                                <Item label="ATM Card" value="key1" />
-                              </Picker>
+                                      }}/>
+                                      <Picker
+                                        style={{
+                                          zIndex:999,
+                                          position:'absolute',
+                                          //right:0,
+                                          top:-35,
+                                          backgroundColor:'transparent',
+                                        }}
+                                        onValueChange={()=>{}}
+                                        mode="dropdown">
+
+                                        <Item label="Wallet" value="key0" />
+                                        <Item label="ATM Card" value="key1" />
+                                      </Picker>
+                                  </View>  
+                              </Button> 
+
+                              
 
                         
-                              <Button transparent>
-                                  <Icon name="more-vert" />                   
-                              </Button> 
+                              
+
+                              
+                           
                     
                   </Right>
-                </Header> */}
+                </Header> 
  {/*   
                    <MenuProvider style={{backgroundColor:'red',flexDirection: 'column', padding: 30}}>
                        
